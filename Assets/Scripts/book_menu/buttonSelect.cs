@@ -46,7 +46,6 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Only hide hover effects if button hasn't been clicked
         if (!isClicked)
         {
             if (itemToShow != null)
@@ -63,20 +62,17 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // If this button is already selected, deselect it
         if (isClicked)
         {
             DeselectButton();
             return;
         }
 
-        // If there's another button selected, deselect it first
         if (currentlySelected != null && currentlySelected != this)
         {
             currentlySelected.DeselectButton();
         }
 
-        // Select this button
         SelectButton();
     }
 
@@ -85,7 +81,6 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         isClicked = true;
         currentlySelected = this;
 
-        // Show item and underline
         if (itemToShow != null)
         {
             itemToShow.SetActive(true);
@@ -106,7 +101,6 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             currentlySelected = null;
         }
 
-        // Hide item and remove underline
         if (itemToShow != null)
         {
             itemToShow.SetActive(false);
