@@ -12,23 +12,56 @@ public class levels_menu : MonoBehaviour
 
     void Start()
     {
-        level1Title = PlayerPrefs.GetString("Level1Title", "Bienvenida");
-        level1Description = PlayerPrefs.GetString("Level1Description", "Example Example Example Example Example Example Example Example Example Example Example Example Example Example");
-        
-        PlayerPrefs.SetString("Level1Title", level1Title);
-        PlayerPrefs.SetString("Level1Description", level1Description);
+        PlayerPrefs.SetString("Level_1", "done");
+        PlayerPrefs.SetString("Level_2", "available");
+        PlayerPrefs.SetString("Level_3", "available");
+        PlayerPrefs.SetString("Level_4", "available");
         PlayerPrefs.Save();
         
+        UpdateLevelContent();
+    }
+    
+    void UpdateLevelContent()
+    {
+        string selectedLevel = PlayerPrefs.GetString("selectedlevel", "Level_1");
+        
+        string title = "";
+        string description = "";
+        
+        switch (selectedLevel)
+        {
+            case "Level_1":
+                title = "Bienvenida1";
+                description = "Example1 Example Example Example Example Example Example Example Example Example Example Example Example Example";
+                break;
+            case "Level_2":
+                title = "Bienvenida2";
+                description = "Example2 Example Example Example Example Example Example Example Example Example Example Example Example Example";
+                break;
+            case "Level_3":
+                title = "Bienvenida3";
+                description = "Example3 Example Example Example Example Example Example Example Example Example Example Example Example Example";
+                break;
+            case "Level_4":
+                title = "Bienvenida4";
+                description = "Example4 Example Example Example Example Example Example Example Example Example Example Example Example Example";
+                break;
+            default:
+                title = "Bienvenida1";
+                description = "Example1 Example Example Example Example Example Example Example Example Example Example Example Example Example";
+                break;
+        }
+        
         if (textMeshPro1 != null)
-            textMeshPro1.text = level1Title;
+            textMeshPro1.text = title;
         
         if (textMeshPro2 != null)
-            textMeshPro2.text = level1Description;
+            textMeshPro2.text = description;
     }
 
 
     void Update()
     {
-        
+        UpdateLevelContent();
     }
 }
