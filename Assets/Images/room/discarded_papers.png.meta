@@ -1,0 +1,832 @@
+fileFormatVersion: 2
+guid: ea98d9d289b665f47ba502c2778eb900
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3455847829299851371
+    second: discarded_papers_0
+  - first:
+      213: -3340477799004190502
+    second: discarded_papers_1
+  - first:
+      213: 3250938125646741009
+    second: discarded_papers_2
+  - first:
+      213: -3322860574420761469
+    second: discarded_papers_3
+  - first:
+      213: 8662406713060833254
+    second: discarded_papers_4
+  - first:
+      213: 622908217743150698
+    second: discarded_papers_5
+  - first:
+      213: -6113465216364553610
+    second: discarded_papers_6
+  - first:
+      213: -8642171199998006195
+    second: discarded_papers_7
+  - first:
+      213: -81953544380128650
+    second: discarded_papers_8
+  - first:
+      213: -1388571668708058612
+    second: discarded_papers_9
+  - first:
+      213: -1565150632023539093
+    second: discarded_papers_10
+  - first:
+      213: 5465011292621907767
+    second: discarded_papers_11
+  - first:
+      213: -4409248789243673141
+    second: discarded_papers_12
+  - first:
+      213: 4011264464554347395
+    second: discarded_papers_13
+  - first:
+      213: 5964702529949667485
+    second: discarded_papers_14
+  - first:
+      213: -9022082715112528397
+    second: discarded_papers_15
+  - first:
+      213: -3805481942325069129
+    second: discarded_papers_16
+  - first:
+      213: -6845081271771819754
+    second: discarded_papers_17
+  - first:
+      213: 2489248972875735811
+    second: discarded_papers_18
+  - first:
+      213: -5710010686981731131
+    second: discarded_papers_19
+  - first:
+      213: -411368316922297929
+    second: discarded_papers_20
+  - first:
+      213: -5450509444794210086
+    second: discarded_papers_21
+  - first:
+      213: 7587340702891498706
+    second: discarded_papers_22
+  - first:
+      213: 2114533281233200672
+    second: discarded_papers_23
+  - first:
+      213: 4606838754462412496
+    second: discarded_papers_24
+  - first:
+      213: 8597599815894414216
+    second: discarded_papers_25
+  - first:
+      213: 6015780781617381174
+    second: discarded_papers_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: discarded_papers_0
+      rect:
+        serializedVersion: 2
+        x: 2173
+        y: 3232
+        width: 873
+        height: 496
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b60f8377a43a5ff20800000000000000
+      internalID: 3455847829299851371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_1
+      rect:
+        serializedVersion: 2
+        x: 6268
+        y: 3589
+        width: 936
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8c642f32d34a1d0800000000000000
+      internalID: -3340477799004190502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_2
+      rect:
+        serializedVersion: 2
+        x: 8011
+        y: 3411
+        width: 737
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11eb2f54007ad1d20800000000000000
+      internalID: 3250938125646741009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_3
+      rect:
+        serializedVersion: 2
+        x: 8798
+        y: 3075
+        width: 842
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384008fa9e3d2e1d0800000000000000
+      internalID: -3322860574420761469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_4
+      rect:
+        serializedVersion: 2
+        x: 9848
+        y: 3547
+        width: 905
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e733f7920d073870800000000000000
+      internalID: 8662406713060833254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_5
+      rect:
+        serializedVersion: 2
+        x: 4294
+        y: 2550
+        width: 1262
+        height: 894
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e804649b305a800800000000000000
+      internalID: 622908217743150698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_6
+      rect:
+        serializedVersion: 2
+        x: 6793
+        y: 2581
+        width: 1272
+        height: 968
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a52e7b6cb982ba0800000000000000
+      internalID: -6113465216364553610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_7
+      rect:
+        serializedVersion: 2
+        x: 10562
+        y: 2665
+        width: 916
+        height: 611
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ce100f417d01880800000000000000
+      internalID: -8642171199998006195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_8
+      rect:
+        serializedVersion: 2
+        x: 11434
+        y: 3001
+        width: 1041
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67263238fa7dcdef0800000000000000
+      internalID: -81953544380128650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_9
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 1962
+        width: 1031
+        height: 632
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a1c7d9c6dcabce0800000000000000
+      internalID: -1388571668708058612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_10
+      rect:
+        serializedVersion: 2
+        x: 2467
+        y: 1437
+        width: 1629
+        height: 936
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b62424eeac7774ae0800000000000000
+      internalID: -1565150632023539093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_11
+      rect:
+        serializedVersion: 2
+        x: 2540
+        y: 2350
+        width: 979
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7372a36d0de97db40800000000000000
+      internalID: 5465011292621907767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_12
+      rect:
+        serializedVersion: 2
+        x: 5228
+        y: 2277
+        width: 968
+        height: 579
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc54fce56933fc2c0800000000000000
+      internalID: -4409248789243673141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_13
+      rect:
+        serializedVersion: 2
+        x: 7370
+        y: 2098
+        width: 1367
+        height: 653
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38bc8e527cfdaa730800000000000000
+      internalID: 4011264464554347395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_14
+      rect:
+        serializedVersion: 2
+        x: 8914
+        y: 2266
+        width: 1745
+        height: 653
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9016804951e6c250800000000000000
+      internalID: 5964702529949667485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_15
+      rect:
+        serializedVersion: 2
+        x: 11507
+        y: 1689
+        width: 1010
+        height: 684
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5a687529f1bc280800000000000000
+      internalID: -9022082715112528397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_16
+      rect:
+        serializedVersion: 2
+        x: 12715
+        y: 2035
+        width: 789
+        height: 401
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bafc84f556303bc0800000000000000
+      internalID: -3805481942325069129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1258
+        width: 894
+        height: 580
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6119c51a9d26101a0800000000000000
+      internalID: -6845081271771819754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_18
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 576
+        width: 957
+        height: 884
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 303a3c190c69b8220800000000000000
+      internalID: 2489248972875735811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_19
+      rect:
+        serializedVersion: 2
+        x: 4399
+        y: 1027
+        width: 831
+        height: 727
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc05ca7887f1c0b0800000000000000
+      internalID: -5710010686981731131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_20
+      rect:
+        serializedVersion: 2
+        x: 5543
+        y: 891
+        width: 1535
+        height: 1188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b10ffdf1b68a4af0800000000000000
+      internalID: -411368316922297929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_21
+      rect:
+        serializedVersion: 2
+        x: 7601
+        y: 964
+        width: 2890
+        height: 1084
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8212ab986eb54b0800000000000000
+      internalID: -5450509444794210086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_22
+      rect:
+        serializedVersion: 2
+        x: 11014
+        y: 1069
+        width: 1157
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dcd5b97b26ab4960800000000000000
+      internalID: 7587340702891498706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_23
+      rect:
+        serializedVersion: 2
+        x: 3118
+        y: 124
+        width: 1146
+        height: 937
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02665a5e0d4585d10800000000000000
+      internalID: 2114533281233200672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_24
+      rect:
+        serializedVersion: 2
+        x: 6992
+        y: 0
+        width: 1294
+        height: 924
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de2c396077ceef30800000000000000
+      internalID: 4606838754462412496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_25
+      rect:
+        serializedVersion: 2
+        x: 10205
+        y: 544
+        width: 1052
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883b9530b7fc05770800000000000000
+      internalID: 8597599815894414216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: discarded_papers_26
+      rect:
+        serializedVersion: 2
+        x: 12851
+        y: 240
+        width: 946
+        height: 926
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ffce67fb85c7350800000000000000
+      internalID: 6015780781617381174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      discarded_papers_0: 3455847829299851371
+      discarded_papers_1: -3340477799004190502
+      discarded_papers_10: -1565150632023539093
+      discarded_papers_11: 5465011292621907767
+      discarded_papers_12: -4409248789243673141
+      discarded_papers_13: 4011264464554347395
+      discarded_papers_14: 5964702529949667485
+      discarded_papers_15: -9022082715112528397
+      discarded_papers_16: -3805481942325069129
+      discarded_papers_17: -6845081271771819754
+      discarded_papers_18: 2489248972875735811
+      discarded_papers_19: -5710010686981731131
+      discarded_papers_2: 3250938125646741009
+      discarded_papers_20: -411368316922297929
+      discarded_papers_21: -5450509444794210086
+      discarded_papers_22: 7587340702891498706
+      discarded_papers_23: 2114533281233200672
+      discarded_papers_24: 4606838754462412496
+      discarded_papers_25: 8597599815894414216
+      discarded_papers_26: 6015780781617381174
+      discarded_papers_3: -3322860574420761469
+      discarded_papers_4: 8662406713060833254
+      discarded_papers_5: 622908217743150698
+      discarded_papers_6: -6113465216364553610
+      discarded_papers_7: -8642171199998006195
+      discarded_papers_8: -81953544380128650
+      discarded_papers_9: -1388571668708058612
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
