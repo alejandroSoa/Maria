@@ -7,7 +7,9 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
  public GameObject itemToShow;
  public TMP_Text textMeshPro;
  private bool isClicked = false;
- private static buttonSelect currentlySelected = null; 
+ private static buttonSelect currentlySelected = null;
+
+    public SoundManagerTitle sound;
 
     void Start()
     {
@@ -73,6 +75,7 @@ public class buttonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             currentlySelected.DeselectButton();
         }
 
+        sound.PlaySelect();
         SelectButton();
     }
 

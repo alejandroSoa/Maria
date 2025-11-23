@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class mainMenu : MonoBehaviour
 {
+    public SoundManagerTitle sound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +19,11 @@ public class mainMenu : MonoBehaviour
         
     }
     
+    public void PlaySelect()
+    {
+        sound.PlaySelect();
+    }
+
     public void QuitGame()
     {
         #if UNITY_EDITOR
