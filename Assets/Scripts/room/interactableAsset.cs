@@ -28,9 +28,14 @@ public class interactableAsset : MonoBehaviour
     [Tooltip("Canvas con los botones de navegación. Se oculta durante el zoom")]
     [SerializeField] private GameObject navigationCanvas;
 
+    [Header("Interfaz del Item")]
+    [Tooltip("Interfaz específica de este item que se activa en el segundo clic")]
+    [SerializeField] private GameObject itemInterface;
+
     private static interactableAsset currentZoomedAsset = null;
     private static GameObject canvasReference = null;
     private bool isZoomed = false;
+    private bool hasClickedOnce = false;
     private Vector3 originalCameraPosition;
     private Vector3 targetCameraPosition;
 
@@ -99,15 +104,32 @@ public class interactableAsset : MonoBehaviour
                 Debug.Log($"¡CLICK DETECTADO en {gameObject.name}!");
                 HandleClick();
             }
+            else if (isZoomed && currentZoomedAsset == this)
+            {
+                // Si este objeto está con zoom y se hizo clic fuera de él, hacer zoom out
+                Debug.Log($"Click fuera del objeto {gameObject.name} - Haciendo zoom out");
+                ZoomOut();
+            }
         }
     }
 
     private void HandleClick()
     {
-        // Si este objeto ya está con zoom, hacer zoom out
+        // Si este objeto ya está con zoom
         if (isZoomed)
         {
-            ZoomOut();
+            // Segundo clic en el mismo objeto: activar la interfaz y hacer zoom out
+            if (!IsInterfaceActive())
+            {
+                ActivateItemInterface();
+                ZoomOut(false); // Hacer zoom out pero mantener la interfaz activa
+            }
+            else
+            {
+                // Si la interfaz ya está activa, cerrar todo
+                DeactivateItemInterface();
+                ZoomOut(true); // Cerrar interfaz y hacer zoom out
+            }
         }
         else
         {
@@ -117,6 +139,7 @@ public class interactableAsset : MonoBehaviour
                 currentZoomedAsset.ZoomOut();
             }
 
+            // Primer clic: hacer zoom
             ZoomIn();
         }
     }
@@ -136,6 +159,7 @@ public class interactableAsset : MonoBehaviour
         if (mainCamera == null) return;
 
         isZoomed = true;
+        hasClickedOnce = true;  // Marcar que ya se hizo el primer clic
         currentZoomedAsset = this;
 
         // Ocultar el Canvas de navegación
@@ -157,6 +181,8 @@ public class interactableAsset : MonoBehaviour
         // Iniciar la animación de zoom
         StopAllCoroutines();
         StartCoroutine(AnimateZoom(zoomedSize, targetCameraPosition));
+
+        Debug.Log($"[{gameObject.name}] Primer clic: Zoom activado. Siguiente clic activará la interfaz del item.");
     }
 
     /// <summary>
@@ -164,10 +190,26 @@ public class interactableAsset : MonoBehaviour
     /// </summary>
     private void ZoomOut()
     {
+        ZoomOut(true); // Por defecto desactiva la interfaz
+    }
+
+    /// <summary>
+    /// Hace zoom out y vuelve a la vista normal
+    /// </summary>
+    /// <param name="deactivateInterface">Si debe desactivar la interfaz del item</param>
+    private void ZoomOut(bool deactivateInterface)
+    {
         if (mainCamera == null) return;
 
         isZoomed = false;
+        hasClickedOnce = false;  // Reiniciar el estado de clics
         currentZoomedAsset = null;
+
+        // Desactivar la interfaz del item solo si se especifica
+        if (deactivateInterface)
+        {
+            DeactivateItemInterface();
+        }
 
         // Mostrar el Canvas de navegación nuevamente
         if (canvasReference != null)
@@ -178,6 +220,8 @@ public class interactableAsset : MonoBehaviour
         // Iniciar la animación de zoom out
         StopAllCoroutines();
         StartCoroutine(AnimateZoom(normalSize, originalCameraPosition));
+
+        Debug.Log($"[{gameObject.name}] Zoom out: Volviendo a la vista normal.");
     }
 
     /// <summary>
@@ -216,6 +260,42 @@ public class interactableAsset : MonoBehaviour
         if (currentZoomedAsset != null)
         {
             currentZoomedAsset.ZoomOut();
+        }
+    }
+
+    /// <summary>
+    /// Verifica si la interfaz del item está activa
+    /// </summary>
+    private bool IsInterfaceActive()
+    {
+        return itemInterface != null && itemInterface.activeInHierarchy;
+    }
+
+    /// <summary>
+    /// Activa la interfaz específica del item
+    /// </summary>
+    private void ActivateItemInterface()
+    {
+        if (itemInterface != null)
+        {
+            itemInterface.SetActive(true);
+            Debug.Log($"[{gameObject.name}] Segundo clic: Interfaz del item activada.");
+        }
+        else
+        {
+            Debug.LogWarning($"[{gameObject.name}] No se ha asignado una interfaz de item en el inspector.");
+        }
+    }
+
+    /// <summary>
+    /// Desactiva la interfaz específica del item
+    /// </summary>
+    private void DeactivateItemInterface()
+    {
+        if (itemInterface != null && itemInterface.activeInHierarchy)
+        {
+            itemInterface.SetActive(false);
+            Debug.Log($"[{gameObject.name}] Interfaz del item desactivada.");
         }
     }
 }
