@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 726a23d1cd685e84f8eb783dbd4a410b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6569128454543118491
+    second: Marianet_initializing_0
+  - first:
+      213: -4166728649158153207
+    second: Marianet_initializing_1
+  - first:
+      213: 8458323478942652608
+    second: Marianet_initializing_2
+  - first:
+      213: 7781818705490870365
+    second: Marianet_initializing_3
+  - first:
+      213: 3548736601229075717
+    second: Marianet_initializing_4
+  - first:
+      213: 6081552776471634474
+    second: Marianet_initializing_5
+  - first:
+      213: -5662315432022407873
+    second: Marianet_initializing_6
+  - first:
+      213: -8536814972001761908
+    second: Marianet_initializing_7
+  - first:
+      213: 4072725874982848047
+    second: Marianet_initializing_8
+  - first:
+      213: -7810160679997510330
+    second: Marianet_initializing_9
+  - first:
+      213: -1892989376327589704
+    second: Marianet_initializing_10
+  - first:
+      213: 7131270262708079151
+    second: Marianet_initializing_11
+  - first:
+      213: 5953530648543521055
+    second: Marianet_initializing_12
+  - first:
+      213: 3988543030338223708
+    second: Marianet_initializing_13
+  - first:
+      213: -2593012166099682752
+    second: Marianet_initializing_14
+  - first:
+      213: 318374539113198632
+    second: Marianet_initializing_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16384
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Marianet_initializing_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56feb0fa974c5d4a0800000000000000
+      internalID: -6569128454543118491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_1
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90c2c7fae5ecc26c0800000000000000
+      internalID: -4166728649158153207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_2
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c819b5d360026570800000000000000
+      internalID: 8458323478942652608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_3
+      rect:
+        serializedVersion: 2
+        x: 1821
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d50064ff1e29efb60800000000000000
+      internalID: 7781818705490870365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_4
+      rect:
+        serializedVersion: 2
+        x: 2428
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505afa50325af3130800000000000000
+      internalID: 3548736601229075717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_5
+      rect:
+        serializedVersion: 2
+        x: 3035
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22e16c5704066450800000000000000
+      internalID: 6081552776471634474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_6
+      rect:
+        serializedVersion: 2
+        x: 3642
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3587146d1a6b61b0800000000000000
+      internalID: -5662315432022407873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_7
+      rect:
+        serializedVersion: 2
+        x: 4249
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8549905304278980800000000000000
+      internalID: -8536814972001761908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_8
+      rect:
+        serializedVersion: 2
+        x: 4856
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2605e5ea9a358830800000000000000
+      internalID: 4072725874982848047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_9
+      rect:
+        serializedVersion: 2
+        x: 5463
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d6606dd3cbc9390800000000000000
+      internalID: -7810160679997510330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_10
+      rect:
+        serializedVersion: 2
+        x: 6070
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b0e7641130cab5e0800000000000000
+      internalID: -1892989376327589704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_11
+      rect:
+        serializedVersion: 2
+        x: 6677
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a8506558c57f260800000000000000
+      internalID: 7131270262708079151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_12
+      rect:
+        serializedVersion: 2
+        x: 7284
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1966d9e4903f9250800000000000000
+      internalID: 5953530648543521055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_13
+      rect:
+        serializedVersion: 2
+        x: 7891
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e7baef0c62a5730800000000000000
+      internalID: 3988543030338223708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_14
+      rect:
+        serializedVersion: 2
+        x: 8498
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04abc5d5c25c30cd0800000000000000
+      internalID: -2593012166099682752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marianet_initializing_15
+      rect:
+        serializedVersion: 2
+        x: 9105
+        y: 0
+        width: 607
+        height: 470
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 824fe5dd4f71b6400800000000000000
+      internalID: 318374539113198632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2a80d099d92609441bfc51d749427693
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":1.0},"gridSpriteSize":{"x":607.0,"y":470.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Marianet_initializing_0: -6569128454543118491
+      Marianet_initializing_1: -4166728649158153207
+      Marianet_initializing_10: -1892989376327589704
+      Marianet_initializing_11: 7131270262708079151
+      Marianet_initializing_12: 5953530648543521055
+      Marianet_initializing_13: 3988543030338223708
+      Marianet_initializing_14: -2593012166099682752
+      Marianet_initializing_15: 318374539113198632
+      Marianet_initializing_2: 8458323478942652608
+      Marianet_initializing_3: 7781818705490870365
+      Marianet_initializing_4: 3548736601229075717
+      Marianet_initializing_5: 6081552776471634474
+      Marianet_initializing_6: -5662315432022407873
+      Marianet_initializing_7: -8536814972001761908
+      Marianet_initializing_8: 4072725874982848047
+      Marianet_initializing_9: -7810160679997510330
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
