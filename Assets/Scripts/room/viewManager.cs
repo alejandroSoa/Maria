@@ -1,25 +1,38 @@
 using UnityEngine;
 
 /// <summary>
-/// Gestiona la activación y desactivación de las diferentes vistas de la habitación.
-/// Todas las vistas están en la misma escena MainRoom.
+/// Gestiona la activaciï¿½n y desactivaciï¿½n de las diferentes vistas de la habitaciï¿½n.
+/// Todas las vistas estï¿½n en la misma escena MainRoom.
 /// Solo una vista debe estar activa a la vez.
+/// Los botones Left y Right crean un efecto de rotaciï¿½n circular.
 /// </summary>
 
 public class viewManager : MonoBehaviour
 {
     [Header("Referencias a las Vistas")]
-    [Tooltip("Vista frontal de la habitación")]
+    [Tooltip("Vista frontal de la habitaciï¿½n")]
     public GameObject View_Front;
 
-    [Tooltip("Vista izquierda de la habitación")]
+    [Tooltip("Vista izquierda de la habitaciï¿½n")]
     public GameObject View_Left;
 
-    [Tooltip("Vista derecha de la habitación")]
+    [Tooltip("Vista derecha de la habitaciï¿½n")]
     public GameObject View_Right;
 
-    [Tooltip("Vista trasera de la habitación")]
+    [Tooltip("Vista trasera de la habitaciï¿½n")]
     public GameObject View_Back;
+
+    // Enumeraciï¿½n para representar las direcciones de rotaciï¿½n
+    private enum ViewDirection
+    {
+        Front = 0,
+        Right = 1,
+        Back = 2,
+        Left = 3
+    }
+
+    // Estado actual de la rotaciï¿½n
+    private ViewDirection currentDirection = ViewDirection.Front;
 
     private void Start()
     {
@@ -28,43 +41,87 @@ public class viewManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Muestra la vista frontal y oculta todas las demás.
-    /// Este método se llama desde el botón "Enfrente" en el Canvas.
+    /// Muestra la vista frontal y oculta todas las demï¿½s.
+    /// Este mï¿½todo se llama desde el botï¿½n "Enfrente" en el Canvas.
     /// </summary>
     public void ShowFront()
     {
+        currentDirection = ViewDirection.Front;
         ActivateView(View_Front);
     }
 
     /// <summary>
-    /// Muestra la vista izquierda y oculta todas las demás.
-    /// Este método se llama desde el botón "Izquierda" en el Canvas.
+    /// Rota hacia la izquierda (sentido horario).
+    /// Este mï¿½todo se llama desde el botï¿½n "Izquierda" en el Canvas.
     /// </summary>
     public void ShowLeft()
     {
-        ActivateView(View_Left);
+        RotateLeft();
     }
 
     /// <summary>
-    /// Muestra la vista derecha y oculta todas las demás.
-    /// Este método se llama desde el botón "Drecha" en el Canvas.
+    /// Rota hacia la derecha (sentido antihorario).
+    /// Este mï¿½todo se llama desde el botï¿½n "Derecha" en el Canvas.
     /// </summary>
     public void ShowRight()
     {
-        ActivateView(View_Right);
+        RotateRight();
     }
 
     /// <summary>
-    /// Muestra la vista trasera y oculta todas las demás.
-    /// Este método se llama desde el botón "Atras" en el Canvas.
+    /// Muestra la vista trasera y oculta todas las demï¿½s.
+    /// Este mï¿½todo se llama desde el botï¿½n "Atras" en el Canvas.
     /// </summary>
     public void ShowBack()
     {
+        currentDirection = ViewDirection.Back;
         ActivateView(View_Back);
     }
 
     /// <summary>
-    /// Activa la vista especificada y desactiva todas las demás.
+    /// Rota la vista hacia la izquierda (sentido horario).
+    /// Front -> Left -> Back -> Right -> Front
+    /// </summary>
+    private void RotateLeft()
+    {
+        currentDirection = (ViewDirection)(((int)currentDirection + 3) % 4);
+        ActivateCurrentView();
+    }
+
+    /// <summary>
+    /// Rota la vista hacia la derecha (sentido antihorario).
+    /// Front -> Right -> Back -> Left -> Front
+    /// </summary>
+    private void RotateRight()
+    {
+        currentDirection = (ViewDirection)(((int)currentDirection + 1) % 4);
+        ActivateCurrentView();
+    }
+
+    /// <summary>
+    /// Activa la vista correspondiente a la direcciï¿½n actual.
+    /// </summary>
+    private void ActivateCurrentView()
+    {
+        switch (currentDirection)
+        {
+            case ViewDirection.Front:
+                ActivateView(View_Front);
+                break;
+            case ViewDirection.Right:
+                ActivateView(View_Right);
+                break;
+            case ViewDirection.Back:
+                ActivateView(View_Back);
+                break;
+            case ViewDirection.Left:
+                ActivateView(View_Left);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Activa la vista especificada y desactiva todas las demï¿½s.
     /// </summary>
     /// <param name="viewToActivate">La vista que se debe activar</param>
     private void ActivateView(GameObject viewToActivate)
