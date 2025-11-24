@@ -32,8 +32,12 @@ public class interactableAsset : MonoBehaviour
     [Tooltip("Interfaz específica de este item que se activa en el segundo clic")]
     [SerializeField] private GameObject itemInterface;
 
+    [Tooltip("Interfaz de movimiento que se desactiva cuando la interfaz del item está activa")]
+    [SerializeField] private GameObject movementInterface;
+
     private static interactableAsset currentZoomedAsset = null;
     private static GameObject canvasReference = null;
+    private static GameObject movementReference = null;
     private bool isZoomed = false;
     private bool hasClickedOnce = false;
     private Vector3 originalCameraPosition;
@@ -77,6 +81,18 @@ public class interactableAsset : MonoBehaviour
         if (navigationCanvas != null && canvasReference == null)
         {
             canvasReference = navigationCanvas;
+        }
+
+        // Buscar la interfaz de movimiento si no está asignada
+        if (movementInterface == null)
+        {
+            movementInterface = GameObject.Find("Movement");
+        }
+
+        // Guardar referencia estática a la interfaz de movimiento
+        if (movementInterface != null && movementReference == null)
+        {
+            movementReference = movementInterface;
         }
 
         Debug.Log($"[{gameObject.name}] InteractableAsset inicializado correctamente");
@@ -272,13 +288,21 @@ public class interactableAsset : MonoBehaviour
     }
 
     /// <summary>
-    /// Activa la interfaz específica del item
+    /// Activa la interfaz específica del item y desactiva la de movimiento
     /// </summary>
     private void ActivateItemInterface()
     {
         if (itemInterface != null)
         {
             itemInterface.SetActive(true);
+            
+            // Desactivar la interfaz de movimiento
+            if (movementReference != null)
+            {
+                movementReference.SetActive(false);
+                Debug.Log($"[{gameObject.name}] Interfaz de movimiento desactivada.");
+            }
+            
             Debug.Log($"[{gameObject.name}] Segundo clic: Interfaz del item activada.");
         }
         else
@@ -288,7 +312,7 @@ public class interactableAsset : MonoBehaviour
     }
 
     /// <summary>
-    /// Desactiva la interfaz específica del item
+    /// Desactiva la interfaz específica del item (la interfaz de movimiento se reactiva desde botones)
     /// </summary>
     private void DeactivateItemInterface()
     {
