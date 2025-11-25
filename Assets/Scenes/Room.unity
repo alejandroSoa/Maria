@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &28884785
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,6 @@ MonoBehaviour:
   objects1: {fileID: 28884784}
   objects2: {fileID: 950056597}
   movement: {fileID: 1005794308}
-  statePrefsKey: Door_Room_Secret
   mainCamera: {fileID: 0}
 --- !u!1 &383668605
 GameObject:
@@ -2357,7 +2356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.740643, y: -423.24347}
+  m_AnchoredPosition: {x: 1, y: -414}
   m_SizeDelta: {x: 240, y: 41.99991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704746846
@@ -4298,14 +4297,14 @@ RectTransform:
   m_GameObject: {fileID: 1414143550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4042585, y: 1.4042585, z: 1.4042585}
+  m_LocalScale: {x: 1.8213233, y: 1.8213233, z: 1.8213233}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1954017210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83, y: 68}
+  m_AnchoredPosition: {x: -4, y: 126}
   m_SizeDelta: {x: 513.244, y: 484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414143552
@@ -6369,6 +6368,9 @@ GameObject:
   - component: {fileID: 1990956930}
   - component: {fileID: 1990956932}
   - component: {fileID: 1990956931}
+  - component: {fileID: 1990956935}
+  - component: {fileID: 1990956934}
+  - component: {fileID: 1990956933}
   m_Layer: 0
   m_Name: Door_Right
   m_TagString: Untagged
@@ -6505,6 +6507,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1990956933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990956929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d163436916a2f458e780ce08b49489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableAsset
+  zoomedSize: 2.5
+  normalSize: 5
+  zoomSpeed: 5
+  mainCamera: {fileID: 0}
+  navigationCanvas: {fileID: 0}
+  itemInterface: {fileID: 0}
+  movementInterface: {fileID: 1005794308}
+--- !u!50 &1990956934
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990956929}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &1990956935
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990956929}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 1.6999999, y: 0, z: 1.67, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
 --- !u!1 &2005460921
 GameObject:
   m_ObjectHideFlags: 0
@@ -6724,7 +6818,6 @@ MonoBehaviour:
   objects1: {fileID: 28884784}
   objects2: {fileID: 950056597}
   movement: {fileID: 1005794308}
-  statePrefsKey: Door_Room_Secret
   mainCamera: {fileID: 0}
 --- !u!1 &2117890523
 GameObject:
