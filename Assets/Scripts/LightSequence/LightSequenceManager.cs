@@ -88,6 +88,9 @@ public class LightSequenceManager : MonoBehaviour
 
     void ReturnToRoom()
     {
+        // Añadir moneda descifrada
+        Inventory.AddDecryptedCoin();
+        
         SceneManager.LoadScene("Room");
     }
 }

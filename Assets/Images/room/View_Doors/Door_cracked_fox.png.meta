@@ -1,0 +1,579 @@
+fileFormatVersion: 2
+guid: 545e06853c0e6a947b46f8e8f7b1f4d8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5250930434205791491
+    second: Door_cracked_fox_0
+  - first:
+      213: -8520655481605610833
+    second: Door_cracked_fox_1
+  - first:
+      213: -1251872448180823978
+    second: Door_cracked_fox_2
+  - first:
+      213: -6159798817363561529
+    second: Door_cracked_fox_3
+  - first:
+      213: 4198116511332759028
+    second: Door_cracked_fox_4
+  - first:
+      213: -5176993260377852431
+    second: Door_cracked_fox_5
+  - first:
+      213: -3420732190843001052
+    second: Door_cracked_fox_6
+  - first:
+      213: -7263751193066837349
+    second: Door_cracked_fox_7
+  - first:
+      213: -8402023763403357483
+    second: Door_cracked_fox_8
+  - first:
+      213: -7945367879775540646
+    second: Door_cracked_fox_9
+  - first:
+      213: -5447488782077532143
+    second: Door_cracked_fox_10
+  - first:
+      213: -4747625413028720391
+    second: Door_cracked_fox_11
+  - first:
+      213: 6582824619730198477
+    second: Door_cracked_fox_12
+  - first:
+      213: 1585003854903102418
+    second: Door_cracked_fox_13
+  - first:
+      213: 8071133155216786186
+    second: Door_cracked_fox_14
+  - first:
+      213: 8334199819983088544
+    second: Door_cracked_fox_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Door_cracked_fox_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 294
+        width: 883
+        height: 798
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa40e83792f027b0800000000000000
+      internalID: -5250930434205791491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_1
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 12
+        width: 250
+        height: 89
+      alignment: 9
+      pivot: {x: 0.9701427, y: -3.0143924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2a96ddbfc80c980800000000000000
+      internalID: -8520655481605610833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_2
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 0
+        width: 183
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658551e14a470aee0800000000000000
+      internalID: -1251872448180823978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_3
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 1
+        width: 404
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c37c239c9ff38aa0800000000000000
+      internalID: -6159798817363561529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 62
+        width: 431
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f5f0b779b4b24a30800000000000000
+      internalID: 4198116511332759028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_5
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 113
+        width: 123
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f5369efe00a728b0800000000000000
+      internalID: -5176993260377852431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_6
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 122
+        width: 311
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4272f0d323e1780d0800000000000000
+      internalID: -3420732190843001052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_7
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 150
+        width: 243
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a6e6066c8f13b90800000000000000
+      internalID: -7263751193066837349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 89
+        width: 525
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d2c3fb27e3066b80800000000000000
+      internalID: -8402023763403357483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_9
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 144
+        width: 277
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5a2e2c72026cb190800000000000000
+      internalID: -7945367879775540646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 430
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 118e75290d1a664b0800000000000000
+      internalID: -5447488782077532143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_11
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 188
+        width: 370
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f05ec147db0d1eb0800000000000000
+      internalID: -4747625413028720391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 108
+        width: 277
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfd6b54d14ea5b50800000000000000
+      internalID: 6582824619730198477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_13
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 153
+        width: 36
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dbcf1bbb901ff510800000000000000
+      internalID: 1585003854903102418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_14
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 116
+        width: 36
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a03039b87dc620070800000000000000
+      internalID: 8071133155216786186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_15
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 103
+        width: 210
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab673d649609a370800000000000000
+      internalID: 8334199819983088544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 916
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 130}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eed98b9be60c43488b11ec5c2432f66
+      internalID: 988582703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_cracked_fox_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 928
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d877f42c4724b9048a276208bce04391
+      internalID: 716631958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1d225d878fe3f714281ccf8fa0328545
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Door_cracked_fox_0: -5250930434205791491
+      Door_cracked_fox_1: -8520655481605610833
+      Door_cracked_fox_10: -5447488782077532143
+      Door_cracked_fox_11: -4747625413028720391
+      Door_cracked_fox_12: 6582824619730198477
+      Door_cracked_fox_13: 1585003854903102418
+      Door_cracked_fox_14: 8071133155216786186
+      Door_cracked_fox_15: 8334199819983088544
+      Door_cracked_fox_16: 988582703
+      Door_cracked_fox_17: 716631958
+      Door_cracked_fox_2: -1251872448180823978
+      Door_cracked_fox_3: -6159798817363561529
+      Door_cracked_fox_4: 4198116511332759028
+      Door_cracked_fox_5: -5176993260377852431
+      Door_cracked_fox_6: -3420732190843001052
+      Door_cracked_fox_7: -7263751193066837349
+      Door_cracked_fox_8: -8402023763403357483
+      Door_cracked_fox_9: -7945367879775540646
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
