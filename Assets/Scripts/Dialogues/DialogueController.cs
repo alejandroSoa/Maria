@@ -13,6 +13,12 @@ public class DialogueController : MonoBehaviour
     // CONTROLA SI EL DIÁLOGO PUEDE AVANZAR
     public bool continueShowingDialogues = true;
 
+    private Dictionary<string, string> specialActions = new Dictionary<string, string>
+{
+    { "Se acercan a la caja de fusibles en la cual van a poder empezar a trabajar con los problemas de base de datos.", "ZOOM_Caja_Fusibles" }
+};
+
+
     void Start()
     {
         dialogueUI.SetController(this);
@@ -71,8 +77,20 @@ public class DialogueController : MonoBehaviour
 
         dialogueUI.ShowDialogue(d, p.Name);
 
+        CheckForSpecialDialogue(d);
+
         index++; // SE AVANZA SOLO SI FUE MOSTRADO
     }
+
+    private void CheckForSpecialDialogue(Dialogue dialogue)
+    {
+        if (specialActions.ContainsKey(dialogue.Content))
+        {
+            string actionName = specialActions[dialogue.Content];
+            ActionManager.Instance.TriggerAction(actionName);
+        }
+    }
+
 
     // Método para pausar el diálogo en cualquier momento
     public void PauseDialogue()
