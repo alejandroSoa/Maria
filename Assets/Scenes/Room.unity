@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &28884785
 Transform:
   m_ObjectHideFlags: 0
@@ -602,6 +602,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 1105627419}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &122899026
 Rigidbody2D:
   serializedVersion: 5
@@ -804,6 +811,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 1
+  randomMinigame: 1
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &174385000
 Rigidbody2D:
   serializedVersion: 5
@@ -1725,6 +1739,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &472088658
 Rigidbody2D:
   serializedVersion: 5
@@ -2623,6 +2644,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &897157132
 Rigidbody2D:
   serializedVersion: 5
@@ -3658,6 +3686,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &1325437684
 Rigidbody2D:
   serializedVersion: 5
@@ -4168,6 +4203,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 1954017209}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &1377611904
 Rigidbody2D:
   serializedVersion: 5
@@ -4766,6 +4808,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 81888666}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &1575739139
 Rigidbody2D:
   serializedVersion: 5
@@ -5669,6 +5718,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 0}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &1708433883
 Rigidbody2D:
   serializedVersion: 5
@@ -6526,6 +6582,13 @@ MonoBehaviour:
   navigationCanvas: {fileID: 0}
   itemInterface: {fileID: 0}
   movementInterface: {fileID: 1005794308}
+  loadMinigameScene: 0
+  randomMinigame: 0
+  minigameSceneName: FlappyBird
+  randomMinigameScenes:
+  - FlappyBird
+  - CableGame
+  - LightSequence
 --- !u!50 &1990956934
 Rigidbody2D:
   serializedVersion: 5
@@ -6614,7 +6677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2005460922
 Transform:
   m_ObjectHideFlags: 0
