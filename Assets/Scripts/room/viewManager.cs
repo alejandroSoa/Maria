@@ -153,4 +153,12 @@ public class viewManager : MonoBehaviour
             Debug.LogWarning("ViewManager: La vista a activar es null. Verifica las referencias en el Inspector.");
         }
     }
+
+    public void DeactivateView(GameObject viewToDeactivate)
+    {
+        if (viewToDeactivate != null)
+        {
+            viewToDeactivate.SetActive(false);
+        }
+    }
 }

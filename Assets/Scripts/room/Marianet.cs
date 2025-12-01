@@ -39,6 +39,7 @@ public class Marianet : MonoBehaviour
             soundRoom.PlayPurchase();
             Debug.Log($"Botón {tipo} clickeado");
             UpdateKoensText();
+            DialogueController.Instance.ResumeDialogue();
         }
     }
 

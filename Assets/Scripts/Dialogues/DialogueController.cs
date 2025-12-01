@@ -15,17 +15,33 @@ public class DialogueController : MonoBehaviour
     // CONTROLA SI EL DIÁLOGO PUEDE AVANZAR
     public bool continueShowingDialogues = true;
 
+    public static DialogueController Instance;
+    private bool isResuming = false;
+
+
     private Dictionary<string, string> specialActions = new Dictionary<string, string>
 {
+    { "Un rostro feliz aparece en la pantalla del dispositivo.", "Mostrar_Maria" },
     { "Se acercan a la caja de fusibles en la cual van a poder empezar a trabajar con los problemas de base de datos.", "ZOOM_Caja_Fusibles" },
     { "Maria muestra una caja de fusibles, esta tiene una apariencia similar a una tabla, la tabla tiene como nombre ‘BathroomCurtains’ e incluye campos dentro de la tabla.", "MOSTRAR_CAJA_TABLA" },
     { "Si tienes duda sobre cortinas de baño también te puedo ayudar, pero, concentrémonos en salir primero.", "Quitar_Caja_Fusibles" },
     { "Entonces, solo necesitamos volver a conectarle fusibles funcionales a esta caja, columna, a esta a cosa, y con eso la energía volverá y yo podré ir a casa, ¿verdad?", "Quitar_Bathroom_Table" },
     { "Ahora, necesitamos resolver la siguiente tabla, aprovechemos lo que sabemos y empecemos con ello.", "Quitar_A1E2" },
     { "¿Cómo hacemos que esto…?", "Mostrar_Cuarto_Desencriptadora" },
-    { "Dentro de la desencriptadora, podrás solicitar ciertos recursos, pero, requieren cierta maña.", "Zoom_desencriptadora" }
+    { "Dentro de la desencriptadora, podrás solicitar ciertos recursos, pero, requieren cierta maña.", "Zoom_desencriptadora" },
+    { "¡Exacto! Comienza, para que puedas obtener el fusible correcto.", "Jugar_Desencriptadora"},
+    { "Ya lo hice, admito que tuvo lo suyo, pero, esto no es un fusible.", "Volver_desencriptadora_room" },
+    { "¡Bienvenido a MariaNet!", "Cargar_MariaNet_Room" },
+    { "Ahora sí, selecciona el fusible de tipo INT por favor.", "Activar_interfaz_marianet" },
+    { "Toma el fusible de la esclusa de ahí.", "Quitar_interfaz_marianet" },
+    { "¡Revisa la caja de fusibles para ver qué tipo de fusible necesitas!", "Dejar_jugador_jugar" }
+
 };
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -110,8 +126,17 @@ public class DialogueController : MonoBehaviour
     // Método para continuar exactamente donde se quedó
     public void ResumeDialogue()
     {
+        // Evita reentradas y loops infinitos
+        if (isResuming) return;
+
+        isResuming = true;
+
         continueShowingDialogues = true;
         dialogueUI.ShowUI();
+
         TryShowNextDialogue();
+
+        isResuming = false;
     }
+
 }

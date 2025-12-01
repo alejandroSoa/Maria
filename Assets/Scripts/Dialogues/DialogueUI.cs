@@ -33,11 +33,11 @@ public class DialogueUI : MonoBehaviour
             mariaIdle.gameObject.SetActive(false);
             mariaTalking.gameObject.SetActive(false);
             return;
-        } else if (playerName == "Maria")
+        } else if (playerName == "Maria" && ActionManager.showMaria)
         {
             mariaIdle.gameObject.SetActive(false);
             mariaTalking.gameObject.SetActive(true);
-        } else if (playerName == "Jugador")
+        } else if (playerName == "Jugador" && ActionManager.showMaria)
         {
             mariaIdle.gameObject.SetActive(true);
             mariaTalking.gameObject.SetActive(false);

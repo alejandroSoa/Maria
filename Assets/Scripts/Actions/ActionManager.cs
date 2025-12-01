@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActionManager : MonoBehaviour
 {
     public static ActionManager Instance;
+    public static bool showMaria = false;
 
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CameraActions : MonoBehaviour
@@ -12,7 +13,11 @@ public class CameraActions : MonoBehaviour
     public Image fuseBoxWithFuses;
     public Image fuseBoxWithNoFuses;
     public GameObject desencriptadoraRoom;
+    public GameObject mariaNetRoom;
     public Transform desencriptadora;
+    public GameObject interfazMariaNet;
+    public GameObject initialRoom;
+    public Image maria;
 
     private Vector3 originalCamPos;
     private float originalCamSize;
@@ -25,6 +30,11 @@ public class CameraActions : MonoBehaviour
     {
         originalCamPos = cam.transform.position;
         originalCamSize = cam.orthographicSize;
+        ActionManager.Instance.RegisterAction("Mostrar_Maria", () =>
+        {
+            ActionManager.showMaria = true;
+        });
+
         ActionManager.Instance.RegisterAction("ZOOM_Caja_Fusibles", () =>
         {
             StartCoroutine(ZoomToTarget(targetCajaFusibles, 2f));
@@ -62,6 +72,46 @@ public class CameraActions : MonoBehaviour
         ActionManager.Instance.RegisterAction("Zoom_desencriptadora", () =>
         {
             StartCoroutine(ZoomToTarget(desencriptadora, 1f));
+        });
+
+        ActionManager.Instance.RegisterAction("Jugar_Desencriptadora", () =>
+        {
+            cam.transform.position = originalCamPos;
+            cam.orthographicSize = originalCamSize;
+            DialogueController.Instance.PauseDialogue();
+        });
+
+        ActionManager.Instance.RegisterAction("Volver_desencriptadora_room", () =>
+        {
+            cam.transform.position = originalCamPos;
+            cam.orthographicSize = originalCamSize;
+            viewManager.Instance.DeactivateView(initialRoom);
+            viewManager.Instance.ActivateView(desencriptadoraRoom);
+        });
+
+        ActionManager.Instance.RegisterAction("Cargar_MariaNet_Room", () =>
+        {
+            viewManager.Instance.DeactivateView(desencriptadoraRoom);
+            viewManager.Instance.ActivateView(mariaNetRoom);
+        });
+
+        ActionManager.Instance.RegisterAction("Activar_interfaz_marianet", () =>
+        {
+            interfazMariaNet.SetActive(true);
+            DialogueController.Instance.PauseDialogue();
+        });
+
+        ActionManager.Instance.RegisterAction("Quitar_interfaz_marianet", () =>
+        {
+            interfazMariaNet.SetActive(false);
+            DialogueController.Instance.ResumeDialogue();
+        });
+
+        ActionManager.Instance.RegisterAction("Dejar_jugador_jugar", () =>
+        {
+            viewManager.Instance.DeactivateView(mariaNetRoom);
+            viewManager.Instance.ActivateView(initialRoom);
+            DialogueController.Instance.PauseDialogue();
         });
     }
 
