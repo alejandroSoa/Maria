@@ -1033,7 +1033,770 @@ public class DatabaseService : MonoBehaviour
                 LevelId = 2,
                 PlayerId = 1,
                 OrderIndex = 2,
-                Content = "Bien, bueno ya tenemos la base de estas cajas de fusibles, o, tablas SQL.",
+                Content = "Bien, bueno ya tenemos la base de estas cajas de fusibles, o, tablas SQL. Por lo que ya deberíamos de poder pasar de sala con esto.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 3,
+                Content = "¿De sala?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 4,
+                Content = "¿Te gusta mucho hacer preguntas eh?",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 5,
+                Content = "No…",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 6,
+                Content = "Sí, esta sala ya está hecha y ya hicimos lo necesario, las cajas de fusibles, de hecho mira ahí.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 7,
+                Content = "Esa interfaz, cambió…",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 8,
+                Content = "Sí y ahora tiene energía suficiente, pero tenemos que llenar la energía del resto para podernos ir de aquí.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 9,
+                Content = "Para eso, bueno, necesitamos avanzar con los fusibles, de una forma particular.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 10,
+                Content = "Como puedes ver, la interfaz ahora muestra esa sala encendida, con ella podremos salir de aquí.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 11,
+                Content = "Y si hay electricidad, significa que…",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 12,
+                Content = "¡Ajá! Sí, muy bien, B mira esto. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 13,
+                Content = "Esos datos, ¿qué demonios significan?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 14,
+                Content = "Que hay datos dentro de las tablas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 15,
+                Content = "Parece ser que cuando los restablecimos, estos volvieron a recibir información, fueron llenadas automáticamente. Como un seeder.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 16,
+                Content = "Y antes de que lo preguntes porque te conozco, un seeder es un llenado de datos en tus tablas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 17,
+                Content = "Se llenan a partir de la estructura que uno tiene por lo que al crearlo, si tienes un campo tipo INT y otro campo de tipo BOOL por ejemplo. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 18,
+                Content = "Tendrían que tener los datos de la misma forma.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 19,
+                Content = "Dices que, si tengo una tabla de 3 campos, tipo INT, VARCHAR y BOOL, ¿deben de tener esta misma estructura en su llenado?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 20,
+                Content = "Sip, pero, por lo pronto no nos preocupemos de eso, lo importante es que estos datos nos ayudarán a avanzar.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 21,
+                Content = "Bien, para poder acceder a la siguiente sala o nodo, necesitamos otras cosas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 22,
+                Content = "Ya tenemos la energía de esos datos. Pero necesitamos manipularla para poderla llevar hacia otros lugares, hacia donde deben de ir correctamente.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 23,
+                Content = "Estas operaciones son algo, interesantes, así que presta atención al tema.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 24,
+                Content = "Se llaman “Sentencias SQL”.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 25,
+                Content = "Es el término más común y general para cualquier instrucción en SQL. Ya sean consultas o comandos de modificación de datos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 26,
+                Content = "Vamos a las cuatro operaciones fundamentales que le dan vida a cualquier base de datos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 27,
+                Content = "Se les conoce como CRUD: Crear, Leer, Actualizar y Borrar. Piensa en ellas como las reglas del club de datos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 28,
+                Content = "¿Vamos bien? Recuerda que todo lo que te digo lo estoy guardando en tu diario, revísalo si te pierdes.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 29,
+                Content = "Continúa.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 30,
+                Content = "Bien, empecemos con el más simpático y curioso: SELECT.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 31,
+                Content = "Este es tu comando espía. Su misión es ir a la tabla y traer datos. Es como ir a la nevera y preguntar: Oye, ¿qué hay de comer hoy? ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 32,
+                Content = "La estructura básica es: SELECT [qué columna quieres] FROM [de qué tabla].",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 33,
+                Content = "Por ejemplo: SELECT nombre, email FROM Usuarios;",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 34,
+                Content = "Eso te daría los valores que tengas en los campos nombre y email de la tabla Usuarios.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 35,
+                Content = "No olvides el punto y coma al final, créeme, ese es el que más te puede comer la cabeza si no lo sabes controlar.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 36,
+                Content = "Y si pones un asterisco (*) en lugar del nombre de la columna, como en SELECT * FROM Users; Le estás diciendo: ¡Tráeme TODO!",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 37,
+                Content = "Ahora, El INSERT es el que presenta a los nuevos miembros del club. Siempre tiene que ser muy específico sobre dónde y qué va a poner porque es el que creará nuevos registros.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 38,
+                Content = "La estructura básica es: INSERT INTO [tabla] (columna1, columna2) VALUES (valor1, valor2); ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 39,
+                Content = "Por ejemplo: INSERT INTO Productos (nombre, precio) VALUES ('Café de Maria', 5.99);",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 40,
+                Content = "¡Recuerda! Los valores siempre tienen que coincidir en orden y tipo con las columnas que nombras, si no, no va a funcionar. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 41,
+                Content = "El UPDATE es el comando que cambia tu o tus registros.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 42,
+                Content = "Si un dato ya no es correcto o quieres darle un upgrade, usa este. ¡Pero cuidado! Es el comando más peligroso si no se usa con precisión.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 43,
+                Content = "La estructura básica es: UPDATE [tabla] SET [columna] = [nuevo valor] WHERE [condición para identificar la fila];",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 44,
+                Content = "Por ejemplo: UPDATE Usuarios SET email = 'nuevo@mail.com' WHERE id = 15;",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 45,
+                Content = "¡El WHERE es la clave! Si olvidas el WHERE, el UPDATE cambia todas las filas de la tabla.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 46,
+                Content = "Sería como gritarle un cambio de nombre a toda la ciudad a la vez. ¡Caos total!",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 47,
+                Content = "Y finalmente, el DELETE. Este comando elimina filas completas de la tabla. ¡Úsalo solo si estás 100% seguro!",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 48,
+                Content = "La estructura básica es: DELETE FROM [tabla] WHERE [condición para identificar la fila];",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 49,
+                Content = "Por ejemplo: DELETE FROM Comentarios WHERE fecha < '2023-01-01';",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 50,
+                Content = "Al igual que con el UPDATE, el WHERE es tu salvavidas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 51,
+                Content = "Si dices DELETE FROM Productos; sin un WHERE, la base de datos borra todos los productos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 52,
+                Content = "Sería un buen seeder a la inversa... ¡y no queremos eso!",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 53,
+                Content = "Así que ahí lo tienes: SELECT para mirar, INSERT para crear, UPDATE para modificar y DELETE para desaparecer.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 54,
+                Content = "Entiendo, bueno, gracias por anotarlo ahí, me va a ser de mucha ayuda.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 55,
+                Content = "¡Cuando gustes!",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 56,
+                Content = "Entonces, ¿ahora sigue escribir las sentencias de nuevo verdad? ¿Necesito puntos para poderlo hacer?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 57,
+                Content = "No, solo tienes que proceder con las consultas para obtener los datos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 58,
+                Content = "Bien, bueno, por el momento, veamos el contenido de las tablas, consulta todos los datos de cada tabla.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 59,
+                Content = "Empecemos por la tabla de Users.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 60,
+                Content = "Interesante sí, lo es.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 61,
+                Content = "¿Por qué sería interesante?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 62,
+                Content = "Mira estas personas, estos registros. Todos son reconocidos científicos, de, la rebelión de la IA.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 63,
+                Content = "¿Por qué sería interesante?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 64,
+                Content = "¿Volvemos a las consultas SQL?",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 65,
+                Content = "Vamos a seguir con las demás tablas.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 66,
+                Content = "Bien, ahora, bueno, hay algo curioso con estos registros como te lo mencionaba, son científicos implicados en el desarrollo de la IA mente colmena.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 67,
+                Content = "Pero, sin embargo, están aquí. Junto a la tabla de, cortinas de baño.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 68,
+                Content = "¿Espera, eso, no tiene…?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 69,
+                Content = "… ¿Sentido?, no, no lo tiene.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 70,
+                Content = "Creo que podremos descubrir más si buscamos en las demás tablas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 71,
+                Content = "De acuerdo, sigamos.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 72,
+                Content = "Esto realmente no tiene sentido.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 73,
+                Content = "Esos permisos son muy, muy extraños. Y esos documentos digo, sí, había algunos sobre cortinas de baño pero… “Memorándum: Ajustes Residenciales Internos Anómalos”",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 74,
+                Content = "Bueno, ahora con estos datos, tenemos que hacer algunas cuantas sentencias nuevas.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 75,
+                Content = "Necesito que muestres una lista de todos los usuarios activos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 76,
+                Content = "Bien, funciona, sigue así.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 77,
+                Content = "Ahora necesito una lista todos los usuarios ordenados por su nivel de prioridad de mayor a menor.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 78,
+                Content = "Bien, funciona, sigue así. Ahora necesito ver todos los permisos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 79,
+                Content = "Ahora necesito ver los permisos que incluyan la palabra 'usuarios'.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 80,
+                Content = "Bien, funciona, sigue así. Ahora necesito ver los permisos con palabras de acción tipo 'CREATE', 'UPDATE', 'DELETE', 'SELECT'.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 81,
+                Content = "Bien, funciona, sigue así. Ahora necesito traer todos los documentos que tienen contraseña.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 82,
+                Content = "Bien, funciona, sigue así. Ahora necesito contar cuántos documentos hay por tipo de archivo.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 83,
+                Content = "Bien, funciona, sigue así. Ahora necesito obtener los documentos más pesados y ordenarlos de mayor a menor.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 84,
+                Content = "Bien, funciona, bien, pero ahora hace falta resolverlo de otra forma, mira, necesitamos empezar a emplear los UPDATE, actualizar",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 85,
+                Content = "¿Recuerdas? Probemos con… Vamos a cambiar el estado de un usuario, del Dr. Selbst",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 86,
+                Content = "¿Por qué de ese en específico?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 87,
+                Content = "Solo, es un ejemplo, por favor, hagámoslo. Cambia el estado del usuario Selbst.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 88,
+                Content = "Bien, funciona, sigue así. Ahora modifica la prioridad de todos los usuarios de Japón. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 89,
+                Content = "Bien, funciona, sigue así. Ahora baja el nivel de prioridad a 1 para todos los usuarios que no se han conectado en más de 2 meses.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 90,
+                Content = "Bien, funciona, sigue así. Ahora activemos todos los permisos.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 91,
+                Content = "Bien, funciona, sigue así. Ahora modifiquemos la descripción del acceso al nivel subterráneo por un chiste.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 92,
+                Content = "Oh no…",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 93,
+                Content = "¿Qué pasa ahora?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 94,
+                Content = "Necesitamos eliminar unos registros. Están interfiriendo con la red eléctrica, hay que eliminarlos cuanto antes.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 95,
+                Content = "Tenemos que eliminar al usuario H0peles$0ul.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 96,
+                Content = "Bien, funciona, sigue así. Tenemos que eliminar el permiso del chiste, creo que eso afectó, hazlo pronto.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 97,
+                Content = "Bien, funciona, sigue así. Tenemos que eliminar todos los documentos, excepto el primero y el último.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 98,
+                Content = "…",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 99,
+                Content = "¿Qué sucede?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 100,
+                Content = "Detente un momento.  Esto no tiene sentido. Llevamos media hora conectando circuitos para salir... pero mira esto.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 2, // Narrador
+                OrderIndex = 101,
+                Content = "Se acercan a la pared para poder ver los cables correctamente.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 102,
+                Content = "¿Qué es? Se ven... caros.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 103,
+                Content = "Exacto. Mira la lectura. Estos cables están activos. Están canalizando una cantidad estable y fuerte de energía. La instalación no está sin corriente. De hecho, esta sección es perfecta. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 104,
+                Content = "¿Perfecta? Entonces, ¿por qué demonios estamos moviéndole a un generador si ya hay energía funcionando? ",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 105,
+                Content = "El lugar entero tiene corriente para operar alguna cosa, o al menos, para encender las salidas. Hay una contradicción fundamental entre lo que estamos haciendo y lo que está sucediendo. ",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 106,
+                Content = "Si ya hay energía, ¿por qué no podemos salir?",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 107,
+                Content = "No lo sé. Pero la única manera de averiguarlo es seguir la conexión principal que estamos tratando de restablecer. Quizá estemos alimentando un override de emergencia. Continuemos. Vamos a ver a dónde nos lleva toda esta bendita energía.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 108,
+                Content = "Bueno, ahora, necesitamos algunos datos nuevos para poder continuar con esto. Tienes que crear un usuario, para que podamos conocer más de esto…",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 109,
+                Content = "Creame un usuario, un registro de usuario, que se llame Maria.",
+                Side = "right"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 3,
+                OrderIndex = 110,
+                Content = "¿Estas segura de eso? Nada tiene sentido, ni las cortinas de baño, ni los científicos, puede ser peligroso.",
+                Side = "left"
+            },
+            new Dialogue {
+                LevelId = 2,
+                PlayerId = 1,
+                OrderIndex = 111,
+                Content = "Descuida, es para poder ayudarnos a salir de aquí, todo estará bien. Creame un registro de usuario, que se llame Maria. Te dejo a tu criterio el resto de valores.",
                 Side = "right"
             },
             };

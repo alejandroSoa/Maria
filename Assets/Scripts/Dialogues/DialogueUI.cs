@@ -15,6 +15,8 @@ public class DialogueUI : MonoBehaviour
     public Image portraitLeft;
     public Image portraitRight;
     public Image portraitNarrador;
+    public Image mariaIdle;
+    public Image mariaTalking;
 
     public void ShowDialogue(Dialogue dialogue, string playerName)
     {
@@ -28,11 +30,21 @@ public class DialogueUI : MonoBehaviour
             portraitNarrador.gameObject.SetActive(true);
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
+            mariaIdle.gameObject.SetActive(false);
+            mariaTalking.gameObject.SetActive(false);
             return;
+        } else if (playerName == "Maria")
+        {
+            mariaIdle.gameObject.SetActive(false);
+            mariaTalking.gameObject.SetActive(true);
+        } else if (playerName == "Jugador")
+        {
+            mariaIdle.gameObject.SetActive(true);
+            mariaTalking.gameObject.SetActive(false);
         }
 
-        // Si NO es narrador, aseguramos que el nombre esté visible
-        nameText.gameObject.SetActive(true);
+            // Si NO es narrador, aseguramos que el nombre esté visible
+            nameText.gameObject.SetActive(true);
         nameText.GetComponent<TextMeshProUGUI>().text = playerName;
 
         // 2. Activar retratos según side
