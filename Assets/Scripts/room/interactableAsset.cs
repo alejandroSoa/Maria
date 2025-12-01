@@ -57,6 +57,8 @@ public class interactableAsset : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Vector3 targetCameraPosition;
 
+    public SoundManagerRoom soundRoom;
+
     private void Start()
     {
         // Configurar el Rigidbody2D

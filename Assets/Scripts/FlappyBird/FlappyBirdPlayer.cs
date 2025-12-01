@@ -70,9 +70,9 @@ public class FlappyBirdPlayer : MonoBehaviour
         }
 
         // Limitar velocidad de caída
-        if (rb.velocity.y < maxFallSpeed)
+        if (rb.linearVelocity.y < maxFallSpeed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxFallSpeed);
         }
 
         // Rotar el jugador basado en la velocidad vertical
@@ -85,7 +85,7 @@ public class FlappyBirdPlayer : MonoBehaviour
     void Jump()
     {
         // Resetear la velocidad vertical y aplicar fuerza de salto
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
     void RotatePlayer()
@@ -93,15 +93,15 @@ public class FlappyBirdPlayer : MonoBehaviour
         // Calcular la rotación basada en la velocidad vertical
         float targetRotation;
         
-        if (rb.velocity.y > 0)
+        if (rb.linearVelocity.y > 0)
         {
             // Subiendo - rotar hacia arriba
-            targetRotation = Mathf.Lerp(0, maxUpRotation, rb.velocity.y / jumpForce);
+            targetRotation = Mathf.Lerp(0, maxUpRotation, rb.linearVelocity.y / jumpForce);
         }
         else
         {
             // Cayendo - rotar hacia abajo
-            targetRotation = Mathf.Lerp(0, maxDownRotation, -rb.velocity.y / Mathf.Abs(maxFallSpeed));
+            targetRotation = Mathf.Lerp(0, maxDownRotation, -rb.linearVelocity.y / Mathf.Abs(maxFallSpeed));
         }
 
         // Aplicar la rotación suavemente
@@ -171,7 +171,7 @@ public class FlappyBirdPlayer : MonoBehaviour
     public void ResetPlayer()
     {
         isAlive = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         transform.rotation = Quaternion.identity;
         
         if (spriteRenderer != null)
@@ -186,6 +186,6 @@ public class FlappyBirdPlayer : MonoBehaviour
     public void StopPlayer()
     {
         isAlive = false;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 }
