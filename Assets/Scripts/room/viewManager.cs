@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class viewManager : MonoBehaviour
 {
+    public static viewManager Instance;
     [Header("Referencias a las Vistas")]
     [Tooltip("Vista frontal de la habitaci�n")]
     public GameObject View_Front;
@@ -38,7 +39,17 @@ public class viewManager : MonoBehaviour
     {
         // Al iniciar, activar solo la vista frontal por defecto
         ShowFront();
+
     }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
 
     /// <summary>
     /// Muestra la vista frontal y oculta todas las dem�s.
@@ -124,7 +135,7 @@ public class viewManager : MonoBehaviour
     /// Activa la vista especificada y desactiva todas las dem�s.
     /// </summary>
     /// <param name="viewToActivate">La vista que se debe activar</param>
-    private void ActivateView(GameObject viewToActivate)
+    public void ActivateView(GameObject viewToActivate)
     {
         // Desactivar todas las vistas
         if (View_Front != null) View_Front.SetActive(false);

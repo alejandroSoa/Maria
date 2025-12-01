@@ -1,7 +1,9 @@
 ﻿// DialogueController.cs
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem; // <<< IMPORTANTE
-using System.Collections.Generic;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class DialogueController : MonoBehaviour
 {
@@ -15,7 +17,13 @@ public class DialogueController : MonoBehaviour
 
     private Dictionary<string, string> specialActions = new Dictionary<string, string>
 {
-    { "Se acercan a la caja de fusibles en la cual van a poder empezar a trabajar con los problemas de base de datos.", "ZOOM_Caja_Fusibles" }
+    { "Se acercan a la caja de fusibles en la cual van a poder empezar a trabajar con los problemas de base de datos.", "ZOOM_Caja_Fusibles" },
+    { "Maria muestra una caja de fusibles, esta tiene una apariencia similar a una tabla, la tabla tiene como nombre ‘BathroomCurtains’ e incluye campos dentro de la tabla.", "MOSTRAR_CAJA_TABLA" },
+    { "Si tienes duda sobre cortinas de baño también te puedo ayudar, pero, concentrémonos en salir primero.", "Quitar_Caja_Fusibles" },
+    { "Entonces, solo necesitamos volver a conectarle fusibles funcionales a esta caja, columna, a esta a cosa, y con eso la energía volverá y yo podré ir a casa, ¿verdad?", "Quitar_Bathroom_Table" },
+    { "Ahora, necesitamos resolver la siguiente tabla, aprovechemos lo que sabemos y empecemos con ello.", "Quitar_A1E2" },
+    { "¿Cómo hacemos que esto…?", "Mostrar_Cuarto_Desencriptadora" },
+    { "Dentro de la desencriptadora, podrás solicitar ciertos recursos, pero, requieren cierta maña.", "Zoom_desencriptadora" }
 };
 
 

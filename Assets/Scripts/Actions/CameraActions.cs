@@ -1,24 +1,67 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraActions : MonoBehaviour
 {
     public Transform targetCajaFusibles;
     public Camera cam;
+    public GameObject A1E2;
+    public Image fuseBox;
+    public Image bathroomTable;
+    public Image fuseBoxWithFuses;
+    public Image fuseBoxWithNoFuses;
+    public GameObject desencriptadoraRoom;
+    public Transform desencriptadora;
+
+    private Vector3 originalCamPos;
+    private float originalCamSize;
+
 
     // OFFSET para ajustar el zoom hacia arriba/abajo
     public float zoomOffsetY = 25f;
 
     void Start()
     {
+        originalCamPos = cam.transform.position;
+        originalCamSize = cam.orthographicSize;
         ActionManager.Instance.RegisterAction("ZOOM_Caja_Fusibles", () =>
         {
             StartCoroutine(ZoomToTarget(targetCajaFusibles, 2f));
         });
 
-        ActionManager.Instance.RegisterAction("RESET_CAMERA", () =>
+        ActionManager.Instance.RegisterAction("MOSTRAR_CAJA_TABLA", () =>
         {
-            cam.orthographicSize = 5;
+            A1E2.SetActive(true);
+        });
+
+        ActionManager.Instance.RegisterAction("Quitar_Caja_Fusibles", () =>
+        {
+            fuseBox.gameObject.SetActive(false);
+        });
+
+        ActionManager.Instance.RegisterAction("Quitar_Bathroom_Table", () =>
+        {
+            bathroomTable.gameObject.SetActive(false);
+            fuseBoxWithFuses.gameObject.SetActive(true);
+            fuseBoxWithNoFuses.gameObject.SetActive(true);
+        });
+
+        ActionManager.Instance.RegisterAction("Quitar_A1E2", () =>
+        {
+            A1E2.SetActive(false);
+        });
+
+        ActionManager.Instance.RegisterAction("Mostrar_Cuarto_Desencriptadora", () =>
+        {
+            cam.transform.position = originalCamPos;
+            cam.orthographicSize = originalCamSize;
+            viewManager.Instance.ActivateView(desencriptadoraRoom);
+        });
+
+        ActionManager.Instance.RegisterAction("Zoom_desencriptadora", () =>
+        {
+            StartCoroutine(ZoomToTarget(desencriptadora, 1f));
         });
     }
 
