@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Script para assets interactuables que hacen zoom cuando se les da click.
@@ -35,6 +36,19 @@ public class interactableAsset : MonoBehaviour
     [Tooltip("Interfaz de movimiento que se desactiva cuando la interfaz del item está activa")]
     [SerializeField] private GameObject movementInterface;
 
+    [Header("Minijuego")]
+    [Tooltip("Si está activado, el segundo click carga la escena del minijuego en lugar de mostrar la interfaz")]
+    [SerializeField] private bool loadMinigameScene = false;
+    
+    [Tooltip("Si está activado, elige un minijuego al azar de la lista")]
+    [SerializeField] private bool randomMinigame = false;
+    
+    [Tooltip("Nombre de la escena del minijuego a cargar (si no es aleatorio)")]
+    [SerializeField] private string minigameSceneName = "FlappyBird";
+    
+    [Tooltip("Lista de escenas de minijuegos para selección aleatoria")]
+    [SerializeField] private string[] randomMinigameScenes = { "FlappyBird", "CableGame", "LightSequence" };
+
     private static interactableAsset currentZoomedAsset = null;
     private static GameObject canvasReference = null;
     private static GameObject movementReference = null;
@@ -42,6 +56,8 @@ public class interactableAsset : MonoBehaviour
     private bool hasClickedOnce = false;
     private Vector3 originalCameraPosition;
     private Vector3 targetCameraPosition;
+
+    public SoundManagerRoom soundRoom;
 
     private void Start()
     {
@@ -134,9 +150,15 @@ public class interactableAsset : MonoBehaviour
         // Si este objeto ya está con zoom
         if (isZoomed)
         {
-            // Segundo clic en el mismo objeto: activar la interfaz y hacer zoom out
-            if (!IsInterfaceActive())
+            // Segundo clic en el mismo objeto
+            if (loadMinigameScene)
             {
+                // Cargar la escena del minijuego
+                LoadMinigame();
+            }
+            else if (!IsInterfaceActive())
+            {
+                // Activar la interfaz y hacer zoom out
                 ActivateItemInterface();
                 ZoomOut(false); // Hacer zoom out pero mantener la interfaz activa
             }
@@ -321,5 +343,29 @@ public class interactableAsset : MonoBehaviour
             itemInterface.SetActive(false);
             Debug.Log($"[{gameObject.name}] Interfaz del item desactivada.");
         }
+    }
+
+    /// <summary>
+    /// Carga la escena del minijuego
+    /// </summary>
+    private void LoadMinigame()
+    {
+        string sceneToLoad;
+        
+        if (randomMinigame && randomMinigameScenes.Length > 0)
+        {
+            // Seleccionar un minijuego aleatorio de la lista
+            int randomIndex = Random.Range(0, randomMinigameScenes.Length);
+            sceneToLoad = randomMinigameScenes[randomIndex];
+            Debug.Log($"[{gameObject.name}] Seleccionado minijuego aleatorio: {sceneToLoad}");
+        }
+        else
+        {
+            // Usar la escena específica
+            sceneToLoad = minigameSceneName;
+        }
+        
+        Debug.Log($"[{gameObject.name}] Cargando escena del minijuego: {sceneToLoad}");
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

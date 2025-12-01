@@ -18,6 +18,8 @@ public class ToggleObjectsOnClick : MonoBehaviour
     
     [Header("Referencias")]
     [SerializeField] private Camera mainCamera;
+
+    public SoundManagerRoom soundRoom;
     
     private void Start()
     {
@@ -126,6 +128,7 @@ public class ToggleObjectsOnClick : MonoBehaviour
     
     private void ShowObjects2()
     {
+        soundRoom.PlayGateOpen();
         Debug.Log("Mostrando Objects2");
         
         if (objects1 != null) 

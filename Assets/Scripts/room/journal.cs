@@ -80,7 +80,9 @@ UpdatedAt → datetime";
     
     private int currentPage = 1;
     private int maxPages = 1; // Se calculará dinámicamente
-    
+
+    public SoundManagerRoom soundRoom;
+
     void Start()
     {
         SetupButtons();
@@ -141,6 +143,7 @@ UpdatedAt → datetime";
     {
         if (currentPage < maxPages)
         {
+            soundRoom.PlayChangePage();
             currentPage++;
             UpdatePagination();
         }
@@ -150,6 +153,7 @@ UpdatedAt → datetime";
     {
         if (currentPage > 1)
         {
+            soundRoom.PlayChangePage();
             currentPage--;
             UpdatePagination();
         }
