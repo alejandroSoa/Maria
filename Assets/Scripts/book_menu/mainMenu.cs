@@ -22,7 +22,8 @@ public class mainMenu : MonoBehaviour
         
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            //SceneManager.LoadScene(sceneToLoad);
+            SceneLoader.LoadWithLoadingScreen(sceneToLoad);
         }
         else
         {
