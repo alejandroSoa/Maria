@@ -12,7 +12,7 @@ public class LightButton : MonoBehaviour
 
     void Start()
     {
-        manager = FindObjectOfType<LightSequenceManager>();
+        manager = FindFirstObjectByType<LightSequenceManager>();
         
         if (buttonSprite == null)
         {

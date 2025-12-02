@@ -45,7 +45,7 @@ public class FlappyBirdPlayer : MonoBehaviour
         // Buscar el GameManager si no está asignado
         if (gameManager == null)
         {
-            gameManager = FindObjectOfType<FlappyBirdGameManager>();
+            gameManager = FindFirstObjectByType<FlappyBirdGameManager>();
         }
         
         // Buscar la cámara principal si no está asignada

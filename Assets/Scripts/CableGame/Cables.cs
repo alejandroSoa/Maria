@@ -18,7 +18,7 @@ public class Cables : MonoBehaviour
         tamanoOriginal = finalCable.size;
         
         // Buscar TareaCables en la escena
-        tareaCables = FindObjectOfType<TareaCables>();
+        tareaCables = FindFirstObjectByType<TareaCables>();
         
         if (tareaCables == null)
         {

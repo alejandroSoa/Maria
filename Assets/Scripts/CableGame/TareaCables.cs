@@ -18,6 +18,9 @@ public class TareaCables : MonoBehaviour
 
     void VolverARoom()
     {
+        // Añadir moneda descifrada
+        Inventory.AddDecryptedCoin();
+        
         SceneManager.LoadScene("Room");
     }
 }
