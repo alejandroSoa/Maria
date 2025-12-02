@@ -66,6 +66,7 @@ public class Marianet : MonoBehaviour
             
             UpdateCoinsText();
         }
+        DialogueController.Instance.ResumeDialogue();
     }
 
     void UpdateCoinsText()

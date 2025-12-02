@@ -33,7 +33,7 @@ public class DialogueController : MonoBehaviour
     { "Ya lo hice, admito que tuvo lo suyo, pero, esto no es un fusible.", "Volver_desencriptadora_room" },
     { "¡Bienvenido a MariaNet!", "Cargar_MariaNet_Room" },
     { "Ahora sí, selecciona el fusible de tipo INT por favor.", "Activar_interfaz_marianet" },
-    { "Toma el fusible de la esclusa de ahí.", "Quitar_interfaz_marianet" },
+    { "Toma el fusible de la esclusa de ahí.", "Pausar_dialogo" },
     { "¡Revisa la caja de fusibles para ver qué tipo de fusible necesitas!", "Dejar_jugador_jugar" }
 
 };
