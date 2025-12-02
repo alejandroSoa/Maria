@@ -18,6 +18,9 @@ public class Fusebox : MonoBehaviour
     public GameObject successCaseMessage; // Success_case GameObject
     public GameObject buttonBack; // Button_back GameObject
     
+    [Header("Lock System")]
+    public bool isFuseboxLocked = false; // Estado de bloqueo de la caja
+    
     private string currentFieldBeingAssigned = "";
     private string selectedFuseType = "";
     private bool isInSelectionMode = false;
@@ -327,7 +330,24 @@ public class Fusebox : MonoBehaviour
             {
                 string fieldRef = fieldName; // Captura para closure
                 button.onClick.AddListener(() => OnWrenchButtonClicked(fieldRef));
+                
+                // Aplicar estado de bloqueo si está activo
+                button.interactable = !isFuseboxLocked;
                 break;
+            }
+        }
+        
+        // Configurar visibilidad de Icon y Block según el estado actual
+        Transform[] children = newSlot.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            if (child.name == "Icon")
+            {
+                child.gameObject.SetActive(!isFuseboxLocked); // Icon visible cuando NO está bloqueado
+            }
+            else if (child.name == "Block")
+            {
+                child.gameObject.SetActive(isFuseboxLocked); // Block visible cuando ESTÁ bloqueado
             }
         }
         
@@ -525,8 +545,8 @@ public class Fusebox : MonoBehaviour
         AssignFuseToField(currentFieldBeingAssigned, selectedFuseType, tolerance);
         ShowValidationMessage(true, "Fusible asignado correctamente");
         
-        // Cerrar después de un delay
-        Invoke("CloseAssignmentProcess", 2f);
+        // Cerrar inmediatamente
+        CloseAssignmentProcess();
     }
     
     /// <summary>
@@ -727,8 +747,209 @@ public class Fusebox : MonoBehaviour
                 wrongCaseMessage.SetActive(true);
             }
             
-            // Para casos de error, recargar la interfaz después de un delay
-            Invoke("ResetInputForRetry", 2f);
+            // Para casos de error, recargar la interfaz inmediatamente
+            ResetInputForRetry();
         }
     }
+    
+    /// <summary>
+    /// Borra al azar cierto número de fusibles y los deja desasignados
+    /// </summary>
+    public void RemoveRandomFuses(int numberOfFusesToRemove)
+    {
+        System.Collections.Generic.List<string> assignedFields = new System.Collections.Generic.List<string>();
+        
+        // Obtener todos los campos que tienen fusibles asignados
+        System.Collections.Generic.Dictionary<string, string> slotNames = GetSlotNames();
+        foreach (var slot in slotNames)
+        {
+            string fieldName = slot.Key;
+            string assignment = GetAssignedDataType(fieldName);
+            
+            if (assignment != "Unassigned")
+            {
+                assignedFields.Add(fieldName);
+            }
+        }
+        
+        // Limitar el número a remover a los disponibles
+        int fusesToRemove = Mathf.Min(numberOfFusesToRemove, assignedFields.Count);
+        
+        // Seleccionar campos al azar y desasignar
+        for (int i = 0; i < fusesToRemove; i++)
+        {
+            int randomIndex = Random.Range(0, assignedFields.Count);
+            string fieldToUnassign = assignedFields[randomIndex];
+            assignedFields.RemoveAt(randomIndex);
+            
+            // Eliminar fusible completamente (no devolverlo al inventario)
+            string currentAssignment = GetAssignedDataType(fieldToUnassign);
+            if (currentAssignment != "Unassigned")
+            {
+                // Solo limpiar asignación sin devolver al inventario
+                PlayerPrefs.DeleteKey(ASSIGNMENT_KEY_PREFIX + fieldToUnassign);
+                PlayerPrefs.DeleteKey(TOLERANCE_MIN_KEY_PREFIX + fieldToUnassign);
+                PlayerPrefs.DeleteKey(TOLERANCE_MAX_KEY_PREFIX + fieldToUnassign);
+                
+                Debug.Log($"Fusible {currentAssignment} eliminado permanentemente del campo {fieldToUnassign}");
+            }
+        }
+        
+        PlayerPrefs.Save();
+        
+        // Regenerar slots para mostrar cambios
+        GenerateFuseboxSlots();
+        
+        Debug.Log($"Removidos {fusesToRemove} fusibles al azar");
+    }
+    
+    /// <summary>
+    /// Cierra la caja de fusibles y no permite editarla (modo lock)
+    /// </summary>
+    public void LockFusebox()
+    {
+        if (itemsParent == null) return;
+        
+        // Establecer estado de bloqueo
+        isFuseboxLocked = true;
+        
+        // Recorrer todos los slots y desactivar botones + mostrar imagen de lock
+        for (int i = 0; i < itemsParent.childCount; i++)
+        {
+            Transform slot = itemsParent.GetChild(i);
+            if (slot.gameObject != itemBaseTemplate && slot.name.StartsWith("Slot_"))
+            {
+                // Desactivar botones de asignación
+                UnityEngine.UI.Button[] buttons = slot.GetComponentsInChildren<UnityEngine.UI.Button>();
+                foreach (UnityEngine.UI.Button button in buttons)
+                {
+                    if (button.gameObject.name.ToLower().Contains("assign") || button.gameObject.name.ToLower().Contains("btn"))
+                    {
+                        button.interactable = false;
+                    }
+                }
+                
+                // Configurar visibilidad: ocultar Icon y mostrar Text
+                Transform[] children = slot.GetComponentsInChildren<Transform>();
+                foreach (Transform child in children)
+                {
+                    if (child.name == "Icon")
+                    {
+                        child.gameObject.SetActive(false); // Ocultar Icon
+                    }
+                    else if (child.name == "Text")
+                    {
+                        child.gameObject.SetActive(true); // Mostrar Text
+                    }
+                }
+            }
+        }
+        
+        Debug.Log("Caja de fusibles bloqueada - no se puede editar");
+    }
+    
+    /// <summary>
+    /// Rehabilita la edición de la caja de fusibles (modo unlock)
+    /// </summary>
+    public void UnlockFusebox()
+    {
+        if (itemsParent == null) return;
+        
+        // Establecer estado de desbloqueado
+        isFuseboxLocked = false;
+        
+        // Recorrer todos los slots y activar botones + ocultar imagen de lock
+        for (int i = 0; i < itemsParent.childCount; i++)
+        {
+            Transform slot = itemsParent.GetChild(i);
+            if (slot.gameObject != itemBaseTemplate && slot.name.StartsWith("Slot_"))
+            {
+                // Activar botones de asignación
+                UnityEngine.UI.Button[] buttons = slot.GetComponentsInChildren<UnityEngine.UI.Button>();
+                foreach (UnityEngine.UI.Button button in buttons)
+                {
+                    if (button.gameObject.name.ToLower().Contains("assign") || button.gameObject.name.ToLower().Contains("btn"))
+                    {
+                        button.interactable = true;
+                    }
+                }
+                
+                // Configurar visibilidad: mostrar Icon y ocultar Block
+                Transform[] children = slot.GetComponentsInChildren<Transform>();
+                foreach (Transform child in children)
+                {
+                    if (child.name == "Icon")
+                    {
+                        child.gameObject.SetActive(true); // Mostrar Icon
+                    }
+                    else if (child.name == "Block")
+                    {
+                        child.gameObject.SetActive(false); // Ocultar Block
+                    }
+                }
+            }
+        }
+        
+        Debug.Log("Caja de fusibles desbloqueada - se puede editar");
+    }
+    
+    /// <summary>
+    /// Retorna el contenido de la caja de fusibles como tabla de base de datos
+    /// </summary>
+    public void Get(){GetFuseboxDatabaseTable();}
+
+    public string GetFuseboxDatabaseTable()
+    {
+        System.Text.StringBuilder tableBuilder = new System.Text.StringBuilder();
+        
+        // Encabezado de la tabla
+        tableBuilder.AppendLine("=== FUSEBOX DATABASE TABLE ===");
+        tableBuilder.AppendLine("FIELD_NAME | DATA_TYPE | TOLERANCE_MIN | TOLERANCE_MAX | STATUS");
+        tableBuilder.AppendLine("------------------------------------------------------------");
+        
+        // Obtener datos de los slots
+        System.Collections.Generic.Dictionary<string, string> slotNames = GetSlotNames();
+        
+        foreach (var slot in slotNames)
+        {
+            string fieldName = slot.Key;
+            string assignment = GetAssignedDataType(fieldName);
+            string status;
+            string toleranceMin = "NULL";
+            string toleranceMax = "NULL";
+            
+            if (assignment == "Unassigned")
+            {
+                status = "UNASSIGNED";
+                assignment = "NULL";
+            }
+            else
+            {
+                status = "ASSIGNED";
+                
+                // Obtener tolerancias si aplica
+                if (assignment == "INT" || assignment == "VARCHAR")
+                {
+                    int minTol = PlayerPrefs.GetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, 0);
+                    int maxTol = PlayerPrefs.GetInt(TOLERANCE_MAX_KEY_PREFIX + fieldName, 0);
+                    
+                    toleranceMin = minTol.ToString();
+                    toleranceMax = maxTol.ToString();
+                }
+            }
+            
+            // Formatear fila de la tabla
+            string row = $"{fieldName.PadRight(10)} | {assignment.PadRight(9)} | {toleranceMin.PadRight(13)} | {toleranceMax.PadRight(13)} | {status}";
+            tableBuilder.AppendLine(row);
+        }
+        
+        tableBuilder.AppendLine("------------------------------------------------------------");
+        
+        string tableResult = tableBuilder.ToString();
+        Debug.Log("Tabla de base de datos generada:");
+        Debug.Log(tableResult);
+        
+        return tableResult;
+    }
+
 }
