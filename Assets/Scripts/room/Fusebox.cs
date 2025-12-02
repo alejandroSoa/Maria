@@ -21,6 +21,12 @@ public class Fusebox : MonoBehaviour
     [Header("Lock System")]
     public bool isFuseboxLocked = false; // Estado de bloqueo de la caja
     
+    [Header("Multi-Table System")]
+    [SerializeField] private int currentActiveTable = 0; // Índice de la tabla activa
+    [SerializeField] private UnityEngine.UI.Button previousTableButton; // Botón para tabla anterior
+    [SerializeField] private UnityEngine.UI.Button nextTableButton; // Botón para tabla siguiente
+    [SerializeField] private TextMeshProUGUI tableInfoText; // Texto informativo de la tabla actual
+    
     private string currentFieldBeingAssigned = "";
     private string selectedFuseType = "";
     private bool isInSelectionMode = false;
@@ -58,12 +64,15 @@ public class Fusebox : MonoBehaviour
         
         // Asegurar modo normal del inventario
         SetInventoryMode(false);
+        
+        // Configurar botones de navegación de tablas
+        SetupTableNavigationButtons();
+        
+        // Actualizar información de tabla
+        UpdateTableInfoDisplay();
     }
 
-    void Update()
-    {
-        
-    }
+
     
     /// <summary>
     /// Genera los slots de la caja de fusibles basándose en el template
@@ -81,32 +90,47 @@ public class Fusebox : MonoBehaviour
         // Limpiar slots existentes
         ClearExistingSlots();
         
-        // Obtener datos de los slots y tipos de datos del inventario
-        System.Collections.Generic.Dictionary<string, string> slotNames = GetSlotNames();
-        System.Collections.Generic.Dictionary<string, string> dataTypes = GetDataTypes();
+        // Obtener datos de la tabla activa
+        var currentTable = GetCurrentTable();
+        if (currentTable == null)
+        {
+            Debug.LogError($"No se pudo obtener la tabla en el índice {currentActiveTable}");
+            return;
+        }
         
         // Ocultar el template base
         itemBaseTemplate.SetActive(false);
         
-        // Crear slots para cada campo
-        foreach (var slot in slotNames)
+        // Crear slots para cada campo de la tabla activa
+        foreach (var slot in currentTable.columns)
         {
-            string fieldName = slot.Key;
+            string fieldName = GetFieldKey(currentTable.tableName, slot.Key);
             string displayName = slot.Value;
             string assignedType = GetAssignedDataType(fieldName);
             
             CreateSlotFromTemplate(fieldName, displayName, assignedType);
         }
         
-        Debug.Log($"Generados {slotNames.Count} slots de fusibles");
+        Debug.Log($"Generados {currentTable.columns.Count} slots de fusibles para tabla {currentTable.tableName}");
     }
     
-    /// <summary>
-    /// Obtiene los nombres de los slots de la caja de fusibles
-    /// </summary>
-    private System.Collections.Generic.Dictionary<string, string> GetSlotNames()
+    // Sistema de múltiples tablas
+    [System.Serializable]
+    public class DatabaseTable
     {
-        return new System.Collections.Generic.Dictionary<string, string>()
+        public string tableName;
+        public System.Collections.Generic.Dictionary<string, string> columns;
+        
+        public DatabaseTable(string name, System.Collections.Generic.Dictionary<string, string> cols)
+        {
+            tableName = name;
+            columns = cols;
+        }
+    }
+    
+    private static readonly DatabaseTable[] DatabaseTables = new DatabaseTable[]
+    {
+        new DatabaseTable("USERS", new System.Collections.Generic.Dictionary<string, string>()
         {
             { "NAME", "NAME" },
             { "LAST_NAME", "LAST NAME" },
@@ -116,21 +140,175 @@ public class Fusebox : MonoBehaviour
             { "BIRTHDAY", "BIRTHDAY" },
             { "ADDRESS", "ADDRESS" },
             { "CITY", "CITY" }
-        };
+        }),
+        new DatabaseTable("PRODUCTS", new System.Collections.Generic.Dictionary<string, string>()
+        {
+            { "PRODUCT_ID", "PRODUCT ID" },
+            { "NAME", "PRODUCT NAME" },
+            { "PRICE", "PRICE" },
+            { "CATEGORY", "CATEGORY" },
+            { "STOCK", "STOCK" },
+            { "DESCRIPTION", "DESCRIPTION" }
+        }),
+        new DatabaseTable("ORDERS", new System.Collections.Generic.Dictionary<string, string>()
+        {
+            { "ORDER_ID", "ORDER ID" },
+            { "USER_ID", "USER ID" },
+            { "PRODUCT_ID", "PRODUCT ID" },
+            { "QUANTITY", "QUANTITY" },
+            { "ORDER_DATE", "ORDER DATE" },
+            { "STATUS", "STATUS" }
+        })
+    };
+    
+    private static readonly System.Collections.Generic.Dictionary<string, string> DataTypes = new System.Collections.Generic.Dictionary<string, string>()
+    {
+        { "INT", "Entero" },
+        { "DATE", "Fecha" },
+        { "VARCHAR", "Texto Variable" },
+        { "BOOL", "Booleano" }
+    };
+    
+    /// <summary>
+    /// Obtiene la tabla activa actual
+    /// </summary>
+    private DatabaseTable GetCurrentTable()
+    {
+        if (currentActiveTable >= 0 && currentActiveTable < DatabaseTables.Length)
+            return DatabaseTables[currentActiveTable];
+        return null;
     }
     
     /// <summary>
-    /// Obtiene los tipos de datos disponibles del inventario
+    /// Genera una clave única para un campo considerando la tabla
     /// </summary>
-    private System.Collections.Generic.Dictionary<string, string> GetDataTypes()
+    private string GetFieldKey(string tableName, string fieldName)
     {
-        return new System.Collections.Generic.Dictionary<string, string>()
+        return $"{tableName}_{fieldName}";
+    }
+    
+    /// <summary>
+    /// Cambia la tabla activa
+    /// </summary>
+    public void SetActiveTable(int tableIndex)
+    {
+        if (tableIndex >= 0 && tableIndex < DatabaseTables.Length)
         {
-            { "INT", "Entero" },
-            { "DATE", "Fecha" },
-            { "VARCHAR", "Texto Variable" },
-            { "BOOL", "Booleano" }
-        };
+            currentActiveTable = tableIndex;
+            Debug.Log($"Tabla activa cambiada a: {DatabaseTables[tableIndex].tableName}");
+            GenerateFuseboxSlots(); // Regenerar slots
+            UpdateTableInfoDisplay(); // Actualizar display
+        }
+        else
+        {
+            Debug.LogError($"Índice de tabla inválido: {tableIndex}");
+        }
+    }
+    
+    /// <summary>
+    /// Obtiene el nombre de la tabla activa
+    /// </summary>
+    public string GetActiveTableName()
+    {
+        var currentTable = GetCurrentTable();
+        return currentTable?.tableName ?? "UNKNOWN";
+    }
+    
+    /// <summary>
+    /// Obtiene la cantidad total de tablas
+    /// </summary>
+    public int GetTableCount()
+    {
+        return DatabaseTables.Length;
+    }
+    
+    /// <summary>
+    /// Obtiene los nombres de todas las tablas
+    /// </summary>
+    public string[] GetAllTableNames()
+    {
+        string[] names = new string[DatabaseTables.Length];
+        for (int i = 0; i < DatabaseTables.Length; i++)
+        {
+            names[i] = DatabaseTables[i].tableName;
+        }
+        return names;
+    }
+    
+    /// <summary>
+    /// Configura los eventos de los botones de navegación entre tablas
+    /// </summary>
+    private void SetupTableNavigationButtons()
+    {
+        // Configurar botón anterior
+        if (previousTableButton != null)
+        {
+            previousTableButton.onClick.RemoveAllListeners();
+            previousTableButton.onClick.AddListener(() => {
+                PreviousTable();
+            });
+        }
+        else
+        {
+            Debug.LogWarning("Previous Table Button no está asignado en el inspector");
+        }
+        
+        // Configurar botón siguiente
+        if (nextTableButton != null)
+        {
+            nextTableButton.onClick.RemoveAllListeners();
+            nextTableButton.onClick.AddListener(() => {
+                NextTable();
+            });
+        }
+        else
+        {
+            Debug.LogWarning("Next Table Button no está asignado en el inspector");
+        }
+        
+        // Configurar estado inicial de botones
+        UpdateNavigationButtonsState();
+    }
+    
+    /// <summary>
+    /// Actualiza el estado de los botones de navegación
+    /// </summary>
+    private void UpdateNavigationButtonsState()
+    {
+        // Los botones siempre están habilitados ya que la navegación es cíclica
+        if (previousTableButton != null)
+        {
+            previousTableButton.interactable = !isFuseboxLocked;
+        }
+        
+        if (nextTableButton != null)
+        {
+            nextTableButton.interactable = !isFuseboxLocked;
+        }
+    }
+    
+    /// <summary>
+    /// Actualiza la información mostrada de la tabla actual
+    /// </summary>
+    private void UpdateTableInfoDisplay()
+    {
+        if (tableInfoText != null)
+        {
+            var currentTable = GetCurrentTable();
+            if (currentTable != null)
+            {
+                string info = $"Table: {currentTable.tableName} ({currentTable.columns.Count} fields) [{currentActiveTable + 1}/{DatabaseTables.Length}]";
+                tableInfoText.text = info;
+            }
+            else
+            {
+                tableInfoText.text = "Error: No table selected";
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Table Info Text no está asignado en el inspector");
+        }
     }
     
     /// <summary>
@@ -218,24 +396,18 @@ public class Fusebox : MonoBehaviour
         return fuseDisplay;
     }
     
-    /// <summary>
-    /// Obtiene la abreviatura de 2 caracteres para cada tipo
-    /// </summary>
+    private static readonly System.Collections.Generic.Dictionary<string, string> TypeAbbreviations = new System.Collections.Generic.Dictionary<string, string>()
+    {
+        { "VARCHAR", "VC" },
+        { "INT", "IN" },
+        { "DATE", "DA" },
+        { "BOOL", "BO" }
+    };
+    
     private string GetTypeAbbreviation(string type)
     {
-        switch (type)
-        {
-            case "VARCHAR":
-                return "VC";
-            case "INT":
-                return "IN";
-            case "DATE":
-                return "DA";
-            case "BOOL":
-                return "BO";
-            default:
-                return type.Length >= 2 ? type.Substring(0, 2) : type;
-        }
+        return TypeAbbreviations.TryGetValue(type, out string abbrev) ? abbrev : 
+               (type.Length >= 2 ? type.Substring(0, 2) : type);
     }
     
     /// <summary>
@@ -266,31 +438,7 @@ public class Fusebox : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Obtiene las instrucciones correctas según el campo
-    /// </summary>
-    private string GetFieldInstructions(string fieldName)
-    {
-        // Mapeo de campos a tipos de datos requeridos
-        System.Collections.Generic.Dictionary<string, string> fieldInstructions = new System.Collections.Generic.Dictionary<string, string>()
-        {
-            { "NAME", "Use VARCHAR for text data" },
-            { "LAST_NAME", "Use VARCHAR for text data" },
-            { "EMAIL", "Use VARCHAR for email format" },
-            { "PHONE", "Use VARCHAR for phone numbers" },
-            { "AGE", "Use INT for numeric age" },
-            { "BIRTHDAY", "Use DATE for date format" },
-            { "ADDRESS", "Use VARCHAR for address text" },
-            { "CITY", "Use VARCHAR for city names" }
-        };
-        
-        if (fieldInstructions.ContainsKey(fieldName))
-        {
-            return fieldInstructions[fieldName];
-        }
-        
-        return "Select appropriate data type";
-    }
+
     
     /// <summary>
     /// Crea un slot basándose en el template
@@ -301,39 +449,33 @@ public class Fusebox : MonoBehaviour
         newSlot.SetActive(true);
         newSlot.name = $"Slot_{fieldName}";
         
-        // Buscar textos y configurarlos
-        TextMeshProUGUI[] texts = newSlot.GetComponentsInChildren<TextMeshProUGUI>();
+        // Configurar textos y botones
+        var allComponents = newSlot.GetComponentsInChildren<Transform>();
+        string displayText = GetFormattedFuseDisplay(fieldName);
         
-        foreach (TextMeshProUGUI text in texts)
+        foreach (Transform child in allComponents)
         {
-            // Column title (título del campo)
-            if (text.gameObject.name.ToLower().Contains("title") || text.gameObject.name.ToLower().Contains("column"))
+            string childName = child.name.ToLower();
+            
+            // Configurar textos
+            if (child.TryGetComponent<TextMeshProUGUI>(out var text))
             {
-                text.text = displayName;
+                if (childName.Contains("title") || childName.Contains("column"))
+                    text.text = displayName;
+                else if (childName.Contains("status"))
+                {
+                    text.text = displayText;
+                    AdjustTextSize(text, displayText);
+                }
             }
-            // Status (estado del fusible) - ahora muestra FS-TIPO-TAMAÑO si está asignado
-            else if (text.gameObject.name.ToLower().Contains("status"))
+            
+            // Configurar botón
+            if (child.TryGetComponent<UnityEngine.UI.Button>(out var button) && 
+                (childName.Contains("assign") || childName.Contains("btn")))
             {
-                string displayText = GetFormattedFuseDisplay(fieldName);
-                text.text = displayText;
-                
-                // Ajustar tamaño de letra si el texto es muy largo
-                AdjustTextSize(text, displayText);
-            }
-        }
-        
-        // Buscar y configurar botón de asignación
-        UnityEngine.UI.Button[] buttons = newSlot.GetComponentsInChildren<UnityEngine.UI.Button>();
-        foreach (UnityEngine.UI.Button button in buttons)
-        {
-            if (button.gameObject.name.ToLower().Contains("assign") || button.gameObject.name.ToLower().Contains("btn"))
-            {
-                string fieldRef = fieldName; // Captura para closure
+                string fieldRef = fieldName;
                 button.onClick.AddListener(() => OnWrenchButtonClicked(fieldRef));
-                
-                // Aplicar estado de bloqueo si está activo
                 button.interactable = !isFuseboxLocked;
-                break;
             }
         }
         
@@ -475,22 +617,9 @@ public class Fusebox : MonoBehaviour
     {
         if (string.IsNullOrEmpty(selectedFuseType)) return false;
         
-        if (selectedFuseType == "BOOL" || selectedFuseType == "DATE")
-        {
-            // Para BOOL y DATE solo aceptar "confirm"
-            return input.ToLower() == "confirm";
-        }
-        else if (selectedFuseType == "INT" || selectedFuseType == "VARCHAR")
-        {
-            // Para INT y VARCHAR validar que sea número
-            if (!int.TryParse(input, out int number))
-            {
-                return false;
-            }
-            return number >= 0 && number <= 9999;
-        }
-        
-        return false;
+        return selectedFuseType == "BOOL" || selectedFuseType == "DATE" ? 
+               input.ToLower() == "confirm" : 
+               int.TryParse(input, out int number) && number >= 0 && number <= 9999;
     }
     
     /// <summary>
@@ -759,11 +888,12 @@ public class Fusebox : MonoBehaviour
     {
         System.Collections.Generic.List<string> assignedFields = new System.Collections.Generic.List<string>();
         
-        // Obtener todos los campos que tienen fusibles asignados
-        System.Collections.Generic.Dictionary<string, string> slotNames = GetSlotNames();
-        foreach (var slot in slotNames)
+        // Obtener todos los campos que tienen fusibles asignados de la tabla activa
+        var currentTable = GetCurrentTable();
+        if (currentTable == null) return;
+        foreach (var slot in currentTable.columns)
         {
-            string fieldName = slot.Key;
+            string fieldName = GetFieldKey(currentTable.tableName, slot.Key);
             string assignment = GetAssignedDataType(fieldName);
             
             if (assignment != "Unassigned")
@@ -813,6 +943,9 @@ public class Fusebox : MonoBehaviour
         // Establecer estado de bloqueo
         isFuseboxLocked = true;
         
+        // Actualizar estado de botones de navegación
+        UpdateNavigationButtonsState();
+        
         // Recorrer todos los slots y desactivar botones + mostrar imagen de lock
         for (int i = 0; i < itemsParent.childCount; i++)
         {
@@ -858,6 +991,9 @@ public class Fusebox : MonoBehaviour
         // Establecer estado de desbloqueado
         isFuseboxLocked = false;
         
+        // Actualizar estado de botones de navegación
+        UpdateNavigationButtonsState();
+        
         // Recorrer todos los slots y activar botones + ocultar imagen de lock
         for (int i = 0; i < itemsParent.childCount; i++)
         {
@@ -900,20 +1036,78 @@ public class Fusebox : MonoBehaviour
 
     public string GetFuseboxDatabaseTable()
     {
+        return GetFuseboxDatabaseTable(-1); // -1 significa tabla activa
+    }
+    
+    /// <summary>
+    /// Obtiene la tabla de base de datos para una tabla específica o todas
+    /// </summary>
+    /// <param name="tableIndex">Índice de la tabla (-1 para tabla activa, -2 para todas las tablas)</param>
+    public string GetFuseboxDatabaseTable(int tableIndex)
+    {
         System.Text.StringBuilder tableBuilder = new System.Text.StringBuilder();
         
-        // Encabezado de la tabla
-        tableBuilder.AppendLine("=== FUSEBOX DATABASE TABLE ===");
-        tableBuilder.AppendLine("FIELD_NAME | DATA_TYPE | TOLERANCE_MIN | TOLERANCE_MAX | STATUS");
-        tableBuilder.AppendLine("------------------------------------------------------------");
-        
-        // Obtener datos de los slots
-        System.Collections.Generic.Dictionary<string, string> slotNames = GetSlotNames();
-        
-        foreach (var slot in slotNames)
+        if (tableIndex == -2) // Todas las tablas
         {
+            tableBuilder.AppendLine("=== FUSEBOX DATABASE - ALL TABLES ===");
+            
+            for (int i = 0; i < DatabaseTables.Length; i++)
+            {
+                tableBuilder.AppendLine();
+                tableBuilder.AppendLine($"=== TABLE: {DatabaseTables[i].tableName} ===");
+                tableBuilder.AppendLine("FIELD_NAME | DATA_TYPE | TOLERANCE_MIN | TOLERANCE_MAX | STATUS");
+                tableBuilder.AppendLine("------------------------------------------------------------");
+                
+                AppendTableData(tableBuilder, DatabaseTables[i]);
+                
+                tableBuilder.AppendLine("------------------------------------------------------------");
+            }
+        }
+        else
+        {
+            // Tabla específica o activa
+            DatabaseTable targetTable;
+            if (tableIndex == -1)
+            {
+                targetTable = GetCurrentTable();
+            }
+            else if (tableIndex >= 0 && tableIndex < DatabaseTables.Length)
+            {
+                targetTable = DatabaseTables[tableIndex];
+            }
+            else
+            {
+                return "ERROR: Índice de tabla inválido";
+            }
+            
+            if (targetTable == null) return "ERROR: No se pudo obtener la tabla";
+            
+            tableBuilder.AppendLine($"=== FUSEBOX DATABASE TABLE: {targetTable.tableName} ===");
+            tableBuilder.AppendLine("FIELD_NAME | DATA_TYPE | TOLERANCE_MIN | TOLERANCE_MAX | STATUS");
+            tableBuilder.AppendLine("------------------------------------------------------------");
+            
+            AppendTableData(tableBuilder, targetTable);
+            
+            tableBuilder.AppendLine("------------------------------------------------------------");
+        }
+        
+        string tableResult = tableBuilder.ToString();
+        Debug.Log("Tabla(s) de base de datos generada(s):");
+        Debug.Log(tableResult);
+        
+        return tableResult;
+    }
+    
+    /// <summary>
+    /// Agrega los datos de una tabla específica al StringBuilder
+    /// </summary>
+    private void AppendTableData(System.Text.StringBuilder tableBuilder, DatabaseTable table)
+    {
+        foreach (var slot in table.columns)
+        {
+            string fieldKey = GetFieldKey(table.tableName, slot.Key);
             string fieldName = slot.Key;
-            string assignment = GetAssignedDataType(fieldName);
+            string assignment = GetAssignedDataType(fieldKey);
             string status;
             string toleranceMin = "NULL";
             string toleranceMax = "NULL";
@@ -930,8 +1124,8 @@ public class Fusebox : MonoBehaviour
                 // Obtener tolerancias si aplica
                 if (assignment == "INT" || assignment == "VARCHAR")
                 {
-                    int minTol = PlayerPrefs.GetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, 0);
-                    int maxTol = PlayerPrefs.GetInt(TOLERANCE_MAX_KEY_PREFIX + fieldName, 0);
+                    int minTol = PlayerPrefs.GetInt(TOLERANCE_MIN_KEY_PREFIX + fieldKey, 0);
+                    int maxTol = PlayerPrefs.GetInt(TOLERANCE_MAX_KEY_PREFIX + fieldKey, 0);
                     
                     toleranceMin = minTol.ToString();
                     toleranceMax = maxTol.ToString();
@@ -939,17 +1133,59 @@ public class Fusebox : MonoBehaviour
             }
             
             // Formatear fila de la tabla
-            string row = $"{fieldName.PadRight(10)} | {assignment.PadRight(9)} | {toleranceMin.PadRight(13)} | {toleranceMax.PadRight(13)} | {status}";
+            string row = $"{fieldName.PadRight(12)} | {assignment.PadRight(9)} | {toleranceMin.PadRight(13)} | {toleranceMax.PadRight(13)} | {status}";
             tableBuilder.AppendLine(row);
         }
+    }
+    
+    /// <summary>
+    /// Obtiene todas las tablas de la base de datos
+    /// </summary>
+    public string GetAllFuseboxDatabaseTables()
+    {
+        return GetFuseboxDatabaseTable(-2);
+    }
+    
+    /// <summary>
+    /// Cambia a la siguiente tabla (modo cíclico)
+    /// </summary>
+    public void NextTable()
+    {
+        int nextIndex = (currentActiveTable + 1) % DatabaseTables.Length;
+        SetActiveTable(nextIndex);
+        Debug.Log($"Navegando a tabla siguiente: {GetActiveTableName()}");
+    }
+    
+    /// <summary>
+    /// Cambia a la tabla anterior (modo cíclico)
+    /// </summary>
+    public void PreviousTable()
+    {
+        int prevIndex = currentActiveTable - 1;
+        if (prevIndex < 0) prevIndex = DatabaseTables.Length - 1;
+        SetActiveTable(prevIndex);
+        Debug.Log($"Navegando a tabla anterior: {GetActiveTableName()}");
+    }
+    
+    /// <summary>
+    /// Obtiene información resumida de todas las tablas
+    /// </summary>
+    public string GetTablesInfo()
+    {
+        System.Text.StringBuilder info = new System.Text.StringBuilder();
+        info.AppendLine("=== FUSEBOX TABLES INFO ===");
+        info.AppendLine($"Active Table: {GetActiveTableName()} (Index: {currentActiveTable})");
+        info.AppendLine($"Total Tables: {GetTableCount()}");
+        info.AppendLine();
         
-        tableBuilder.AppendLine("------------------------------------------------------------");
+        for (int i = 0; i < DatabaseTables.Length; i++)
+        {
+            var table = DatabaseTables[i];
+            string status = i == currentActiveTable ? " [ACTIVE]" : "";
+            info.AppendLine($"Table {i}: {table.tableName} ({table.columns.Count} columns){status}");
+        }
         
-        string tableResult = tableBuilder.ToString();
-        Debug.Log("Tabla de base de datos generada:");
-        Debug.Log(tableResult);
-        
-        return tableResult;
+        return info.ToString();
     }
 
 }

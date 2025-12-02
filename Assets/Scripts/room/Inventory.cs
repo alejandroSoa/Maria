@@ -50,7 +50,6 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt(DECRYPTED_COINS_KEY, currentCoins);
         PlayerPrefs.Save();
         
-        Debug.Log($"Moneda descifrada obtenida! Total: {currentCoins}");
     }
     
     /// <summary>
@@ -78,10 +77,7 @@ public class Inventory : MonoBehaviour
     /// Limpia completamente el inventario (monedas y todos los items)
     /// </summary>
     public static void ClearInventory()
-    {
-        Debug.Log("=== Limpiando inventario completo ===");
-        
-        // Resetear monedas descifradas
+    {        
         PlayerPrefs.SetInt(DECRYPTED_COINS_KEY, 0);
         
         // Resetear todos los items
@@ -155,18 +151,14 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Template o parent no asignados en Inventory");
             return;
         }
-        
-        Debug.Log("=== Generando items del inventario ===");
-        
+                
         // Limpiar items existentes
         ClearExistingItems();
         
         // Obtener items del inventario
         System.Collections.Generic.Dictionary<string, int> items = GetAllItems();
         System.Collections.Generic.Dictionary<string, string> itemNames = GetItemNames();
-        
-        Debug.Log($"Items encontrados: {items.Count}");
-        
+                
         if (items.Count == 0)
         {
             // Ocultar template si no hay items
@@ -183,7 +175,6 @@ public class Inventory : MonoBehaviour
             CreateItemFromTemplate(item.Key, item.Value, itemNames[item.Key]);
         }
         
-        Debug.Log($"Generados {items.Count} items");
     }
     
     /// <summary>
@@ -210,7 +201,6 @@ public class Inventory : MonoBehaviour
             }
         }
         
-        Debug.Log($"Item creado: {displayName} x{quantity}");
     }
     
     /// <summary>

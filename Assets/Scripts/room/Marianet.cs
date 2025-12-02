@@ -13,8 +13,14 @@ public class Marianet : MonoBehaviour
 
     public TextMeshProUGUI koensText;
     
+    [Header("Fusible Sprite System")]
+    [SerializeField] private GameObject fusibleSpritePrefab;
+    [SerializeField] private Transform spawnArea;
+    
     // Diccionario de items comprados con sus cantidades
     private const string ITEMS_KEY_PREFIX = "Item_";
+    
+
     
     // Nombres de los items en español
     private readonly System.Collections.Generic.Dictionary<string, string> itemNames = new System.Collections.Generic.Dictionary<string, string>()
@@ -52,11 +58,11 @@ public class Marianet : MonoBehaviour
             PlayerPrefs.SetInt("DecryptedCoins", newCoinAmount);
             PlayerPrefs.Save();
             
-            // Agregar item al inventario
-            AddItemToInventory(tipo);
+            // Crear sprite de fusible en lugar de agregar directamente al inventario
+            CreateFusibleSprite(tipo);
             
             soundRoom.PlayPurchase();
-            Debug.Log($"Item {itemNames[tipo]} comprado. Monedas restantes: {newCoinAmount}");
+            Debug.Log($"Fusible {itemNames[tipo]} comprado. Haz click en el sprite para recogerlo. Monedas restantes: {newCoinAmount}");
             
             UpdateCoinsText();
         }
@@ -72,10 +78,43 @@ public class Marianet : MonoBehaviour
     }
     
     /// <summary>
-    /// Agrega un item al inventario guardándolo en PlayerPrefs
+    /// Crea un sprite clickeable que representa el/los fusibles comprados
+    /// </summary>
+    /// <param name="itemType">Tipo de fusible comprado</param>
+    private void CreateFusibleSprite(string itemType)
+    {
+        if (fusibleSpritePrefab == null || spawnArea == null)
+        {
+            Debug.LogError("Fusible sprite prefab o spawn area no están asignados");
+            AddFusibleToInventory(itemType); // Fallback: agregar directamente
+            return;
+        }
+        
+        // Crear el sprite
+        GameObject fusibleSprite = Instantiate(fusibleSpritePrefab, spawnArea);
+        
+        // Configurar el item fusible
+        FusibleItem fusibleItem = fusibleSprite.GetComponent<FusibleItem>();
+        if (fusibleItem == null)
+        {
+            fusibleItem = fusibleSprite.AddComponent<FusibleItem>();
+        }
+        
+        // Inicializar con el tipo de fusible y referencia a Marianet
+        System.Collections.Generic.List<string> types = new System.Collections.Generic.List<string> { itemType };
+        fusibleItem.Initialize(types, this);
+        fusibleItem.SetRandomPosition(spawnArea);
+        
+        Debug.Log($"Sprite de fusible {itemNames[itemType]} creado. Haz click para recogerlo.");
+    }
+    
+
+    
+    /// <summary>
+    /// Agrega un fusible al inventario guardándolo en PlayerPrefs
     /// </summary>
     /// <param name="itemType">Tipo de item (INT, DATE, VARCHAR, BOOL)</param>
-    private void AddItemToInventory(string itemType)
+    public void AddFusibleToInventory(string itemType)
     {
         string itemKey = ITEMS_KEY_PREFIX + itemType;
         int currentQuantity = PlayerPrefs.GetInt(itemKey, 0);
