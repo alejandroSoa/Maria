@@ -26,8 +26,27 @@ public class CameraActions : MonoBehaviour
     // OFFSET para ajustar el zoom hacia arriba/abajo
     public float zoomOffsetY = 25f;
 
+    void Awake()
+    {
+        ActionManager.Instance.ClearActions();
+    }
+
     void Start()
     {
+        if (cam == null)
+        {
+            cam = Camera.main;
+            if (cam == null)
+            {
+                Debug.LogError("No se encontró la cámara principal.");
+                return;
+            }
+        }
+        if (ActionManager.playing)
+        {
+            viewManager.Instance.DeactivateView(initialRoom);
+            viewManager.Instance.ActivateView(desencriptadoraRoom);
+        }
         originalCamPos = cam.transform.position;
         originalCamSize = cam.orthographicSize;
         ActionManager.Instance.RegisterAction("Mostrar_Maria", () =>
@@ -76,6 +95,8 @@ public class CameraActions : MonoBehaviour
 
         ActionManager.Instance.RegisterAction("Jugar_Desencriptadora", () =>
         {
+            ActionManager.savedDialogueIndex = DialogueController.Instance.GetCurrentIndex();
+            ActionManager.playing = true;
             cam.transform.position = originalCamPos;
             cam.orthographicSize = originalCamSize;
             DialogueController.Instance.PauseDialogue();

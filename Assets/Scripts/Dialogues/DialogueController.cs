@@ -64,17 +64,42 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    //public void StartDialogueForLevel(int levelId)
+    //{
+    //    var conn = DatabaseService.Instance.Connection;
+    //    currentDialogues = conn.Table<Dialogue>()
+    //                           .Where(d => d.LevelId == levelId)
+    //                           .OrderBy(d => d.OrderIndex)
+    //                           .ToList();
+
+    //    index = 0;
+    //    TryShowNextDialogue();
+    //}
+
     public void StartDialogueForLevel(int levelId)
     {
         var conn = DatabaseService.Instance.Connection;
+
         currentDialogues = conn.Table<Dialogue>()
                                .Where(d => d.LevelId == levelId)
                                .OrderBy(d => d.OrderIndex)
                                .ToList();
 
+        if (ActionManager.playing && ActionManager.savedDialogueIndex >= 0)
+        {
+            index = ActionManager.savedDialogueIndex;
+            ActionManager.playing = false;
+            ActionManager.savedDialogueIndex = -1;
+
+            TryShowNextDialogue();
+            return;
+        }
+
+        // Si es un diálogo nuevo o primera vez
         index = 0;
         TryShowNextDialogue();
     }
+
 
     // Este es el método que se llama al hacer clic
     public void ShowNextDialogue()
@@ -137,6 +162,11 @@ public class DialogueController : MonoBehaviour
         TryShowNextDialogue();
 
         isResuming = false;
+    }
+
+    public int GetCurrentIndex()
+    {
+        return index;
     }
 
 }

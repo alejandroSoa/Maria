@@ -6,6 +6,8 @@ public class ActionManager : MonoBehaviour
 {
     public static ActionManager Instance;
     public static bool showMaria = false;
+    public static int savedDialogueIndex = -1;
+    public static bool playing = false;
 
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
@@ -20,6 +22,11 @@ public class ActionManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ClearActions()
+    {
+        actions.Clear();
     }
 
     // Registrar acciones desde cualquier script
