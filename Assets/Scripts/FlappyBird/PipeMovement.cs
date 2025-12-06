@@ -11,11 +11,38 @@ public class PipeMovement : MonoBehaviour
     
     [Tooltip("Posición X donde la tubería se destruye")]
     [SerializeField] private float destroyX = -12f;
+    
+    [Tooltip("Posición X donde se cuenta que el pájaro pasó la tubería")]
+    [SerializeField] private float scorePositionX = 5f;
+
+    private bool hasBeenPassed = false;
+    private FlappyBirdGameManager gameManager;
+
+    void Start()
+    {
+        // Buscar el GameManager
+        gameManager = FindFirstObjectByType<FlappyBirdGameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("PipeMovement: No se encontró FlappyBirdGameManager en la escena!");
+        }
+    }
 
     void Update()
     {
         // Mover la tubería hacia la izquierda
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+
+        // Verificar si el pájaro pasó la tubería
+        if (!hasBeenPassed && transform.position.x < scorePositionX)
+        {
+            hasBeenPassed = true;
+            if (gameManager != null)
+            {
+                gameManager.IncrementPipeCount();
+                Debug.Log($"Tubería pasada en posición X: {transform.position.x}");
+            }
+        }
 
         // Destruir la tubería cuando salga de la pantalla
         if (transform.position.x < destroyX)
