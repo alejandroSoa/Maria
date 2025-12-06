@@ -19,10 +19,10 @@ public class viewManager : MonoBehaviour
     [Tooltip("Vista derecha de la habitaci�n")]
     public GameObject View_Right;
 
-    [Tooltip("Vista trasera de la habitaci�n")]
+    [Tooltip("Vista trasera de la habitación")]
     public GameObject View_Back;
 
-    // Enumeraci�n para representar las direcciones de rotaci�n
+    // Enumeración para representar las direcciones de rotación
     private enum ViewDirection
     {
         Front = 0,
@@ -37,22 +37,13 @@ public class viewManager : MonoBehaviour
     private void Start()
     {
         // Al iniciar, activar solo la vista frontal por defecto
-        ShowFront();
-    }
-
-    /// <summary>
-    /// Muestra la vista frontal y oculta todas las dem�s.
-    /// Este m�todo se llama desde el bot�n "Enfrente" en el Canvas.
-    /// </summary>
-    public void ShowFront()
-    {
         currentDirection = ViewDirection.Front;
         ActivateView(View_Front);
     }
 
     /// <summary>
     /// Rota hacia la izquierda (sentido horario).
-    /// Este m�todo se llama desde el bot�n "Izquierda" en el Canvas.
+    /// Este método se llama desde el botón "Izquierda" en el Canvas.
     /// </summary>
     public void ShowLeft()
     {
@@ -69,13 +60,15 @@ public class viewManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Muestra la vista trasera y oculta todas las dem�s.
-    /// Este m�todo se llama desde el bot�n "Atras" en el Canvas.
+    /// Muestra la vista opuesta a la actual.
+    /// Este método se llama desde el botón "Atras" en el Canvas.
+    /// Front <-> Back, Left <-> Right
     /// </summary>
     public void ShowBack()
     {
-        currentDirection = ViewDirection.Back;
-        ActivateView(View_Back);
+        // Obtener la vista opuesta sumando 2 a la dirección actual (módulo 4)
+        currentDirection = (ViewDirection)(((int)currentDirection + 2) % 4);
+        ActivateCurrentView();
     }
 
     /// <summary>
@@ -121,7 +114,7 @@ public class viewManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Activa la vista especificada y desactiva todas las dem�s.
+    /// Activa la vista especificada y desactiva todas las demás.
     /// </summary>
     /// <param name="viewToActivate">La vista que se debe activar</param>
     private void ActivateView(GameObject viewToActivate)

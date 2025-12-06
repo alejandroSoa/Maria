@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 9639e35edf1cfc94db859d305a7817f5
+guid: b12405be9bac1a24f889aa54411dccc5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6153636646854656156
-    second: fuse_box_0
-  - first:
-      213: 4494768020326894491
-    second: fuse_box_1
+      213: -8316174280884759349
+    second: wall_shadow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,62 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fuse_box_0
+      name: wall_shadow_0
       rect:
         serializedVersion: 2
-        x: 1606
-        y: 1710
-        width: 6921
-        height: 6679
+        x: 0
+        y: 0
+        width: 1128
+        height: 816
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46ff663b214e99aa0800000000000000
-      internalID: -6153636646854656156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fuse_box_1
-      rect:
-        serializedVersion: 2
-        x: 6761
-        y: 1007
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9bce5f33bf906e30800000000000000
-      internalID: 4494768020326894491
+      spriteID: bc4df917d83079c80800000000000000
+      internalID: -8316174280884759349
       vertices: []
       indices: 
       edges: []
@@ -163,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fb89ddd47bb94724bb656eca5ef4f872
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fuse_box_0: -6153636646854656156
-      fuse_box_1: 4494768020326894491
+      wall_shadow_0: -8316174280884759349
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
