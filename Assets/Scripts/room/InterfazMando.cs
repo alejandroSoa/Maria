@@ -10,10 +10,11 @@ public class InterfazMando : MonoBehaviour
 
     public TextMeshProUGUI salaActualText;
     public Button sala1, sala2, sala3, sala4;
+    private GameObject x1, x2, x3, x4;
 
     void Start()
     {
-        salaActual = 1;
+        salaActual = 3;
         salaElegida = false;
 
         sala1.onClick.AddListener(() => ElegirSala(1));
@@ -21,9 +22,16 @@ public class InterfazMando : MonoBehaviour
         sala3.onClick.AddListener(() => ElegirSala(3));
         sala4.onClick.AddListener(() => ElegirSala(4));
 
-        // Mostrar la sala inicial en el texto
+        x1 = sala1.transform.Find("X")?.gameObject;
+        x2 = sala2.transform.Find("X")?.gameObject;
+        x3 = sala3.transform.Find("X")?.gameObject;
+        x4 = sala4.transform.Find("X")?.gameObject;
+
+        // Inicializar el texto y las X
         if (salaActualText != null)
             salaActualText.text = salaActual.ToString();
+
+        ActualizarX();
     }
 
     public void ElegirSala(int numeroSala)
@@ -31,6 +39,20 @@ public class InterfazMando : MonoBehaviour
         salaActual = numeroSala;
         salaElegida = true;
         salaActualText.text = salaActual.ToString();
+    }
+
+    void ActualizarX()
+    {
+        // Apagar todas las X
+        if (x1 != null) x1.SetActive(false);
+        if (x2 != null) x2.SetActive(false);
+        if (x3 != null) x3.SetActive(false);
+        if (x4 != null) x4.SetActive(false);
+
+        // Activar la X del botón anterior a la sala actual
+        if (salaActual == 2 && x1 != null) x1.SetActive(true);
+        if (salaActual == 3 && x2 != null) x2.SetActive(true);
+        if (salaActual == 4 && x3 != null) x3.SetActive(true);
     }
 
     void Update()

@@ -103,12 +103,12 @@ TextureImporter:
       name: command_interface2_0
       rect:
         serializedVersion: 2
-        x: 524
-        y: 587
-        width: 5231
-        height: 3866
+        x: 540
+        y: 1528
+        width: 5198
+        height: 2916
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c7fe4f65989e02747a8470a2800d4ff9
     internalID: 0
     vertices: []
     indices: 
