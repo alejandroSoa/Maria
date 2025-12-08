@@ -46,8 +46,11 @@ public class FusibleItem : MonoBehaviour
         // Configurar para tener prioridad sobre otros clickables
         SetupPriority();
         
-        // Encontrar el script de Marianet en la escena
-        marianetScript = FindObjectOfType<Marianet>();
+        // Encontrar el script de Marianet en la escena solo si no está asignado
+        if (marianetScript == null)
+        {
+            marianetScript = FindObjectOfType<Marianet>();
+        }
     }
     
     private void SetupPriority()
@@ -99,6 +102,7 @@ public class FusibleItem : MonoBehaviour
                 if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
                     // Encontramos el fusible, recolectarlo inmediatamente
+                    DialogueController.Instance.ResumeDialogue();
                     CollectFusibles();
                     return; // Salir para evitar que otros objetos procesen el click
                 }
@@ -131,6 +135,7 @@ public class FusibleItem : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
+        DialogueController.Instance.ResumeDialogue();
         CollectFusibles();
     }
     
@@ -139,12 +144,18 @@ public class FusibleItem : MonoBehaviour
     /// </summary>
     public void CollectFusibles()
     {
+        Debug.Log($"CollectFusibles llamado. marianetScript null? {marianetScript == null}, fusibleTypes count: {fusibleTypes.Count}");
+        
         if (marianetScript == null || fusibleTypes.Count == 0)
+        {
+            Debug.LogError($"No se puede recolectar fusible. marianetScript: {marianetScript}, fusibleTypes.Count: {fusibleTypes.Count}");
             return;
+        }
             
         // Enviar cada fusible al inventario
         foreach (string fusibleType in fusibleTypes)
         {
+            Debug.Log($"Agregando fusible tipo: {fusibleType}");
             marianetScript.AddFusibleToInventory(fusibleType);
         }
         
@@ -153,6 +164,7 @@ public class FusibleItem : MonoBehaviour
         Debug.Log($"Fusibles recolectados: {fusibleNames}");
         
         // Destruir el item
+        Debug.Log("Destruyendo objeto fusible");
         Destroy(gameObject);
         DialogueController.Instance.ResumeDialogue();
     }

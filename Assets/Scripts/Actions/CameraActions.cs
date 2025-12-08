@@ -38,7 +38,7 @@ public class CameraActions : MonoBehaviour
             cam = Camera.main;
             if (cam == null)
             {
-                Debug.LogError("No se encontró la cámara principal.");
+                Debug.LogError("No se encontrï¿½ la cï¿½mara principal.");
                 return;
             }
         }
@@ -125,6 +125,7 @@ public class CameraActions : MonoBehaviour
         ActionManager.Instance.RegisterAction("Pausar_dialogo", () =>
         {
             interfazMariaNet.SetActive(false);
+            StartCoroutine(ResumeDialogueAfterDelay(2f));
         });
 
         ActionManager.Instance.RegisterAction("Dejar_jugador_jugar", () =>
@@ -133,6 +134,12 @@ public class CameraActions : MonoBehaviour
             viewManager.Instance.ActivateView(initialRoom);
             DialogueController.Instance.PauseDialogue();
         });
+    }
+
+    private IEnumerator ResumeDialogueAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        DialogueController.Instance.PauseDialogue();
     }
 
     private IEnumerator ZoomToTarget(Transform target, float targetSize)
