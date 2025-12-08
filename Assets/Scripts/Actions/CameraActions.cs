@@ -125,7 +125,6 @@ public class CameraActions : MonoBehaviour
         ActionManager.Instance.RegisterAction("Pausar_dialogo", () =>
         {
             interfazMariaNet.SetActive(false);
-            DialogueController.Instance.PauseDialogue();
         });
 
         ActionManager.Instance.RegisterAction("Dejar_jugador_jugar", () =>

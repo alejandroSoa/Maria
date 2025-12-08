@@ -20,8 +20,6 @@ public class Marianet : MonoBehaviour
     // Diccionario de items comprados con sus cantidades
     private const string ITEMS_KEY_PREFIX = "Item_";
     
-
-    
     // Nombres de los items en español
     private readonly System.Collections.Generic.Dictionary<string, string> itemNames = new System.Collections.Generic.Dictionary<string, string>()
     {

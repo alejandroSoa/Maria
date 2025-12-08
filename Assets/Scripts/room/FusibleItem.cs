@@ -154,6 +154,7 @@ public class FusibleItem : MonoBehaviour
         
         // Destruir el item
         Destroy(gameObject);
+        DialogueController.Instance.ResumeDialogue();
     }
     
     /// <summary>
