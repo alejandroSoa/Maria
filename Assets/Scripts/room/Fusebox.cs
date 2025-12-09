@@ -136,46 +136,137 @@ public class Fusebox : MonoBehaviour
     
     private static readonly DatabaseTable[] DatabaseTables = new DatabaseTable[]
     {
+        #region USERS
         new DatabaseTable(
             "USERS",
             // Columnas (clave -> nombre display)
             new System.Collections.Generic.Dictionary<string, string>()
             {
-                { "NAME", "NAME" },
-                { "LAST_NAME", "LAST NAME" },
-                { "EMAIL", "EMAIL" },
-                { "PHONE", "PHONE" },
-                { "AGE", "AGE" },
-                { "BIRTHDAY", "BIRTHDAY" },
-                { "ADDRESS", "ADDRESS" },
-                { "CITY", "CITY" }
+                { "Id", "Id" },
+                { "Name", "Name" },
+                { "LastName", "LastName" },
+                { "Email", "Email" },
+                { "Phone", "Phone" },
+                { "Age", "Age" },
+                { "Birthday", "Birthday" },
+                { "Address", "Address" },
+                { "City", "City" },
+                { "Country", "Country" },
+                { "PriorityLevel", "PriorityLevel" },
+                { "Status", "Status" },
+                { "LastSeen", "LastSeen" },
+                { "CreatedAt", "CreatedAt" },
+                { "UpdatedAt", "UpdatedAt" }
             },
             // Tipos esperados (clave -> tipo de dato)
             new System.Collections.Generic.Dictionary<string, string>()
             {
-                { "NAME", "VARCHAR" },
-                { "LAST_NAME", "VARCHAR" },
-                { "EMAIL", "VARCHAR" },
-                { "PHONE", "INT" },
-                { "AGE", "INT" },
-                { "BIRTHDAY", "DATE" },
-                { "ADDRESS", "VARCHAR" },
-                { "CITY", "VARCHAR" }
+                { "Id", "INT" },
+                { "Name", "VARCHAR" },
+                { "LastName", "VARCHAR" },
+                { "Email", "VARCHAR" },
+                { "Phone", "INT" },
+                { "Age", "INT" },
+                { "Birthday", "DATE" },
+                { "Address", "VARCHAR" },
+                { "City", "VARCHAR" },
+                { "Country", "VARCHAR" },
+                { "PriorityLevel", "INT" },
+                { "Status", "BOOL" },
+                { "LastSeen", "DATE" },
+                { "CreatedAt", "DATE" },
+                { "UpdatedAt", "DATE" }
             },
             // Tamaños esperados (clave -> tamaño/tolerancia)
             new System.Collections.Generic.Dictionary<string, int>()
             {
-                { "NAME", 50 },
-                { "LAST_NAME", 50 },
-                { "EMAIL", 100 },
-                { "PHONE", 15 },
-                { "AGE", 2 },
-                { "BIRTHDAY", 0 },
-                { "ADDRESS", 200 },
-                { "CITY", 50 }
+                { "Id", 2000 },
+                { "Name", 100 },
+                { "LastName", 100 },
+                { "Email", 120 },
+                { "Phone", 15 },
+                { "Age", 2 },
+                { "Birthday", 0 },
+                { "Address", 200 },
+                { "City", 100 },
+                { "Country", 100 },
+                { "PriorityLevel", 2 },
+                { "Status", 1 },
+                { "LastSeen", 0 },
+                { "CreatedAt", 0 },
+                { "UpdatedAt", 0 }
+            }
+        ),
+        #endregion
+
+        #region PERMISSIONS
+        new DatabaseTable(
+            "PERMISSIONS",
+            // Columnas (clave -> nombre display)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "Id", "Id" },
+                { "Name", "Name" },
+                { "Description", "Description" },
+                { "CreatedAt", "CreatedAt" },
+                { "UpdatedAt", "UpdatedAt" }
+            },
+            // Tipos esperados (clave -> tipo de dato)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "Id", "INT" },
+                { "Name", "VARCHAR" },
+                { "Description", "VARCHAR" },
+                { "CreatedAt", "DATE" },
+                { "UpdatedAt", "DATE" }
+            },
+            // Tamaños esperados (clave -> tamaño/tolerancia)
+            new System.Collections.Generic.Dictionary<string, int>()
+            {
+                { "Id", 2000 },
+                { "Name", 100 },
+                { "Description", 255 },
+                { "CreatedAt", 0 },
+                { "UpdatedAt", 0 }
+            }
+        ),
+        #endregion
+
+        #region DOCUMENTS
+        new DatabaseTable(
+            "DOCUMENTS",
+            // Columnas (clave -> nombre display)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "Id", "Id" },
+                { "Name", "Name" },
+                { "HasPassword", "HasPassword" },
+                { "Password", "Password" },
+                { "FileType", "FileType" },
+                { "FileSize", "FileSize" }
+            },
+            // Tipos esperados (clave -> tipo de dato)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "Id", "INT" },
+                { "Name", "VARCHAR" },
+                { "HasPassword", "BOOL" },
+                { "Password", "VARCHAR" },
+                { "FileType", "VARCHAR" },
+                { "FileSize", "INT" }
+            },
+            // Tamaños esperados (clave -> tamaño/tolerancia)
+            new System.Collections.Generic.Dictionary<string, int>()
+            {
+                { "Id", 2000 },
+                { "Name", 100 },
+                { "HasPassword", 1 },
+                { "Password", 100 },
+                { "FileType", 20 },
+                { "FileSize", 500 }
             }
         )
-        
+        #endregion
     };
     
     private static readonly System.Collections.Generic.Dictionary<string, string> DataTypes = new System.Collections.Generic.Dictionary<string, string>()
