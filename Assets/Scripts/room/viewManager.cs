@@ -23,6 +23,9 @@ public class viewManager : MonoBehaviour
     [Tooltip("Vista trasera de la habitación")]
     public GameObject View_Back;
 
+    [Tooltip("Vista trasera de la habitación")]
+    public GameObject Epilogo;
+
     // Enumeración para representar las direcciones de rotación
     private enum ViewDirection
     {
@@ -144,6 +147,7 @@ public class viewManager : MonoBehaviour
         if (View_Left != null) View_Left.SetActive(false);
         if (View_Right != null) View_Right.SetActive(false);
         if (View_Back != null) View_Back.SetActive(false);
+        if (Epilogo != null) Epilogo.SetActive(false);
 
         // Activar solo la vista seleccionada
         if (viewToActivate != null)

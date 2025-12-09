@@ -17,6 +17,7 @@ public class CameraActions : MonoBehaviour
     public Transform desencriptadora;
     public GameObject interfazMariaNet;
     public GameObject initialRoom;
+    public GameObject Epilogo;
     public Image maria;
 
     private Vector3 originalCamPos;
@@ -52,6 +53,7 @@ public class CameraActions : MonoBehaviour
         ActionManager.Instance.RegisterAction("Mostrar_Maria", () =>
         {
             ActionManager.showMaria = true;
+            Debug.Log("Acción 'Mostrar_Maria' ejecutada. showMaria = true");
         });
 
         ActionManager.Instance.RegisterAction("ZOOM_Caja_Fusibles", () =>
@@ -132,6 +134,12 @@ public class CameraActions : MonoBehaviour
         {
             viewManager.Instance.DeactivateView(mariaNetRoom);
             viewManager.Instance.ActivateView(initialRoom);
+            DialogueController.Instance.PauseDialogue();
+        });
+
+        ActionManager.Instance.RegisterAction("Epilogo", () =>
+        {
+            viewManager.Instance.ActivateView(Epilogo);
             DialogueController.Instance.PauseDialogue();
         });
     }

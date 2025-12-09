@@ -66,5 +66,6 @@ public class level_state : MonoBehaviour
     {
         PlayerPrefs.SetString("selectedlevel", levelPrefsKey);
         PlayerPrefs.Save();
+        Debug.Log($"Nivel seleccionado y guardado: {levelPrefsKey}");
     }
 }

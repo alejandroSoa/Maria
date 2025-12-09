@@ -34,8 +34,16 @@ public class DialogueController : MonoBehaviour
     { "¡Bienvenido a MariaNet!", "Cargar_MariaNet_Room" },
     { "Ahora sí, selecciona el fusible de tipo INT por favor.", "Activar_interfaz_marianet" },
     { "Toma el fusible de la esclusa de ahí.", "Pausar_dialogo" },
-    { "¡Revisa la caja de fusibles para ver qué tipo de fusible necesitas!", "Dejar_jugador_jugar" }
-
+    { "¡Revisa la caja de fusibles para ver qué tipo de fusible necesitas!", "Dejar_jugador_jugar" },
+    // Nivel 2 - Diálogos que activan a Maria
+    { "¿Podemos volver a lo importante?", "Mostrar_Maria" },
+    { "Bien, bueno, ya tenemos la base de estas cajas de fusibles, o tablas SQL. Por lo que ya deberíamos poder pasar de sala con esto.", "Mostrar_Maria" },
+    // Nivel 3 - Diálogos que activan a Maria
+    { "Bueno, he estado revisando los registros y ya casi terminamos.", "Mostrar_Maria"},
+    { "¿Qué demonios falta?.", "Mostrar_Maria"},
+    // Nivel 4 - Diálogos que activan a Maria
+    { "Hola. Gracias. De verdad, gracias por haber jugado.", "Mostrar_Maria" },
+    {"Sabes. A pesar de todo, no estoy conforme con el final oficial del juego, ¿sabes? El de la derrota del malvado científico. Era predecible, insípido.", "Mostrar_Maria" }
 };
 
     void Awake()
@@ -85,18 +93,30 @@ public class DialogueController : MonoBehaviour
                                .OrderBy(d => d.OrderIndex)
                                .ToList();
 
+        Debug.Log($"[StartDialogueForLevel] LevelId={levelId}, Diálogos cargados={currentDialogues.Count}, ActionManager.playing={ActionManager.playing}, savedDialogueIndex={ActionManager.savedDialogueIndex}");
+
         if (ActionManager.playing && ActionManager.savedDialogueIndex >= 0)
         {
             index = ActionManager.savedDialogueIndex;
             ActionManager.playing = false;
             ActionManager.savedDialogueIndex = -1;
 
+            Debug.Log($"[StartDialogueForLevel] Reanudando desde índice guardado: {index}");
             TryShowNextDialogue();
             return;
         }
 
         // Si es un diálogo nuevo o primera vez
         index = 0;
+        Debug.Log($"[StartDialogueForLevel] Iniciando desde índice 0");
+        
+        // Mostrar el primer diálogo sin avanzar el índice todavía
+        if (currentDialogues.Count > 0)
+        {
+            var firstDialogue = currentDialogues[0];
+            Debug.Log($"[StartDialogueForLevel] Primer diálogo: OrderIndex={firstDialogue.OrderIndex}, Content='{firstDialogue.Content.Substring(0, System.Math.Min(50, firstDialogue.Content.Length))}...'");
+        }
+        
         TryShowNextDialogue();
     }
 
@@ -124,6 +144,8 @@ public class DialogueController : MonoBehaviour
         var d = currentDialogues[index];
         var p = DatabaseService.Instance.Connection.Find<Player>(d.PlayerId);
 
+        Debug.Log($"[TryShowNextDialogue] index={index}, OrderIndex={d.OrderIndex}, Content='{d.Content.Substring(0, System.Math.Min(50, d.Content.Length))}...'");
+
         dialogueUI.ShowDialogue(d, p.Name);
 
         CheckForSpecialDialogue(d);
@@ -133,10 +155,17 @@ public class DialogueController : MonoBehaviour
 
     private void CheckForSpecialDialogue(Dialogue dialogue)
     {
+        Debug.Log($"CheckForSpecialDialogue: Contenido='{dialogue.Content}'");
+        
         if (specialActions.ContainsKey(dialogue.Content))
         {
             string actionName = specialActions[dialogue.Content];
+            Debug.Log($"Acción encontrada: '{actionName}' para diálogo: '{dialogue.Content}'");
             ActionManager.Instance.TriggerAction(actionName);
+        }
+        else
+        {
+            Debug.Log($"NO se encontró acción para el diálogo: '{dialogue.Content}'");
         }
     }
 

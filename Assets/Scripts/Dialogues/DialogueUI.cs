@@ -23,6 +23,8 @@ public class DialogueUI : MonoBehaviour
         // 1. Mostrar contenido del diálogo
         dialogueText.text = dialogue.Content;
 
+        Debug.Log($"ShowDialogue: playerName='{playerName}', ActionManager.showMaria={ActionManager.showMaria}");
+
         if (playerName == "Narrador")
         {
             // Ocultar nombre
