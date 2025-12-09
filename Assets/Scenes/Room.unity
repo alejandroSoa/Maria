@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
-  m_Content: {fileID: 0}
+  m_Content: {fileID: 1659085225}
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
@@ -27962,7 +27962,6 @@ MonoBehaviour:
   consoleOutputText: {fileID: 2064138355}
   consolePanel: {fileID: 773706720}
   fuseboxReference: {fileID: 247960669}
-  predefinedTables: []
   sqlProblems: []
 --- !u!1 &1709101072
 GameObject:
