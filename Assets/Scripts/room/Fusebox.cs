@@ -119,46 +119,63 @@ public class Fusebox : MonoBehaviour
     public class DatabaseTable
     {
         public string tableName;
-        public System.Collections.Generic.Dictionary<string, string> columns;
+        public System.Collections.Generic.Dictionary<string, string> columns; // columna -> display name
+        public System.Collections.Generic.Dictionary<string, string> expectedTypes; // columna -> tipo esperado
+        public System.Collections.Generic.Dictionary<string, int> expectedSizes; // columna -> tamaño esperado
         
-        public DatabaseTable(string name, System.Collections.Generic.Dictionary<string, string> cols)
+        public DatabaseTable(string name, System.Collections.Generic.Dictionary<string, string> cols, 
+                            System.Collections.Generic.Dictionary<string, string> types, 
+                            System.Collections.Generic.Dictionary<string, int> sizes)
         {
             tableName = name;
             columns = cols;
+            expectedTypes = types;
+            expectedSizes = sizes;
         }
     }
     
     private static readonly DatabaseTable[] DatabaseTables = new DatabaseTable[]
     {
-        new DatabaseTable("USERS", new System.Collections.Generic.Dictionary<string, string>()
-        {
-            { "NAME", "NAME" },
-            { "LAST_NAME", "LAST NAME" },
-            { "EMAIL", "EMAIL" },
-            { "PHONE", "PHONE" },
-            { "AGE", "AGE" },
-            { "BIRTHDAY", "BIRTHDAY" },
-            { "ADDRESS", "ADDRESS" },
-            { "CITY", "CITY" }
-        }),
-        new DatabaseTable("PRODUCTS", new System.Collections.Generic.Dictionary<string, string>()
-        {
-            { "PRODUCT_ID", "PRODUCT ID" },
-            { "NAME", "PRODUCT NAME" },
-            { "PRICE", "PRICE" },
-            { "CATEGORY", "CATEGORY" },
-            { "STOCK", "STOCK" },
-            { "DESCRIPTION", "DESCRIPTION" }
-        }),
-        new DatabaseTable("ORDERS", new System.Collections.Generic.Dictionary<string, string>()
-        {
-            { "ORDER_ID", "ORDER ID" },
-            { "USER_ID", "USER ID" },
-            { "PRODUCT_ID", "PRODUCT ID" },
-            { "QUANTITY", "QUANTITY" },
-            { "ORDER_DATE", "ORDER DATE" },
-            { "STATUS", "STATUS" }
-        })
+        new DatabaseTable(
+            "USERS",
+            // Columnas (clave -> nombre display)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "NAME", "NAME" },
+                { "LAST_NAME", "LAST NAME" },
+                { "EMAIL", "EMAIL" },
+                { "PHONE", "PHONE" },
+                { "AGE", "AGE" },
+                { "BIRTHDAY", "BIRTHDAY" },
+                { "ADDRESS", "ADDRESS" },
+                { "CITY", "CITY" }
+            },
+            // Tipos esperados (clave -> tipo de dato)
+            new System.Collections.Generic.Dictionary<string, string>()
+            {
+                { "NAME", "VARCHAR" },
+                { "LAST_NAME", "VARCHAR" },
+                { "EMAIL", "VARCHAR" },
+                { "PHONE", "INT" },
+                { "AGE", "INT" },
+                { "BIRTHDAY", "DATE" },
+                { "ADDRESS", "VARCHAR" },
+                { "CITY", "VARCHAR" }
+            },
+            // Tamaños esperados (clave -> tamaño/tolerancia)
+            new System.Collections.Generic.Dictionary<string, int>()
+            {
+                { "NAME", 50 },
+                { "LAST_NAME", 50 },
+                { "EMAIL", 100 },
+                { "PHONE", 15 },
+                { "AGE", 2 },
+                { "BIRTHDAY", 0 },
+                { "ADDRESS", 200 },
+                { "CITY", 50 }
+            }
+        )
+        
     };
     
     private static readonly System.Collections.Generic.Dictionary<string, string> DataTypes = new System.Collections.Generic.Dictionary<string, string>()
@@ -1168,24 +1185,142 @@ public class Fusebox : MonoBehaviour
     }
     
     /// <summary>
-    /// Obtiene información resumida de todas las tablas
+    /// Obtiene información resumida de todas las tablas en formato CSV
+    /// Incluye la validación de la tabla activa para debug
     /// </summary>
     public string GetTablesInfo()
     {
         System.Text.StringBuilder info = new System.Text.StringBuilder();
-        info.AppendLine("=== FUSEBOX TABLES INFO ===");
-        info.AppendLine($"Active Table: {GetActiveTableName()} (Index: {currentActiveTable})");
-        info.AppendLine($"Total Tables: {GetTableCount()}");
-        info.AppendLine();
+        info.AppendLine("=== FUSEBOX TABLES INFORMATION ===");
+        info.AppendLine("TABLE_INDEX,TABLE_NAME,COLUMNS_COUNT,STATUS");
         
         for (int i = 0; i < DatabaseTables.Length; i++)
         {
             var table = DatabaseTables[i];
-            string status = i == currentActiveTable ? " [ACTIVE]" : "";
-            info.AppendLine($"Table {i}: {table.tableName} ({table.columns.Count} columns){status}");
+            string status = i == currentActiveTable ? "ACTIVE" : "INACTIVE";
+            info.AppendLine($"{i},{table.tableName},{table.columns.Count},{status}");
+        }
+        
+        // Agregar validación de la tabla activa para debug
+        info.AppendLine("\n=== CURRENT ACTIVE TABLE VALIDATION ===");
+        var currentTable = GetCurrentTable();
+        if (currentTable != null)
+        {
+            string validation = ValidateTableConfiguration(currentTable.tableName);
+            info.AppendLine(validation);
+        }
+        else
+        {
+            info.AppendLine("[ERROR]: No active table");
         }
         
         return info.ToString();
+    }
+    
+    /// <summary>
+    /// Valida la configuración de fusibles de una tabla específica
+    /// Retorna CSV con columnas: COLUMN_NAME,EXPECTED_TYPE,EXPECTED_SIZE,ACTUAL_TYPE,ACTUAL_SIZE,VALIDATION
+    /// </summary>
+    /// <param name="tableName">Nombre de la tabla a validar</param>
+    public string ValidateTableConfiguration(string tableName)
+    {
+        // Buscar la tabla en DatabaseTables
+        DatabaseTable targetTable = null;
+        foreach (var table in DatabaseTables)
+        {
+            if (table.tableName == tableName)
+            {
+                targetTable = table;
+                break;
+            }
+        }
+        
+        if (targetTable == null)
+        {
+            return $"[ERROR]: Tabla '{tableName}' no encontrada";
+        }
+        
+        System.Text.StringBuilder report = new System.Text.StringBuilder();
+        report.AppendLine($"[System]: Validando tabla {tableName}");
+        
+        foreach (var column in targetTable.columns)
+        {
+            string columnName = column.Key;
+            string expectedType = targetTable.expectedTypes[columnName];
+            int expectedSize = targetTable.expectedSizes[columnName];
+            
+            // Obtener configuración actual
+            string fieldKey = GetFieldKey(tableName, columnName);
+            string actualType = PlayerPrefs.GetString($"FuseAssignment_{fieldKey}", "Unassigned");
+            int actualSize = PlayerPrefs.GetInt($"FuseTolMin_{fieldKey}", 0);
+            
+            string actualSizeStr = actualSize > 0 ? actualSize.ToString() : "N/A";
+            string validation = "GOOD";
+            
+            // Validar
+            if (actualType == "Unassigned")
+            {
+                validation = "BAD";
+                actualType = "NULL";
+            }
+            else if (actualType != expectedType)
+            {
+                validation = "BAD";
+            }
+            else if ((expectedType == "VARCHAR" || expectedType == "INT") && expectedSize > 0 && actualSize != expectedSize)
+            {
+                validation = "BAD";
+            }
+            
+            report.AppendLine($"{columnName},{expectedType},{actualType},{actualSizeStr},{validation}");
+        }
+        
+        return report.ToString();
+    }
+    
+    /// <summary>
+    /// Verifica si una tabla está completamente válida
+    /// </summary>
+    public bool IsTableValid(string tableName)
+    {
+        // Buscar la tabla en DatabaseTables
+        DatabaseTable targetTable = null;
+        foreach (var table in DatabaseTables)
+        {
+            if (table.tableName == tableName)
+            {
+                targetTable = table;
+                break;
+            }
+        }
+        
+        if (targetTable == null)
+        {
+            return false;
+        }
+        
+        foreach (var column in targetTable.columns)
+        {
+            string columnName = column.Key;
+            string expectedType = targetTable.expectedTypes[columnName];
+            int expectedSize = targetTable.expectedSizes[columnName];
+            
+            string fieldKey = GetFieldKey(tableName, columnName);
+            string actualType = PlayerPrefs.GetString($"FuseAssignment_{fieldKey}", "Unassigned");
+            int actualSize = PlayerPrefs.GetInt($"FuseTolMin_{fieldKey}", 0);
+            
+            if (actualType == "Unassigned" || actualType != expectedType)
+            {
+                return false;
+            }
+            
+            if ((expectedType == "VARCHAR" || expectedType == "INT") && expectedSize > 0 && actualSize != expectedSize)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
 }
