@@ -13,9 +13,6 @@ public class ConsoleManager : MonoBehaviour
     [Header("Referencias del Sistema")]
     [SerializeField] private Fusebox fuseboxReference;
     
-    [Header("Configuración de Tablas Predefinidas")]
-    [SerializeField] private List<PredefinedTable> predefinedTables = new List<PredefinedTable>();
-    
     [Header("Configuración de Problemas SQL")]
     [SerializeField] private List<SQLProblem> sqlProblems = new List<SQLProblem>();
     
@@ -29,23 +26,7 @@ public class ConsoleManager : MonoBehaviour
     }
     
     private ConsoleState currentState = ConsoleState.AwaitingConfirmation;
-    private int currentTableIndex = 0;
     private int currentProblemIndex = 0;
-    
-    [System.Serializable]
-    public class PredefinedTable
-    {
-        public string tableName;
-        public List<ColumnDefinition> columns = new List<ColumnDefinition>();
-    }
-    
-    [System.Serializable]
-    public class ColumnDefinition
-    {
-        public string columnName;
-        public string dataType; // INT, VARCHAR, DATE, BOOL
-        public int maxLength; // Para VARCHAR
-    }
     
     [System.Serializable]
     public class SQLProblem
@@ -65,9 +46,6 @@ public class ConsoleManager : MonoBehaviour
             fuseboxReference = FindFirstObjectByType<Fusebox>();
         }
         
-        // Configurar tablas predefinidas por defecto
-        SetupDefaultTables();
-        
         // Configurar problemas SQL por defecto
         SetupDefaultSQLProblems();
         
@@ -79,50 +57,6 @@ public class ConsoleManager : MonoBehaviour
         
         // Mostrar mensaje inicial
         ShowWelcomeMessage();
-    }
-    
-    /// <summary>
-    /// Configura las tablas predefinidas por defecto
-    /// </summary>
-    private void SetupDefaultTables()
-    {
-        if (predefinedTables.Count == 0)
-        {
-            // Tabla USERS
-            PredefinedTable usersTable = new PredefinedTable();
-            usersTable.tableName = "USERS";
-            usersTable.columns.Add(new ColumnDefinition { columnName = "NAME", dataType = "VARCHAR", maxLength = 50 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "LAST_NAME", dataType = "VARCHAR", maxLength = 50 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "EMAIL", dataType = "VARCHAR", maxLength = 100 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "PHONE", dataType = "VARCHAR", maxLength = 15 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "AGE", dataType = "INT", maxLength = 0 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "BIRTHDAY", dataType = "DATE", maxLength = 0 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "ADDRESS", dataType = "VARCHAR", maxLength = 200 });
-            usersTable.columns.Add(new ColumnDefinition { columnName = "CITY", dataType = "VARCHAR", maxLength = 50 });
-            predefinedTables.Add(usersTable);
-            
-            // Tabla PRODUCTS
-            PredefinedTable productsTable = new PredefinedTable();
-            productsTable.tableName = "PRODUCTS";
-            productsTable.columns.Add(new ColumnDefinition { columnName = "PRODUCT_ID", dataType = "INT", maxLength = 0 });
-            productsTable.columns.Add(new ColumnDefinition { columnName = "NAME", dataType = "VARCHAR", maxLength = 100 });
-            productsTable.columns.Add(new ColumnDefinition { columnName = "PRICE", dataType = "INT", maxLength = 0 });
-            productsTable.columns.Add(new ColumnDefinition { columnName = "CATEGORY", dataType = "VARCHAR", maxLength = 50 });
-            productsTable.columns.Add(new ColumnDefinition { columnName = "STOCK", dataType = "INT", maxLength = 0 });
-            productsTable.columns.Add(new ColumnDefinition { columnName = "DESCRIPTION", dataType = "VARCHAR", maxLength = 255 });
-            predefinedTables.Add(productsTable);
-            
-            // Tabla ORDERS
-            PredefinedTable ordersTable = new PredefinedTable();
-            ordersTable.tableName = "ORDERS";
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "ORDER_ID", dataType = "INT", maxLength = 0 });
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "USER_ID", dataType = "INT", maxLength = 0 });
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "PRODUCT_ID", dataType = "INT", maxLength = 0 });
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "QUANTITY", dataType = "INT", maxLength = 0 });
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "ORDER_DATE", dataType = "DATE", maxLength = 0 });
-            ordersTable.columns.Add(new ColumnDefinition { columnName = "STATUS", dataType = "VARCHAR", maxLength = 20 });
-            predefinedTables.Add(ordersTable);
-        }
     }
     
     /// <summary>
@@ -150,14 +84,6 @@ public class ConsoleManager : MonoBehaviour
             problem2.caseSensitive = false;
             sqlProblems.Add(problem2);
             
-            // Problema 3: SELECT de otra tabla
-            SQLProblem problem3 = new SQLProblem();
-            problem3.problemDescription = "Obtener todos los productos.";
-            problem3.expectedQuery = "SELECT * FROM PRODUCTS";
-            problem3.successMessage = "¡Perfecto! Has obtenido todos los productos.";
-            problem3.errorMessage = "Query incorrecta. Usa: SELECT * FROM PRODUCTS";
-            problem3.caseSensitive = false;
-            sqlProblems.Add(problem3);
         }
     }
     
@@ -168,16 +94,20 @@ public class ConsoleManager : MonoBehaviour
     {
         if (instructionText != null)
         {
-            instructionText.text = "Sistema de Validación de Base de Datos";
+            instructionText.text = "[System]: Consola Maria";
         }
         
         if (consoleOutputText != null)
         {
-            consoleOutputText.text = "¿Desea continuar con la validación de la base de datos?\nEscriba 'si' o 'no':";
+            consoleOutputText.text = "[System]: Iniciando protocolo de cierre de caja de fusibles...\n";
+            consoleOutputText.text += "[System]: Esta acción bloqueará el acceso físico a los fusibles.\n";
+            consoleOutputText.text += "[System]: ¿Desea continuar?\n\n";
+            consoleOutputText.text += "> CONFIRM: Continuar con el cierre\n";
+            consoleOutputText.text += "> DENY: Cancelar operación\n\n";
+            consoleOutputText.text += "Esperando respuesta...";
         }
         
         currentState = ConsoleState.AwaitingConfirmation;
-        Debug.Log("Esperando confirmación del usuario...");
     }
     
     /// <summary>
@@ -216,13 +146,13 @@ public class ConsoleManager : MonoBehaviour
                 break;
                 
             case ConsoleState.Locked:
-                if (cmd == "reintentar" || cmd == "retry")
+                if (cmd == "restart")
                 {
                     RetryValidation();
                 }
                 else if (consoleOutputText != null)
                 {
-                    consoleOutputText.text += "\n> Sistema bloqueado. Escriba 'reintentar' después de completar los fusibles.\n";
+                    consoleOutputText.text += "\n> Sistema bloqueado. Escriba 'restart' después de completar los fusibles.\n";
                 }
                 break;
         }
@@ -252,30 +182,29 @@ public class ConsoleManager : MonoBehaviour
     /// </summary>
     private void HandleConfirmationInput(string input)
     {
-        if (input == "si" || input == "yes" || input == "s" || input == "y")
+        if (input == "confirm")
         {
             if (consoleOutputText != null)
             {
-                consoleOutputText.text = "Iniciando validación de tablas...\n";
+                consoleOutputText.text = "[System]: CONFIRM recibido.\n";
+                consoleOutputText.text += "[System]: Iniciando validación de tablas...\n";
             }
             
             // Bloquear la caja de fusibles
             if (fuseboxReference != null)
             {
                 fuseboxReference.LockFusebox();
-                Debug.Log("Caja de fusibles bloqueada");
             }
             
-            // Iniciar validación de tablas
             currentState = ConsoleState.ValidatingTables;
-            currentTableIndex = 0;
             StartTableValidation();
         }
-        else if (input == "no" || input == "n")
+        else if (input == "deny")
         {
             if (consoleOutputText != null)
             {
-                consoleOutputText.text = "Operación cancelada. Hasta luego.";
+                consoleOutputText.text = "[System]: DENY recibido.\n";
+                consoleOutputText.text += "[System]: Operación cancelada. Hasta luego.";
             }
             Debug.Log("Usuario canceló la operación");
         }
@@ -283,7 +212,8 @@ public class ConsoleManager : MonoBehaviour
         {
             if (consoleOutputText != null)
             {
-                consoleOutputText.text += "\nRespuesta no válida. Escriba 'si' o 'no':";
+                consoleOutputText.text += "\n[ERROR]: Comando no reconocido.\n";
+                consoleOutputText.text += "[System]: Por favor escriba 'CONFIRM' o 'DENY'\n";
             }
         }
     }
@@ -293,14 +223,29 @@ public class ConsoleManager : MonoBehaviour
     /// </summary>
     private void StartTableValidation()
     {
+        if (fuseboxReference == null)
+        {
+            if (consoleOutputText != null)
+            {
+                consoleOutputText.text += "[ERROR]: No se encontró referencia a Fusebox\n";
+            }
+            OnTablesInvalid();
+            return;
+        }
+        
         bool allTablesValid = true;
         string validationReport = "";
         
-        foreach (var predefinedTable in predefinedTables)
+        // Obtener todas las tablas disponibles
+        string[] tableNames = fuseboxReference.GetAllTableNames();
+        
+        // Validar cada tabla
+        foreach (string tableName in tableNames)
         {
-            bool isValid = ValidateTable(predefinedTable, out string tableReport);
+            string tableReport = fuseboxReference.ValidateTableConfiguration(tableName);
             validationReport += tableReport + "\n";
             
+            bool isValid = fuseboxReference.IsTableValid(tableName);
             if (!isValid)
             {
                 allTablesValid = false;
@@ -323,70 +268,16 @@ public class ConsoleManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Valida una tabla contra su definición predefinida
-    /// </summary>
-    private bool ValidateTable(PredefinedTable predefinedTable, out string report)
-    {
-        report = $"\n=== Validando tabla {predefinedTable.tableName} ===\n";
-        bool isValid = true;
-        
-        // Obtener la configuración actual del Fusebox para esta tabla
-        if (fuseboxReference == null)
-        {
-            report += "ERROR: No se encontró referencia a Fusebox\n";
-            return false;
-        }
-        
-        // Verificar cada columna
-        foreach (var expectedColumn in predefinedTable.columns)
-        {
-            string fieldKey = $"{predefinedTable.tableName}_{expectedColumn.columnName}";
-            string assignedType = PlayerPrefs.GetString($"FuseAssignment_{fieldKey}", "Unassigned");
-            
-            if (assignedType == "Unassigned")
-            {
-                report += $"✗ {expectedColumn.columnName}: SIN FUSIBLE ASIGNADO\n";
-                isValid = false;
-                continue;
-            }
-            
-            // Validar tipo de dato
-            if (assignedType != expectedColumn.dataType)
-            {
-                report += $"✗ {expectedColumn.columnName}: Tipo incorrecto (Esperado: {expectedColumn.dataType}, Actual: {assignedType})\n";
-                isValid = false;
-                continue;
-            }
-            
-            // Validar tamaño para VARCHAR e INT
-            if (expectedColumn.dataType == "VARCHAR" || expectedColumn.dataType == "INT")
-            {
-                int assignedSize = PlayerPrefs.GetInt($"FuseTolMin_{fieldKey}", 0);
-                
-                if (expectedColumn.maxLength > 0 && assignedSize != expectedColumn.maxLength)
-                {
-                    report += $"✗ {expectedColumn.columnName}: Tamaño incorrecto (Esperado: {expectedColumn.maxLength}, Actual: {assignedSize})\n";
-                    isValid = false;
-                    continue;
-                }
-            }
-            
-            report += $"✓ {expectedColumn.columnName}: {assignedType} - CORRECTO\n";
-        }
-        
-        return isValid;
-    }
-    
-    /// <summary>
     /// Se ejecuta cuando todas las tablas son válidas
     /// </summary>
     private void OnAllTablesValid()
     {
         if (consoleOutputText != null)
         {
-            consoleOutputText.text += "\n✓✓✓ TODAS LAS TABLAS SON VÁLIDAS ✓✓✓\n";
-            consoleOutputText.text += "La caja de fusibles permanecerá cerrada.\n";
-            consoleOutputText.text += "Puede comenzar a realizar consultas SQL.\n\n";
+            consoleOutputText.text += "\n[System]: ===== VALIDATION SUCCESS =====\n";
+            consoleOutputText.text += "[System]: Todas las tablas son válidas.\n";
+            consoleOutputText.text += "[System]: Caja de fusibles bloqueada.\n";
+            consoleOutputText.text += "[System]: Modo de consultas SQL activado.\n\n";
         }
         
         currentState = ConsoleState.QueryMode;
@@ -438,36 +329,15 @@ public class ConsoleManager : MonoBehaviour
     {
         if (consoleOutputText != null)
         {
-            consoleOutputText.text += "\nSYSTEM ERROR\n";
-            consoleOutputText.text += "Desbloqueando caja de fusibles...\n";
+            consoleOutputText.text += "\n[ERROR]: ===== VALIDATION FAILED =====\n";
+            consoleOutputText.text += "[System]: Errores detectados en la configuración.\n";
+            consoleOutputText.text += "[System]: Por favor verifique la caja de fusibles.\n";
+            consoleOutputText.text += "[System]: Escriba 'restart' cuando esté listo:\n";
         }
         
-        // Desbloquear la caja de fusibles
-        if (fuseboxReference != null)
-        {
-            fuseboxReference.UnlockFusebox();
-            Debug.Log("Caja de fusibles desbloqueada");
-            
-            // Determinar cuántos fusibles eliminar (ejemplo: entre 2 y 4)
-            int fusesToRemove = Random.Range(2, 5);
-            
-            if (consoleOutputText != null)
-            {
-                consoleOutputText.text += $"Eliminando {fusesToRemove} fusibles al azar...\n";
-            }
-            
-            // Remover fusibles aleatoriamente
-            fuseboxReference.RemoveRandomFuses(fusesToRemove);
-            
-            if (consoleOutputText != null)
-            {
-                consoleOutputText.text += "Complete los fusibles faltantes y vuelva a intentar.\n";
-                consoleOutputText.text += "Escriba 'reintentar' cuando esté listo:";
-            }
-        }
-        
+        // NO desbloquear fusebox, mantenerla bloqueada
         currentState = ConsoleState.Locked;
-        Debug.Log("Validación fallida. Se requiere reconfiguración.");
+        Debug.Log("Validación fallida. Fusebox permanece bloqueada hasta restart.");
     }
     
     /// <summary>
@@ -535,12 +405,40 @@ public class ConsoleManager : MonoBehaviour
         }
         else
         {
-            // Incorrecto
+            // Incorrecto - Penalizar quitando fusibles aleatorios
             if (consoleOutputText != null)
             {
                 consoleOutputText.text += $"✗ {currentProblem.errorMessage}\n";
-                consoleOutputText.text += "Intenta de nuevo:\n";
+                consoleOutputText.text += "[System]: ERROR - Respuesta incorrecta.\n";
             }
+            
+            // Desbloquear fusebox y quitar fusibles como penalización
+            if (fuseboxReference != null)
+            {
+                fuseboxReference.UnlockFusebox();
+                
+                // Determinar cuántos fusibles eliminar (entre 2 y 4)
+                int fusesToRemove = Random.Range(2, 5);
+                
+                if (consoleOutputText != null)
+                {
+                    consoleOutputText.text += $"[System]: Eliminando {fusesToRemove} fusibles como penalización...\n";
+                }
+                
+                // Remover fusibles aleatoriamente
+                fuseboxReference.RemoveRandomFuses(fusesToRemove);
+                
+                if (consoleOutputText != null)
+                {
+                    consoleOutputText.text += "[System]: Complete los fusibles faltantes.\n";
+                    consoleOutputText.text += "[System]: Escriba 'reintentar' para volver a validar:\n";
+                }
+                
+                Debug.Log("Query incorrecta - Fusibles removidos como penalización");
+            }
+            
+            // Cambiar a estado bloqueado para requerir revalidación
+            currentState = ConsoleState.Locked;
         }
     }
     
@@ -551,6 +449,12 @@ public class ConsoleManager : MonoBehaviour
     {
         if (currentState == ConsoleState.Locked)
         {
+            // Desbloquear fusebox al escribir restart
+            if (fuseboxReference != null)
+            {
+                fuseboxReference.UnlockFusebox();
+            }
+            
             ShowWelcomeMessage();
         }
     }
