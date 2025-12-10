@@ -12,10 +12,18 @@ public class levels_menu : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetString("Level_1", "done");
-        PlayerPrefs.SetString("Level_2", "available");
-        PlayerPrefs.SetString("Level_3", "available");
-        PlayerPrefs.SetString("Level_4", "available");
+        if (!PlayerPrefs.HasKey("Level_1"))
+            PlayerPrefs.SetString("Level_1", "available");
+        
+        if (!PlayerPrefs.HasKey("Level_2"))
+            PlayerPrefs.SetString("Level_2", "available");
+        
+        if (!PlayerPrefs.HasKey("Level_3"))
+            PlayerPrefs.SetString("Level_3", "available");
+        
+        if (!PlayerPrefs.HasKey("Level_4"))
+            PlayerPrefs.SetString("Level_4", "available");
+        
         PlayerPrefs.Save();
         
         UpdateLevelContent();

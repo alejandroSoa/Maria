@@ -582,6 +582,10 @@ public class ConsoleManager : MonoBehaviour
                 consoleOutputText.text += "[System]: Nivel completado. Preparando transición...\n";
             }
             
+            // Marcar Level_1 como completado
+            PlayerPrefs.SetString("Level_1", "done");
+            PlayerPrefs.Save();
+            
             // Desbloquear fusebox para futuros niveles
             if (fuseboxReference != null)
             {
@@ -733,8 +737,20 @@ public class ConsoleManager : MonoBehaviour
                     consoleOutputText.text += "Apagando luces...\n";
                 }
                 
-                Debug.Log("Completó todos los problemas SQL. Iniciando fade a menú principal...");
+                // Marcar el nivel actual como completado
+                int currentScene = SceneManager.GetActiveScene().buildIndex;
+                string levelKey = "";
                 
+                if (currentScene == 6) levelKey = "Level_2";
+                else if (currentScene == 7) levelKey = "Level_3";
+                else if (currentScene == 8) levelKey = "Level_4";
+                
+                if (!string.IsNullOrEmpty(levelKey))
+                {
+                    PlayerPrefs.SetString(levelKey, "done");
+                    PlayerPrefs.Save();
+                }
+                                
                 // Iniciar el fade a negro y cargar la escena 0
                 FadeToBlackAndLoadScene(3f);
             }

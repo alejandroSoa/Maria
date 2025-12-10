@@ -1475,6 +1475,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 417473908}
+        m_TargetAssemblyTypeName: mainMenu, Assembly-CSharp
+        m_MethodName: ResetAllLevels
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &205507272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,6 +2362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::mainMenu
   sound: {fileID: 0}
+  mainMenuPanel: {fileID: 417473906}
+  levelsPanel: {fileID: 1777369707}
 --- !u!1 &461811249
 GameObject:
   m_ObjectHideFlags: 0
@@ -7130,6 +7144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   sound: {fileID: 0}
+  mainMenuPanel: {fileID: 0}
+  levelsPanel: {fileID: 0}
 --- !u!82 &1815475516
 AudioSource:
   m_ObjectHideFlags: 0
