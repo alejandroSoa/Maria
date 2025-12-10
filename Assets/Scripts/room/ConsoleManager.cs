@@ -463,6 +463,7 @@ public class ConsoleManager : MonoBehaviour
         Debug.Log("Validación exitosa. Sistema listo para consultas.");
     }
     
+    
     /// <summary>
     /// Muestra el problema SQL actual
     /// </summary>
