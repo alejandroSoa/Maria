@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ConsoleManager : MonoBehaviour
 {
@@ -92,6 +93,9 @@ public class ConsoleManager : MonoBehaviour
     /// </summary>
     private void ShowWelcomeMessage()
     {
+        // Verificar en qué escena estamos
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        
         if (instructionText != null)
         {
             instructionText.text = "[System]: Consola Maria";
@@ -99,6 +103,14 @@ public class ConsoleManager : MonoBehaviour
         
         if (consoleOutputText != null)
         {
+            // Si estamos en la escena 1, mostrar solo "Hola"
+            if (currentScene == 1)
+            {
+                consoleOutputText.text = "Hola";
+                return;
+            }
+            
+            // Si no, mostrar el mensaje original
             consoleOutputText.text = "[System]: Iniciando protocolo de cierre de caja de fusibles...\n";
             consoleOutputText.text += "[System]: Esta acción bloqueará el acceso físico a los fusibles.\n";
             consoleOutputText.text += "[System]: ¿Desea continuar?\n\n";
