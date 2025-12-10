@@ -74,17 +74,17 @@ public class ConsoleManager : MonoBehaviour
             int currentScene = SceneManager.GetActiveScene().buildIndex;
             
             // Room_level2 = buildIndex 5 (Unidad 2)
-            if (currentScene == 5)
+            if (currentScene == 6)
             {
                 SetupUnit2Problems();
             }
             // Room_level3 = buildIndex 6 (Unidad 3)
-            if (currentScene == 6)
+            if (currentScene == 7)
             {
                 SetupUnit3Problems();
             }
             // Room_level4 = buildIndex 7 (Unidad 4)
-            if (currentScene == 7)
+            if (currentScene == 8)
             {
                 SetupUnit4Problems();
             }
@@ -704,24 +704,26 @@ public class ConsoleManager : MonoBehaviour
                 consoleOutputText.text += "[System]: ERROR - Respuesta incorrecta.\n";
             }
             
-            // Aplicar sanción: remover fusibles aleatorios
+            // Aplicar sanción: remover fusibles aleatorios de TODAS las tablas
             if (fuseboxReference != null)
             {
-                int fusesToRemove = Random.Range(1, 3); // Remover entre 1 y 2 fusibles
+                int fusesToRemove = Random.Range(1, 6); // Remover entre 1 y 5 fusibles en total
                 fuseboxReference.RemoveRandomFuses(fusesToRemove);
                 
                 if (consoleOutputText != null)
                 {
-                    consoleOutputText.text += $"\n[Error]: sobrecarga en fusibles, porfavor reinsertelos.\n";
-                    consoleOutputText.text += "[System]: Debes reconfigurar los fusibles faltantes.\n";
-                    consoleOutputText.text += "[System]: Desbloquea la fusebox, corrige los errores y escribe 'restart' para reintentar.\n";
+                    consoleOutputText.text += $"\n[SANCIÓN]: {fusesToRemove} fusibles removidos por error.\n";
+                    consoleOutputText.text += "[System]: Sobrecarga detectada. Debes reconfigurar los fusibles faltantes.\n";
+                    consoleOutputText.text += "[System]: Corrige los fusibles y escribe 'restart' para reintentar.\n";
+                    consoleOutputText.text += $"[System]: Volverás al PROBLEMA {currentProblemIndex + 1}.\n";
                 }
                 
                 // Desbloquear fusebox para que el jugador pueda corregir
                 fuseboxReference.UnlockFusebox();
             }
             
-            // Cambiar a estado bloqueado para requerir revalidación
+            // Cambiar a estado bloqueado pero NO avanzar el índice del problema
+            // El jugador se quedará en el mismo problema después de corregir
             currentState = ConsoleState.Locked;
         }
     }
@@ -733,13 +735,51 @@ public class ConsoleManager : MonoBehaviour
     {
         if (currentState == ConsoleState.Locked)
         {
-            // Desbloquear fusebox al escribir restart
-            if (fuseboxReference != null)
+            if (consoleOutputText != null)
             {
-                fuseboxReference.UnlockFusebox();
+                consoleOutputText.text = "[System]: Verificando configuración de fusibles...\n";
             }
             
-            ShowWelcomeMessage();
+            // Validar que la caja de fusibles esté correctamente configurada
+            if (fuseboxReference != null)
+            {
+                bool allTablesValid = true;
+                string[] tableNames = fuseboxReference.GetAllTableNames();
+                
+                foreach (string tableName in tableNames)
+                {
+                    if (!fuseboxReference.IsTableValid(tableName))
+                    {
+                        allTablesValid = false;
+                        break;
+                    }
+                }
+                
+                if (allTablesValid)
+                {
+                    // Fusibles correctos - bloquear y volver al problema actual
+                    fuseboxReference.LockFusebox();
+                    
+                    if (consoleOutputText != null)
+                    {
+                        consoleOutputText.text += "[System]: ✓ Fusibles restablecidos correctamente.\n";
+                        consoleOutputText.text += "[System]: Continuando desde el problema actual...\n\n";
+                    }
+                    
+                    currentState = ConsoleState.QueryMode;
+                    ShowCurrentProblem();
+                }
+                else
+                {
+                    // Fusibles aún incorrectos
+                    if (consoleOutputText != null)
+                    {
+                        consoleOutputText.text += "[ERROR]: La configuración de fusibles aún tiene errores.\n";
+                        consoleOutputText.text += "[System]: Por favor corrige todos los fusibles antes de continuar.\n";
+                        consoleOutputText.text += "[System]: Escribe 'restart' cuando esté listo.\n";
+                    }
+                }
+            }
         }
     }
     

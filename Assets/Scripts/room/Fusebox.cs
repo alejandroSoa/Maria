@@ -1002,30 +1002,31 @@ public class Fusebox : MonoBehaviour
     }
     
     /// <summary>
-    /// Borra al azar cierto número de fusibles y los deja desasignados
+    /// Borra al azar cierto número de fusibles de TODAS las tablas y los deja desasignados
     /// </summary>
     public void RemoveRandomFuses(int numberOfFusesToRemove)
     {
         System.Collections.Generic.List<string> assignedFields = new System.Collections.Generic.List<string>();
         
-        // Obtener todos los campos que tienen fusibles asignados de la tabla activa
-        var currentTable = GetCurrentTable();
-        if (currentTable == null) return;
-        foreach (var slot in currentTable.columns)
+        // Obtener todos los campos que tienen fusibles asignados de TODAS las tablas
+        foreach (var table in DatabaseTables)
         {
-            string fieldName = GetFieldKey(currentTable.tableName, slot.Key);
-            string assignment = GetAssignedDataType(fieldName);
-            
-            if (assignment != "Unassigned")
+            foreach (var slot in table.columns)
             {
-                assignedFields.Add(fieldName);
+                string fieldName = GetFieldKey(table.tableName, slot.Key);
+                string assignment = GetAssignedDataType(fieldName);
+                
+                if (assignment != "Unassigned")
+                {
+                    assignedFields.Add(fieldName);
+                }
             }
         }
         
         // Limitar el número a remover a los disponibles
         int fusesToRemove = Mathf.Min(numberOfFusesToRemove, assignedFields.Count);
         
-        // Seleccionar campos al azar y desasignar
+        // Seleccionar campos al azar de todas las tablas y desasignar
         for (int i = 0; i < fusesToRemove; i++)
         {
             int randomIndex = Random.Range(0, assignedFields.Count);
