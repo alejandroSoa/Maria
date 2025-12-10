@@ -263,21 +263,82 @@ public class ConsoleManager : MonoBehaviour
         // VER DE QUÉ FORMA HACER PARA QUE LA TABLA DE RECORDS
     }
 
-
     /// <summary>
     /// Problemas de la Unidad 4 
     /// </summary>
     private void SetupUnit4Problems()
     {
-        // Problema 1: SELECT básico
-        SQLProblem problem1 = new SQLProblem();
-        problem1.problemDescription = "TODAVÍA ME FALTA AQUI AAAAAA.";
-        problem1.expectedQuery = "SELECT * FROM USERS";
-        problem1.successMessage = "¡Correcto! Has obtenido todos los registros de la tabla USERS.";
-        problem1.errorMessage = "Query incorrecta. Recuerda usar: SELECT * FROM USERS";
-        problem1.caseSensitive = false;
-        sqlProblems.Add(problem1);
+        // Problema 18: JOIN para usuarios con documentos solicitados
+        SQLProblem p18 = new SQLProblem();
+        p18.problemDescription = "[JOIN] Usuarios con los documentos que solicitaron - mostrar Name, LastName del usuario, Name del documento y TimesRequested.";
+        p18.expectedQuery = "SELECT U.NAME, U.LASTNAME, D.NAME, R.TIMESREQUESTED FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p18.successMessage = "[System]: ¡Perfecto! Has obtenido la relación usuarios-documentos correctamente.";
+        p18.errorMessage = "[ERROR]: Usa INNER JOIN: SELECT U.Name, U.LastName, D.Name, R.TimesRequested FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id";
+        p18.caseSensitive = false;
+        sqlProblems.Add(p18);
 
+        // Problema 19: JOIN con WHERE - usuarios prioridad alta con documentos protegidos
+        SQLProblem p19 = new SQLProblem();
+        p19.problemDescription = "[JOIN + WHERE] Usuarios con prioridad alta que solicitaron documentos con contraseña - mostrar Name, PriorityLevel del usuario y Name, HasPassword del documento.";
+        p19.expectedQuery = "SELECT U.NAME, U.PRIORITYLEVEL, D.NAME, D.HASPASSWORD FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID WHERE U.PRIORITYLEVEL <= 2 AND D.HASPASSWORD = TRUE";
+        p19.successMessage = "[System]: ¡Excelente! Has filtrado usuarios VIP con documentos protegidos correctamente.";
+        p19.errorMessage = "[ERROR]: Usa WHERE con condiciones: SELECT U.Name, U.PriorityLevel, D.Name, D.HasPassword FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id WHERE U.PriorityLevel <= 2 AND D.HasPassword = true";
+        p19.caseSensitive = false;
+        sqlProblems.Add(p19);
+
+        // Problema 20: JOIN con GROUP BY y COUNT
+        SQLProblem p20 = new SQLProblem();
+        p20.problemDescription = "[JOIN + GROUP BY] Cuántas solicitudes hizo cada usuario - mostrar Name del usuario y total de solicitudes.";
+        p20.expectedQuery = "SELECT U.NAME, COUNT(R.ID) AS TOTALSOLICITUDES FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID GROUP BY U.NAME";
+        p20.successMessage = "[System]: ¡Perfecto! Has contado las solicitudes por usuario correctamente.";
+        p20.errorMessage = "[ERROR]: Usa GROUP BY con COUNT: SELECT U.Name, COUNT(R.Id) AS totalSolicitudes FROM Records R INNER JOIN Users U ON R.Visitor = U.Id GROUP BY U.Name";
+        p20.caseSensitive = false;
+        sqlProblems.Add(p20);
+
+        // Problema 21: LEFT JOIN para incluir usuarios sin solicitudes
+        SQLProblem p21 = new SQLProblem();
+        p21.problemDescription = "[LEFT JOIN] Todos los usuarios y los documentos que pidieron (aunque no pidan nada) - mostrar Name del usuario, Name del documento y LastAccess.";
+        p21.expectedQuery = "SELECT U.NAME, D.NAME, R.LASTACCESS FROM USERS U LEFT JOIN RECORDS R ON U.ID = R.VISITOR LEFT JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p21.successMessage = "[System]: ¡Excelente! Has incluido todos los usuarios, incluso los que no tienen solicitudes.";
+        p21.errorMessage = "[ERROR]: Usa LEFT JOIN: SELECT U.Name, D.Name, R.LastAccess FROM Users U LEFT JOIN Records R ON U.Id = R.Visitor LEFT JOIN Documents D ON R.Requested = D.Id";
+        p21.caseSensitive = false;
+        sqlProblems.Add(p21);
+
+        // Problema 22: LEFT JOIN inverso - documentos con sus solicitantes
+        SQLProblem p22 = new SQLProblem();
+        p22.problemDescription = "[LEFT JOIN] Todos los documentos y quién los pidió (si alguien los pidió) - mostrar Name del documento, solicitadoPor (alias para Name del usuario) y LastAccess.";
+        p22.expectedQuery = "SELECT D.NAME, U.NAME AS SOLICITADOPOR, R.LASTACCESS FROM DOCUMENTS D LEFT JOIN RECORDS R ON D.ID = R.REQUESTED LEFT JOIN USERS U ON R.VISITOR = U.ID";
+        p22.successMessage = "[System]: ¡Perfecto! Has mostrado todos los documentos, incluso los que nadie ha solicitado.";
+        p22.errorMessage = "[ERROR]: Usa LEFT JOIN con alias: SELECT D.Name, U.Name AS solicitadoPor, R.LastAccess FROM Documents D LEFT JOIN Records R ON D.Id = R.Requested LEFT JOIN Users U ON R.Visitor = U.Id";
+        p22.caseSensitive = false;
+        sqlProblems.Add(p22);
+
+        // Problema 23: LEFT JOIN + GROUP BY + COALESCE
+        SQLProblem p23 = new SQLProblem();
+        p23.problemDescription = "[LEFT JOIN + COALESCE] Usuarios y cantidad total de accesos (aunque no tengan registros) - mostrar Name del usuario y totalAccesos usando COALESCE para manejar NULLs.";
+        p23.expectedQuery = "SELECT U.NAME, COALESCE(SUM(R.TIMESREQUESTED), 0) AS TOTALACCESOS FROM USERS U LEFT JOIN RECORDS R ON U.ID = R.VISITOR GROUP BY U.NAME";
+        p23.successMessage = "[System]: ¡Excelente! Has manejado correctamente los valores NULL con COALESCE y calculado totales por usuario.";
+        p23.errorMessage = "[ERROR]: Usa COALESCE para NULLs: SELECT U.Name, COALESCE(SUM(R.TimesRequested), 0) AS totalAccesos FROM Users U LEFT JOIN Records R ON U.Id = R.Visitor GROUP BY U.Name";
+        p23.caseSensitive = false;
+        sqlProblems.Add(p23);
+
+        // Problema 24: RIGHT JOIN para preservar registros huérfanos
+        SQLProblem p24 = new SQLProblem();
+        p24.problemDescription = "[RIGHT JOIN] Todos los registros de acceso, incluso si el usuario fue eliminado - mostrar Id del registro, Name del usuario, Name del documento y LastAccess.";
+        p24.expectedQuery = "SELECT R.ID, U.NAME, D.NAME, R.LASTACCESS FROM USERS U RIGHT JOIN RECORDS R ON U.ID = R.VISITOR INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p24.successMessage = "[System]: ¡Perfecto! Has preservado todos los registros, incluso aquellos con usuarios eliminados.";
+        p24.errorMessage = "[ERROR]: Usa RIGHT JOIN: SELECT R.Id, U.Name, D.Name, R.LastAccess FROM Users U RIGHT JOIN Records R ON U.Id = R.Visitor INNER JOIN Documents D ON R.Requested = D.Id";
+        p24.caseSensitive = false;
+        sqlProblems.Add(p24);
+
+        // Problema 25: RIGHT JOIN doble con WHERE específico
+        SQLProblem p25 = new SQLProblem();
+        p25.problemDescription = "[RIGHT JOIN + WHERE] Usuarios japoneses (o sus registros si existieran) - mostrar Name del usuario, Country, Name del documento y LastAccess.";
+        p25.expectedQuery = "SELECT U.NAME, U.COUNTRY, D.NAME, R.LASTACCESS FROM USERS U RIGHT JOIN RECORDS R ON U.ID = R.VISITOR RIGHT JOIN DOCUMENTS D ON R.REQUESTED = D.ID WHERE U.COUNTRY = 'JAPÓN'";
+        p25.successMessage = "[System]: ¡Excelente! Has filtrado usuarios japoneses preservando sus registros de acceso.";
+        p25.errorMessage = "[ERROR]: Usa RIGHT JOIN doble con filtro: SELECT U.Name, U.Country, D.Name, R.LastAccess FROM Users U RIGHT JOIN Records R ON U.Id = R.Visitor RIGHT JOIN Documents D ON R.Requested = D.Id WHERE U.Country = 'Japón'";
+        p25.caseSensitive = false;
+        sqlProblems.Add(p25);
     }
     
     /// <summary>
