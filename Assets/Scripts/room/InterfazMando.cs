@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InterfazMando : MonoBehaviour
 {
@@ -14,7 +15,16 @@ public class InterfazMando : MonoBehaviour
 
     void Start()
     {
-        salaActual = 3;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        if (currentScene == 2)
+            salaActual = 1;
+        else if (currentScene == 6)
+            salaActual = 2;
+        else if (currentScene == 7)
+            salaActual = 3;
+        else if (currentScene == 8)
+            salaActual = 4;
+
         salaElegida = false;
 
         sala1.onClick.AddListener(() => ElegirSala(1));

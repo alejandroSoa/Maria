@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class journal : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class journal : MonoBehaviour
     [SerializeField] private Button rightArrow;
     
     [Header("Content")]
-    [SerializeField][TextArea(10, 20)] private string journalContent = @"UNIDAD 1
+    [SerializeField][TextArea(10, 20)] private string unit1Content = @"UNIDAD 1
 
 En la creación de tablas, es importante elegir bien los tipos de datos para cada campo. Por ejemplo, INTEGER (o INT) se usa para números enteros como IDs, edades o niveles de prioridad; ocupa 4 bytes y no admite decimales. VARCHAR(n) sirve para texto de longitud variable, hasta n caracteres, ideal para nombres, correos o direcciones, ya que ahorra espacio frente a tipos fijos como CHAR.
 
@@ -77,7 +78,29 @@ Status → bool
 LastSeen → datetime
 CreatedAt → datetime
 UpdatedAt → datetime";
+
+    [SerializeField][TextArea(10, 20)] private string unit2Content = @"
+
+==================================================
+UNIDAD 2 - CONSULTAS SELECT
+
+hola hola stop fighting";
+
+    [SerializeField][TextArea(10, 20)] private string unit3Content = @"
+
+==================================================
+UNIDAD 3 - OPERACIONES DML (INSERT, UPDATE, DELETE)
+
+wazaaaaaaaaaaaa";
+
+    [SerializeField][TextArea(10, 20)] private string unit4Content = @"
+
+==================================================
+UNIDAD 4 - JOINS Y CONSULTAS AVANZADAS
+
+memin pelon";
     
+    private string journalContent = "";
     private int currentPage = 1;
     private int maxPages = 1; // Se calculará dinámicamente
 
@@ -85,10 +108,44 @@ UpdatedAt → datetime";
 
     void Start()
     {
+        SetContentBasedOnScene();
         SetupButtons();
         StartCoroutine(InitializePages());
     }
     
+    void SetContentBasedOnScene()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        
+        switch(currentScene)
+        {
+            case 2: // Solo Unidad 1
+                journalContent = unit1Content;
+                Debug.Log("Cargando: Unidad 1");
+                break;
+                
+            case 6: 
+                journalContent = unit1Content + unit2Content;
+                Debug.Log("Cargando: Unidades 1-2");
+                break;
+                
+            case 7: 
+                journalContent = unit1Content + unit2Content + unit3Content;
+                Debug.Log("Cargando: Unidades 1-3");
+                break;
+                
+            case 8: 
+                journalContent = unit1Content + unit2Content + unit3Content + unit4Content;
+                Debug.Log("Cargando: Unidades 1-4");
+                break;
+                
+            default: 
+                journalContent = unit1Content;
+                Debug.Log("Cargando por defecto: Unidad 1");
+                break;
+        }
+    }
+
     void SetupButtons()
     {
         // Configurar los eventos de los botones

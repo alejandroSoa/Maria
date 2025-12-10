@@ -263,7 +263,6 @@ public class ConsoleManager : MonoBehaviour
         // VER DE QUÉ FORMA HACER PARA QUE LA TABLA DE RECORDS
     }
 
-
     /// <summary>
     /// Problemas de la Unidad 4 
     /// </summary>
@@ -296,7 +295,7 @@ public class ConsoleManager : MonoBehaviour
         if (consoleOutputText != null)
         {
             // Si estamos en la escena 1, mostrar que todavía no se puede mover acá
-            if (currentScene == 1)
+            if (currentScene == 2)
             {
                 consoleOutputText.text = "[System]: Iniciando...\n";
                 consoleOutputText.text += "[System]: .\n";

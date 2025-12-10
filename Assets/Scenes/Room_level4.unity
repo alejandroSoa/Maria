@@ -5540,7 +5540,7 @@ Transform:
   m_GameObject: {fileID: 342669663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.20830019, z: -0, w: 0.97806495}
-  m_LocalPosition: {x: 7.45, y: -2.12, z: 1.68}
+  m_LocalPosition: {x: 6.95, y: -2.12, z: 1.45}
   m_LocalScale: {x: 1, y: 1.2, z: 1.1914448}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13642,7 +13642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &720750966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17918,8 +17918,8 @@ Transform:
   m_GameObject: {fileID: 950056597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.0687, y: -0.26983, z: 0.12796}
+  m_LocalScale: {x: 0.87272, y: 0.87272, z: 0.87272}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1990956930}
@@ -26910,7 +26910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1577999395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28940,7 +28940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1690714593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33165,7 +33165,7 @@ Transform:
   m_GameObject: {fileID: 1990956929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 24.84, y: -2.07, z: -0.11}
+  m_LocalPosition: {x: 25.25, y: -2.07, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36191,7 +36191,7 @@ Transform:
   m_GameObject: {fileID: 2145075686}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.24, y: -1.61, z: 0}
+  m_LocalPosition: {x: 16.24, y: -1.88, z: 0}
   m_LocalScale: {x: 0.47708315, y: 0.546117, z: 0.59077996}
   m_ConstrainProportionsScale: 1
   m_Children: []

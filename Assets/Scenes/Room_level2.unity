@@ -1975,7 +1975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &108282068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13549,7 +13549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &689979783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13979,7 +13979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &720750966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20180,7 +20180,7 @@ MonoBehaviour:
   rightPageText: {fileID: 383668607}
   leftArrow: {fileID: 1972008285}
   rightArrow: {fileID: 1840055125}
-  journalContent: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
+  unit1Content: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
     bien los tipos de datos para cada campo. Por ejemplo, INTEGER (o INT) se usa
     para n\xFAmeros enteros como IDs, edades o niveles de prioridad; ocupa 4 bytes
     y no admite decimales. VARCHAR(n) sirve para texto de longitud variable, hasta
@@ -20214,6 +20214,42 @@ MonoBehaviour:
     \u2192 date\r\nAddress \u2192 varchar(200)\r\nCity \u2192 varchar(100)\r\nCountry
     \u2192 varchar(100)\r\nPriorityLevel \u2192 int\r\nStatus \u2192 bool\r\nLastSeen
     \u2192 datetime\r\nCreatedAt \u2192 datetime\r\nUpdatedAt \u2192 datetime"
+  unit2Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    2 - CONSULTAS SELECT
+
+    
+
+    hola hola stop fighting'
+  unit3Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    3 - OPERACIONES DML (INSERT, UPDATE, DELETE)
+
+    
+
+    wazaaaaaaaaaaaa'
+  unit4Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    4 - JOINS Y CONSULTAS AVANZADAS
+
+    
+
+    memin pelon'
   soundRoom: {fileID: 360971481}
 --- !u!1 &1110777478
 GameObject:
@@ -35582,7 +35618,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102890858}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -35654,7 +35690,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102890858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d94a93c4e6dcf4b805391b08989ea5, type: 3}
   m_Name: 
