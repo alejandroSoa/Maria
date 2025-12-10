@@ -19862,7 +19862,7 @@ MonoBehaviour:
   rightPageText: {fileID: 383668607}
   leftArrow: {fileID: 1972008285}
   rightArrow: {fileID: 1840055125}
-  journalContent: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
+  unit1Content: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
     bien los tipos de datos para cada campo. Por ejemplo, INTEGER (o INT) se usa
     para n\xFAmeros enteros como IDs, edades o niveles de prioridad; ocupa 4 bytes
     y no admite decimales. VARCHAR(n) sirve para texto de longitud variable, hasta
@@ -19896,6 +19896,42 @@ MonoBehaviour:
     \u2192 date\r\nAddress \u2192 varchar(200)\r\nCity \u2192 varchar(100)\r\nCountry
     \u2192 varchar(100)\r\nPriorityLevel \u2192 int\r\nStatus \u2192 bool\r\nLastSeen
     \u2192 datetime\r\nCreatedAt \u2192 datetime\r\nUpdatedAt \u2192 datetime"
+  unit2Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    2 - CONSULTAS SELECT
+
+    
+
+    hola hola stop fighting'
+  unit3Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    3 - OPERACIONES DML (INSERT, UPDATE, DELETE)
+
+    
+
+    wazaaaaaaaaaaaa'
+  unit4Content: '
+
+    
+
+    ==================================================
+
+    UNIDAD
+    4 - JOINS Y CONSULTAS AVANZADAS
+
+    
+
+    memin pelon'
   soundRoom: {fileID: 360971481}
 --- !u!1 &1110777478
 GameObject:
@@ -33403,7 +33439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1992221802
 MonoBehaviour:
   m_ObjectHideFlags: 0
