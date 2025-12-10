@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueStarter : MonoBehaviour
 {
@@ -6,20 +7,37 @@ public class DialogueStarter : MonoBehaviour
 
     void Start()
     {
-        // Obtener el nivel actual del jugador desde PlayerPrefs
+        // Obtener el nivel actual del jugador
         int currentLevel = GetCurrentLevel();
         
         // Cargar los diálogos correspondientes al nivel
         controller.StartDialogueForLevel(currentLevel);
         
-        string selectedLevelKey = PlayerPrefs.GetString("selectedlevel", "Level_1");
-        Debug.Log($"[DialogueStarter] selectedlevel en PlayerPrefs: '{selectedLevelKey}' -> Cargando diálogos para nivel: {currentLevel}");
+        Debug.Log($"[DialogueStarter] Escena: '{SceneManager.GetActiveScene().name}' -> Cargando diálogos para nivel: {currentLevel}");
     }
     
     private int GetCurrentLevel()
     {
-        // Obtener el nivel desde "selectedlevel" en PlayerPrefs
+        // Primero intentar obtener desde el nombre de la escena actual
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        
+        // Si la escena se llama Level_2, Level_3, etc.
+        if (currentSceneName.StartsWith("Level_"))
+        {
+            string[] parts = currentSceneName.Split('_');
+            if (parts.Length > 1 && int.TryParse(parts[1], out int sceneLevel))
+            {
+                if (sceneLevel >= 1 && sceneLevel <= 4)
+                {
+                    Debug.Log($"[DialogueStarter] Nivel detectado desde escena: {sceneLevel}");
+                    return sceneLevel;
+                }
+            }
+        }
+        
+        // Si no, usar PlayerPrefs como respaldo
         string selectedLevel = PlayerPrefs.GetString("selectedlevel", "Level_1");
+        Debug.Log($"[DialogueStarter] selectedlevel en PlayerPrefs: '{selectedLevel}'");
         
         // Extraer el número del nivel (Level_1 -> 1, Level_2 -> 2, etc.)
         if (selectedLevel.Contains("_"))
@@ -36,6 +54,7 @@ public class DialogueStarter : MonoBehaviour
         }
         
         // Por defecto, retornar nivel 1
+        Debug.Log("[DialogueStarter] Usando nivel por defecto: 1");
         return 1;
     }
 }
