@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LightSequence.unity
     guid: 4fa931d443a298e4aaa5cf348bf351fe
+  - enabled: 1
+    path: Assets/Scenes/Room_level2.unity
+    guid: c9b26162052ed42409f39639024df0bf
+  - enabled: 1
+    path: Assets/Scenes/Room_level3.unity
+    guid: 31da3c12fbe5e564d954bf975a833320
+  - enabled: 1
+    path: Assets/Scenes/Room_level4.unity
+    guid: 8ba30b142b7b8c04585b143be4005ae6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
