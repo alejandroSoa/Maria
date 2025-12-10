@@ -48,7 +48,7 @@ public class Fusebox : MonoBehaviour
         {
             // En otras escenas, cargar fusibles completos automáticamente
             InitializeDefaultFuses();
-        
+        }
         
         GenerateFuseboxSlots();
         SetupUI();
