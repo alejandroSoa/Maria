@@ -75,35 +75,17 @@ public class ConsoleManager : MonoBehaviour
             {
                 SetupUnit2Problems();
             }
-            else
+            // Room_level3 = buildIndex 6 (Unidad 3)
+            if (currentScene == 6)
             {
-                SetupUnit1Problems();
+                SetupUnit3Problems();
+            }
+            // Room_level4 = buildIndex 7 (Unidad 4)
+            if (currentScene == 7)
+            {
+                SetupUnit4Problems();
             }
         }
-    }
-    
-    /// <summary>
-    /// Problemas de la Unidad 1 (básicos)
-    /// </summary>
-    private void SetupUnit1Problems()
-    {
-        // Problema 1: SELECT básico
-        SQLProblem problem1 = new SQLProblem();
-        problem1.problemDescription = "Obtener todos los valores de la tabla Users.";
-        problem1.expectedQuery = "SELECT * FROM USERS";
-        problem1.successMessage = "¡Correcto! Has obtenido todos los registros de la tabla USERS.";
-        problem1.errorMessage = "Query incorrecta. Recuerda usar: SELECT * FROM USERS";
-        problem1.caseSensitive = false;
-        sqlProblems.Add(problem1);
-        
-        // Problema 2: SELECT con columnas específicas
-        SQLProblem problem2 = new SQLProblem();
-        problem2.problemDescription = "Obtener el nombre y email de todos los usuarios.";
-        problem2.expectedQuery = "SELECT NAME, EMAIL FROM USERS";
-        problem2.successMessage = "¡Excelente! Has seleccionado las columnas correctas.";
-        problem2.errorMessage = "Query incorrecta. Usa: SELECT NAME, EMAIL FROM USERS";
-        problem2.caseSensitive = false;
-        sqlProblems.Add(problem2);
     }
     
     /// <summary>
@@ -247,6 +229,58 @@ public class ConsoleManager : MonoBehaviour
     }
     
     /// <summary>
+    /// Problemas de la Unidad 3 (CREACIÓN DE TABLAS)
+    /// </summary>
+    private void SetupUnit3Problems()
+    {
+        // Problema 15: CREATE TABLE Records
+        SQLProblem p15 = new SQLProblem();
+        p15.problemDescription = "Crear la tabla Records con la estructura especificada.";
+        p15.expectedQuery = "CREATE TABLE Records (Id SERIAL PRIMARY KEY, Visitor INTEGER NOT NULL, Requested INTEGER NOT NULL, TimesRequested INTEGER NOT NULL DEFAULT 1, LastAccess DATETIME NOT NULL, IpAddress VARCHAR(45) NOT NULL, CONSTRAINT fk_usr_visitor FOREIGN KEY (Visitor) REFERENCES Users(Id), CONSTRAINT fk_doc_requested FOREIGN KEY (Requested) REFERENCES Documents(Id))";
+        p15.successMessage = "¡Perfecto! Has creado correctamente la tabla Records.";
+        p15.errorMessage = "Query incorrecta. Revisa la sintaxis de CREATE TABLE para Records";
+        p15.caseSensitive = false;
+        sqlProblems.Add(p15);
+                
+        // Problema 16: CREATE TABLE UserPermission
+        SQLProblem p16 = new SQLProblem();
+        p16.problemDescription = "Crear la tabla UserPermission con la estructura especificada.";
+        p16.expectedQuery = "CREATE TABLE UserPermission (Id SERIAL PRIMARY KEY, User INTEGER NOT NULL, Permission INTEGER NOT NULL, AssignedAt DATETIME NOT NULL, RevokedAt DATETIME NULL, CONSTRAINT fk_user FOREIGN KEY (User) REFERENCES Users(Id), CONSTRAINT fk_permission FOREIGN KEY (Permission) REFERENCES Permissions(Id), CONSTRAINT unique_user_permission UNIQUE (User, Permission))";
+        p16.successMessage = "¡Perfecto! Has creado correctamente la tabla UserPermission.";
+        p16.errorMessage = "Query incorrecta. Revisa la sintaxis de CREATE TABLE para UserPermission";
+        p16.caseSensitive = false;
+        sqlProblems.Add(p16);
+                
+        // Problema 17: INSERT INTO UserPermission para Maria CHECAR ESTE PARA QUE QUEDE BIEN
+        SQLProblem p17 = new SQLProblem();
+        p17.problemDescription = "Maria pedirá agregar su usuario en el registro de UserPermission.";
+        p17.expectedQuery = "INSERT INTO UserPermission (User, Permission) VALUES ('ID DE MARIA', 'ID PERMISO ABSOLUTO')";
+        p17.successMessage = "¡Excelente! Has agregado a Maria en el registro de permisos.";
+        p17.errorMessage = "Query incorrecta. Usa: INSERT INTO UserPermission (User, Permission) VALUES ('ID DE MARIA', 'ID PERMISO ABSOLUTO')";
+        p17.caseSensitive = false;
+        sqlProblems.Add(p17);
+                
+        // VER DE QUÉ FORMA HACER PARA QUE LA TABLA DE RECORDS
+    }
+
+
+    /// <summary>
+    /// Problemas de la Unidad 4 
+    /// </summary>
+    private void SetupUnit4Problems()
+    {
+        // Problema 1: SELECT básico
+        SQLProblem problem1 = new SQLProblem();
+        problem1.problemDescription = "TODAVÍA ME FALTA AQUI AAAAAA.";
+        problem1.expectedQuery = "SELECT * FROM USERS";
+        problem1.successMessage = "¡Correcto! Has obtenido todos los registros de la tabla USERS.";
+        problem1.errorMessage = "Query incorrecta. Recuerda usar: SELECT * FROM USERS";
+        problem1.caseSensitive = false;
+        sqlProblems.Add(problem1);
+
+    }
+    
+    /// <summary>
     /// Muestra el mensaje de bienvenida y pregunta si desea continuar
     /// </summary>
     private void ShowWelcomeMessage()
@@ -265,8 +299,8 @@ public class ConsoleManager : MonoBehaviour
             if (currentScene == 1)
             {
                 consoleOutputText.text = "[System]: Iniciando...\n";
-                consoleOutputText.text = "[System]: .\n";
-                consoleOutputText.text = "[System]: .\n";
+                consoleOutputText.text += "[System]: .\n";
+                consoleOutputText.text += "[System]: .\n";
                 consoleOutputText.text += "[System]: ERROR: Señal no establecida, se requiere primero una conexión estable.\n";
                 consoleOutputText.text += "[System]: Restablece la conexión en la caja de fusibles primero para continuar.\n";
                 return;
