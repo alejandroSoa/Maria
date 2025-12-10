@@ -134,6 +134,8 @@ public class CameraActions : MonoBehaviour
         {
             viewManager.Instance.DeactivateView(mariaNetRoom);
             viewManager.Instance.ActivateView(initialRoom);
+            PlayerPrefs.SetInt("stopDialogues", 1);
+            PlayerPrefs.Save();
             DialogueController.Instance.PauseDialogue();
         });
 

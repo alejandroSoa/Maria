@@ -20,6 +20,14 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(Dialogue dialogue, string playerName)
     {
+        // Verificar si los diálogos están detenidos
+        if (PlayerPrefs.GetInt("stopDialogues", 0) == 1)
+        {
+            HideAllPortraits();
+            dialogueText.text = "";
+            return;
+        }
+
         // 1. Mostrar contenido del diálogo
         dialogueText.text = dialogue.Content;
 
@@ -90,5 +98,15 @@ public class DialogueUI : MonoBehaviour
     public void ShowUI()
     {
         dialoguePanel.SetActive(true);
+    }
+
+    private void HideAllPortraits()
+    {
+        portraitLeft.gameObject.SetActive(false);
+        portraitRight.gameObject.SetActive(false);
+        portraitNarrador.gameObject.SetActive(false);
+        mariaIdle.gameObject.SetActive(false);
+        mariaTalking.gameObject.SetActive(false);
+        nameText.gameObject.SetActive(false);
     }
 }

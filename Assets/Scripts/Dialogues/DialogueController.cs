@@ -23,7 +23,7 @@ public class DialogueController : MonoBehaviour
 {
     { "Un rostro feliz aparece en la pantalla del dispositivo.", "Mostrar_Maria" },
     { "Se acercan a la caja de fusibles en la cual van a poder empezar a trabajar con los problemas de base de datos.", "ZOOM_Caja_Fusibles" },
-    { "Maria muestra una caja de fusibles, esta tiene una apariencia similar a una tabla, la tabla tiene como nombre ‘BathroomCurtains’ e incluye campos dentro de la tabla.", "MOSTRAR_CAJA_TABLA" },
+    { "Maria muestra una caja de fusibles; esta tiene una apariencia similar a una tabla. La tabla tiene como nombre ‘BathroomCurtains’ e incluye campos dentro de la tabla.", "MOSTRAR_CAJA_TABLA" },
     { "Si tienes duda sobre cortinas de baño también te puedo ayudar, pero, concentrémonos en salir primero.", "Quitar_Caja_Fusibles" },
     { "Entonces, solo necesitamos volver a conectarle fusibles funcionales a esta caja, columna, a esta a cosa, y con eso la energía volverá y yo podré ir a casa, ¿verdad?", "Quitar_Bathroom_Table" },
     { "Ahora, necesitamos resolver la siguiente tabla, aprovechemos lo que sabemos y empecemos con ello.", "Quitar_A1E2" },
@@ -86,6 +86,12 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogueForLevel(int levelId)
     {
+        if (PlayerPrefs.GetInt("stopDialogues", 0) == 1)
+        {
+            Debug.Log("Diálogos detenidos por stopDialogues = 1");
+            dialogueUI.HideUI();
+            return;
+        }
         var conn = DatabaseService.Instance.Connection;
 
         currentDialogues = conn.Table<Dialogue>()
