@@ -36,7 +36,13 @@ public class mainMenu : MonoBehaviour
         switch (levelName)
         {
             case "Level_1":
-                return "Scenes/Room";  
+                return "Scenes/Room";
+            case "Level_2":
+                return "Scenes/Room_level2";  
+            case "Level_3":
+                return "Scenes/Room_level3";  
+            case "Level_4":
+                return "Scenes/Room_level4";    
             default:
                 Debug.LogWarning("Nivel no reconocido: " + levelName);
                 return "Scenes/Room"; 
