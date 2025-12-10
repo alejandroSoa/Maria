@@ -38,7 +38,15 @@ public class Fusebox : MonoBehaviour
     
     void Start()
     {
-
+        int currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        if (currentScene == 2)
+        {
+            // En escena 2, limpiar todos los fusibles para que el jugador los configure
+            ClearAllFuses();
+        }
+        else
+        {
+            // En otras escenas, cargar fusibles completos automáticamente
             InitializeDefaultFuses();
         
         
