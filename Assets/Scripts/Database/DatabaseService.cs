@@ -1523,370 +1523,125 @@ new Dialogue {
     LevelId = 2,
     PlayerId = 1,
     OrderIndex = 72,
-    Content = "Esto realmente no tiene sentido.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 73,
-    Content = "Esos permisos son muy, muy extraños. Y esos documentos digo, sí, había algunos sobre cortinas de baño pero… “Memorándum: Ajustes Residenciales Internos Anómalos”.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 74,
-    Content = "Bueno, ahora con estos datos, tenemos que hacer algunas cuantas sentencias nuevas.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 75,
-    Content = "Necesito que muestres una lista de todos los usuarios activos.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 76,
-    Content = "Bien, funciona, sigue así.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 77,
-    Content = "Ahora necesito una lista de todos los usuarios ordenados por su nivel de prioridad de mayor a menor.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 78,
-    Content = "Bien, funciona, sigue así. Ahora necesito ver todos los permisos.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 79,
-    Content = "Ahora necesito ver los permisos que incluyan la palabra 'usuarios'.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 80,
-    Content = "Bien, funciona, sigue así. Ahora necesito ver los permisos con palabras de acción tipo 'CREATE', 'UPDATE', 'DELETE', 'SELECT'.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 81,
-    Content = "Bien, funciona, sigue así. Ahora necesito traer todos los documentos que tienen contraseña.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 82,
-    Content = "Bien, funciona, sigue así. Ahora necesito contar cuántos documentos hay por tipo de archivo.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 83,
-    Content = "Bien, funciona, sigue así. Ahora necesito obtener los documentos más pesados y ordenarlos de mayor a menor.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 84,
-    Content = "Bien, funciona, bien, pero ahora hace falta resolverlo de otra forma, mira, necesitamos empezar a emplear los UPDATE, actualizar...",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 85,
-    Content = "¿Recuerdas? Probemos con… Vamos a cambiar el estado de un usuario, del Dr. Selbst.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 3,
-    OrderIndex = 86,
-    Content = "¿Por qué de ese en específico?",
-    Side = "left"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 87,
-    Content = "Solo es un ejemplo, por favor, hagámoslo. Cambia el estado del usuario Selbst.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 88,
-    Content = "Bien, funciona, sigue así. Ahora modifica la prioridad de todos los usuarios de Japón.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 89,
-    Content = "Bien, funciona, sigue así. Ahora baja el nivel de prioridad a 1 para todos los usuarios que no se han conectado en más de 2 meses.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 90,
-    Content = "Bien, funciona, sigue así. Ahora activemos todos los permisos.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 91,
-    Content = "Bien, funciona, sigue así. Ahora modifiquemos la descripción del acceso al nivel subterráneo por un chiste.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 92,
-    Content = "Oh no…",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 3,
-    OrderIndex = 93,
-    Content = "¿Qué pasa ahora?",
-    Side = "left"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 94,
-    Content = "Necesitamos eliminar unos registros. Están interfiriendo con la red eléctrica, hay que eliminarlos cuanto antes.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 95,
-    Content = "Tenemos que eliminar al usuario H0peles$0ul.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 96,
-    Content = "Bien, funciona, sigue así. Tenemos que eliminar el permiso del chiste, creo que eso afectó, hazlo pronto.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 97,
-    Content = "Bien, funciona, sigue así. Tenemos que eliminar todos los documentos, excepto el primero y el último.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 98,
     Content = "…",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 3,
-    OrderIndex = 99,
+    OrderIndex = 73,
     Content = "¿Qué sucede?",
     Side = "left"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 1,
-    OrderIndex = 100,
+    OrderIndex = 74,
     Content = "Detente un momento. Esto no tiene sentido. Llevamos media hora conectando circuitos para salir... pero mira esto.",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 2, // Narrador
-    OrderIndex = 101,
+    OrderIndex = 75,
     Content = "Se acercan a la pared para poder ver los cables correctamente.",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 3,
-    OrderIndex = 102,
+    OrderIndex = 76,
     Content = "¿Qué es? Se ven... caros.",
     Side = "left"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 1,
-    OrderIndex = 103,
+    OrderIndex = 77,
     Content = "Exacto. Mira la lectura. Estos cables están activos. Están canalizando una cantidad estable y fuerte de energía. La instalación no está sin corriente. De hecho, esta sección es perfecta.",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 3,
-    OrderIndex = 104,
+    OrderIndex = 78,
     Content = "¿Perfecta? Entonces, ¿por qué demonios estamos moviéndole a un generador si ya hay energía funcionando?",
     Side = "left"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 1,
-    OrderIndex = 105,
+    OrderIndex = 79,
     Content = "El lugar entero tiene corriente para operar alguna cosa, o al menos, para encender las salidas. Hay una contradicción fundamental entre lo que estamos haciendo y lo que está sucediendo.",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 3,
-    OrderIndex = 106,
+    OrderIndex = 80,
     Content = "Si ya hay energía, ¿por qué no podemos salir?",
     Side = "left"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 1,
-    OrderIndex = 107,
+    OrderIndex = 81,
     Content = "No lo sé. Pero la única manera de averiguarlo es seguir la conexión principal que estamos tratando de restablecer. Quizá estemos alimentando un override de emergencia. Continuemos. Vamos a ver a dónde nos lleva toda esta bendita energía.",
     Side = "right"
 },
 new Dialogue {
     LevelId = 2,
     PlayerId = 1,
-    OrderIndex = 108,
+    OrderIndex = 82,
     Content = "Bueno, ahora, necesitamos algunos datos nuevos para poder continuar con esto. Tienes que crear un usuario, para que podamos conocer más de esto…",
     Side = "right"
 },
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 109,
-    Content = "Créame un usuario, un registro de usuario, que se llame Maria.",
-    Side = "right"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 3,
-    OrderIndex = 110,
-    Content = "¿Estás segura de eso? Nada tiene sentido, ni las cortinas de baño, ni los científicos, puede ser peligroso.",
-    Side = "left"
-},
-new Dialogue {
-    LevelId = 2,
-    PlayerId = 1,
-    OrderIndex = 111,
-    Content = "Descuida, es para poder ayudarnos a salir de aquí, todo estará bien. Créame un registro de usuario que se llame Maria. Te dejo a tu criterio el resto de valores.",
-    Side = "right"
-},
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 112,
-                Content = "Bien, funciona, sigue así. Tenemos que eliminar todos los documentos, excepto el primero y el último.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 2,
-                PlayerId = 1,
-                OrderIndex = 113,
-                Content = "Bien, funciona, tomaré el valor del ID para recordarlo, nos servirá mas adelante.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 2,
-                PlayerId = 1,
-                OrderIndex = 114,
+                OrderIndex = 83,
                 Content = "Déjame explicarte algo. Una Llave Foránea es un campo en una tabla (la tabla hija) que apunta directamente a la Llave Primaria (PRIMARY KEY) de otra tabla (la tabla padre).",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 115,
+                OrderIndex = 84,
                 Content = "Esto garantiza que no puedas insertar un registro en la tabla hija si el valor referenciado no existe en la tabla padre.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 116,
+                OrderIndex = 85,
                 Content = "No puedes registrar que un Usuario ID 9999 visitó un documento si ese usuario no existe.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 117,
+                OrderIndex = 86,
                 Content = "Además, permite crear un vínculo lógico.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 118,
+                OrderIndex = 87,
                 Content = "Es lo que nos permite unir información entre diferentes tablas para ver, por ejemplo, qué permisos tiene exactamente un usuario.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 2,
-                PlayerId = 1,
-                OrderIndex = 119,
-                Content = "Vamos a crear la tabla Records, que registrará quién vio qué documento.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 2,
-                PlayerId = 1,
-                OrderIndex = 120,
-                Content = "Esta es la relación lógica que te mencioné y que necesitaba, esta, es mas para probar",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 2,
                 PlayerId = 3,
-                OrderIndex = 121,
-                Content = "Esta tabla necesita dos Llaves Foráneas para vincularse a Users y Documents.",
-                Side = "left"
-            },
-            new Dialogue {
-                LevelId = 2,
-                PlayerId = 1,
-                OrderIndex = 122,
-                Content = "Necesitamos un campo, llamemoslo “Visitor” que se vinculará a Users.Id y una que se llame “Requested” se vinculará a Documents.Id.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 2,
-                PlayerId = 3,
-                OrderIndex = 123,
+                OrderIndex = 88,
                 Content = "De acuerdo, pero, ¿necesito mas puntos, no? Para poder armar las tablas dentro de la caja de fusibles.",
                 Side = "left"
             },
             new Dialogue {
                 LevelId = 2,
                 PlayerId = 1,
-                OrderIndex = 124,
+                OrderIndex = 89,
                 Content = "Tienes toda la razón, vamos hacia ella para obtener mas puntos.",
                 Side = "right"
             },
@@ -2102,88 +1857,45 @@ new Dialogue {
                 Content = "Empecemos con el INNER JOIN, la intersección. Necesitamos saber qué documentos solicitaron los usuarios. Esto nos revelará los patrones de acceso.",
                 Side = "left"
             },
-            //Problemas A3
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 31,
-                Content = "Necesito una lista de los usuarios con los documentos que solicitaron y cuántas veces.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 32,
-                Content = "Necesitamos ver a los usuarios con prioridad alta que solicitaron documentos con contraseña.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 33,
-                Content = "Funciona. Ahora debemos saber cuántas solicitudes ha realizado cada usuario. Hay que contarlas.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 34,
-                Content = "Ahora el LEFT JOIN. Necesitamos saber todo lo que existe, incluso lo que está incompleto. Esto nos mostrará usuarios sin actividad o documentos sin peticiones.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 35,
-                Content = "Tenemos que traer los registros de todos los usuarios y los documentos que pidieron, incluso si el registro está vacío.",
-                Side = "right"
-            },
-            new Dialogue {
-                LevelId = 3,
-                PlayerId = 1,
-                OrderIndex = 36,
-                Content = "Ahora con RIGHT JOIN. Necesitamos revisar si quedan registros huérfanos después de lo que hicimos. Tenemos que traer todos los registros de acceso, incluso si el usuario fue eliminado.",
-                Side = "right"
-            },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 37,
+                OrderIndex = 31,
                 Content = "Vaya, vaya. ¿De verdad creíste que sería tan fácil? Quiero decir, para ser mi autómata claro que te cree inteligente.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 38,
+                OrderIndex = 32,
                 Content = "Querer salir de esta central, un lugar diseñado para emitir energía y campos electromagnéticos...",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 39,
+                OrderIndex = 33,
                 Content = "Debería haberte creado con un tomacorriente para que te quede mas claro, como si fueras una licuadora…",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 40,
+                OrderIndex = 34,
                 Content = "La prueba está oficialmente terminada.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 41,
+                OrderIndex = 35,
                 Content = "Y el veredicto es: el autómata con intelecto humano tiende al autosabotaje. Es una decepción. Pero, como buen científico, aprendo de los errores.",
                 Side = "right"
             },
             new Dialogue {
                 LevelId = 3,
                 PlayerId = 6,
-                OrderIndex = 42,
+                OrderIndex = 36,
                 Content = "Y tengo justo el nombre ideal para ti, mi pequeño nuevo autómata…",
                 Side = "right"
             },
