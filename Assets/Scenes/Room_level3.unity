@@ -19764,7 +19764,7 @@ MonoBehaviour:
   rightPageText: {fileID: 383668607}
   leftArrow: {fileID: 1972008285}
   rightArrow: {fileID: 1840055125}
-  journalContent: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
+  unit1Content: "UNIDAD 1\r\n\r\nEn la creaci\xF3n de tablas, es importante elegir
     bien los tipos de datos para cada campo. Por ejemplo, INTEGER (o INT) se usa
     para n\xFAmeros enteros como IDs, edades o niveles de prioridad; ocupa 4 bytes
     y no admite decimales. VARCHAR(n) sirve para texto de longitud variable, hasta
@@ -19798,6 +19798,193 @@ MonoBehaviour:
     \u2192 date\r\nAddress \u2192 varchar(200)\r\nCity \u2192 varchar(100)\r\nCountry
     \u2192 varchar(100)\r\nPriorityLevel \u2192 int\r\nStatus \u2192 bool\r\nLastSeen
     \u2192 datetime\r\nCreatedAt \u2192 datetime\r\nUpdatedAt \u2192 datetime"
+  unit2Content: "\r\n\r\n==================================================\r\nUNIDAD
+    2 - CONSULTAS Y MANIPULACI\xD3N DE DATOS\r\n\r\nSe trabaja con manipulaci\xF3n
+    de datos dentro de las tablas ya creadas, utilizando los\r\ncomandos SELECT,
+    UPDATE, DELETE e INSERT. Estos comandos permiten consultar,\r\nmodificar, eliminar
+    o agregar informaci\xF3n dentro de una base de datos seg\xFAn las\r\nnecesidades
+    del sistema.\r\n\r\nEl comando SELECT se usa para buscar y mostrar informaci\xF3n
+    espec\xEDfica. Por ejemplo, se\r\npuede listar todos los usuarios activos filtrando
+    con WHERE Status = true, o mostrar los\r\npermisos que contienen ciertas palabras
+    usando LIKE '%usuarios%'. Tambi\xE9n permite\r\nordenar los resultados con ORDER
+    BY o agruparlos con GROUP BY, como cuando se\r\ncuentan los documentos por tipo
+    de archivo.\r\n\r\nUPDATE se utiliza para modificar registros existentes. Puede
+    cambiar un valor en una sola\r\nfila o en varias al mismo tiempo, dependiendo
+    de la condici\xF3n WHERE. Por ejemplo, se\r\npuede actualizar el estado de un
+    usuario, cambiar la prioridad de todos los usuarios de un\r\npa\xEDs o registrar
+    la \xFAltima fecha de actualizaci\xF3n con NOW() o una fecha espec\xEDfica.\r\n\r\nDELETE
+    elimina registros de una tabla seg\xFAn la condici\xF3n dada. Es importante incluir
+    un\r\nWHERE para evitar borrar toda la tabla por error. Un ejemplo ser\xEDa eliminar
+    un usuario con\r\nun correo espec\xEDfico o quitar un permiso que ya no es necesario.\r\n\r\nFinalmente,
+    INSERT sirve para agregar nuevos registros en las tablas. Se deben indicar las\r\ncolumnas
+    y los valores correspondientes en el mismo orden. Por ejemplo, se puede crear\r\nun
+    nuevo usuario llamado Mar\xEDa o registrar nuevos permisos y documentos de prueba.\r\n\r\nEn
+    conjunto, estos comandos permiten mantener actualizada, limpia y funcional la
+    base de\r\ndatos, asegurando que la informaci\xF3n refleje correctamente los
+    cambios dentro del sistema\r\ny sirva de base para futuros procesos o consultas.\r\n\r\nSELECT
+    - Consultar informaci\xF3n\r\nSintaxis b\xE1sica:\r\nSELECT columnas FROM tabla
+    WHERE condiciones ORDER BY campo;\r\n\r\nEjemplos pr\xE1cticos:\r\n\r\nSELECT
+    * FROM Users;\r\n-- Obtiene todos los registros de Users\r\n\r\nSELECT Id, Name,
+    LastName, Country, Status FROM Users WHERE Status = true;\r\n-- Lista usuarios
+    activos con campos espec\xEDficos\r\n\r\nSELECT Name, LastName, PriorityLevel,
+    Country FROM Users ORDER BY PriorityLevel DESC;\r\n-- Ordena usuarios por prioridad
+    de mayor a menor\r\n\r\nSELECT * FROM Permissions;\r\n-- Muestra todos los permisos
+    disponibles\r\n\r\nSELECT Name FROM Permissions WHERE Name LIKE '%usuarios%';\r\n--
+    Busca permisos que contengan la palabra 'usuarios'\r\n\r\nSELECT Country, COUNT(*)
+    as TotalUsuarios FROM Users GROUP BY Country;\r\n-- Cuenta usuarios agrupados
+    por pa\xEDs\r\n\r\nWHERE - Filtros y condiciones\r\nOperadores de comparaci\xF3n:
+    =, !=, <, >, <=, >=\r\nOperadores l\xF3gicos: AND, OR, NOT\r\nB\xFAsqueda de
+    patrones: LIKE '%texto%', LIKE 'texto%', LIKE '%texto'\r\nValores nulos: IS NULL,
+    IS NOT NULL\r\n\r\nORDER BY - Ordenamiento\r\nASC: orden ascendente (por defecto)\r\nDESC:
+    orden descendente\r\n\r\nEjemplos:\r\nORDER BY Name ASC\r\nORDER BY PriorityLevel
+    DESC, Age ASC\r\n\r\nGROUP BY - Agrupaci\xF3n\r\nSe usa con funciones agregadas:\r\nCOUNT()
+    - Cuenta registros\r\nSUM() - Suma valores\r\nAVG() - Promedio\r\nMAX() - Valor
+    m\xE1ximo\r\nMIN() - Valor m\xEDnimo\r\n\r\nINSERT - Agregar registros\r\nSintaxis:\r\nINSERT
+    INTO tabla (columna1, columna2, ...) VALUES (valor1, valor2, ...);\r\n\r\nEjemplos:\r\nINSERT
+    INTO Users (Name, LastName, Email, Age, Status) \r\nVALUES ('Mar\xEDa', 'Gonz\xE1lez',
+    'maria@email.com', 25, true);\r\n\r\nINSERT INTO Permissions (Name, Description)
+    \r\nVALUES ('Administrador', 'Acceso completo al sistema');\r\n\r\nUPDATE - Modificar
+    registros\r\nSintaxis:\r\nUPDATE tabla SET columna1 = valor1, columna2 = valor2
+    WHERE condici\xF3n;\r\n\r\n\xA1IMPORTANTE! Siempre incluye WHERE para evitar
+    actualizar toda la tabla.\r\n\r\nEjemplos:\r\nUPDATE Users SET Status = false
+    WHERE Email = 'usuario@example.com';\r\nUPDATE Users SET PriorityLevel = 1 WHERE
+    Country = 'M\xE9xico';\r\nUPDATE Users SET UpdatedAt = NOW() WHERE Id = 5;\r\n\r\nDELETE
+    - Eliminar registros\r\nSintaxis:\r\nDELETE FROM tabla WHERE condici\xF3n;\r\n\r\n\xA1CUIDADO!
+    Sin WHERE eliminas TODA la tabla.\r\n\r\nEjemplos:\r\nDELETE FROM Users WHERE
+    Status = false AND LastSeen < '2024-01-01';\r\nDELETE FROM Permissions WHERE
+    Name = 'PermisoTemporal';\r\n\r\nBUENAS PR\xC1CTICAS:\r\n- Usa SELECT espec\xEDfico
+    en lugar de SELECT * en producci\xF3n\r\n- Siempre incluye WHERE en UPDATE y
+    DELETE\r\n- Prueba consultas complejas paso a paso\r\n- Usa \xEDndices en columnas
+    frecuentemente consultadas\r\n- Valida datos antes de INSERT o UPDATE"
+  unit3Content: "\r\n\r\n==================================================\r\nUNIDAD
+    3 - CREACI\xD3N DE TABLAS RELACIONADAS\r\n\r\nSe crear\xE1n tablas relacionadas
+    en SQL, aplicando reglas m\xE1s avanzadas como el uso de\r\nclaves for\xE1neas,
+    restricciones de unicidad y valores por defecto. Estas caracter\xEDsticas\r\npermiten
+    construir una base de datos m\xE1s completa y coherente, donde las tablas no\r\nfuncionan
+    de manera aislada, sino que se comunican entre s\xED.\r\n\r\nPor ejemplo, al
+    crear la tabla Records, el objetivo es registrar las interacciones entre los\r\nusuarios
+    y los documentos. Para eso, se usa una clave primaria (Id) que identifica cada\r\nregistro
+    de forma \xFAnica, y se agregan campos como Visitor y Requested, que son claves\r\nfor\xE1neas
+    (FOREIGN KEY). Esto significa que esos campos hacen referencia a registros de\r\notras
+    tablas: 'visitor' apunta a un usuario existente en Users y 'requested' a un documento\r\nen
+    Documents. As\xED, se garantiza que no existan registros hu\xE9rfanos o con datos
+    que no\r\ncorrespondan a nada real en la base.\r\n\r\nOtros campos como TimesRequested,
+    LastAccess o IpAddress ayudan a registrar\r\ninformaci\xF3n detallada. Por ejemplo,
+    el n\xFAmero de veces que un documento ha sido\r\nconsultado, la fecha y hora
+    del \xFAltimo acceso (usando el tipo DATETIME), y la direcci\xF3n IP\r\ndel usuario
+    (almacenada como VARCHAR(45), lo suficiente para direcciones IPv6).\r\nAdem\xE1s,
+    se puede establecer un valor por defecto con DEFAULT, como TimesRequested =\r\n1,
+    para inicializar el campo autom\xE1ticamente si no se indica otro valor.\r\n\r\nPor
+    otro lado, la tabla UserPermission representa una relaci\xF3n entre los usuarios
+    y los\r\npermisos del sistema. Aqu\xED tambi\xE9n se aplica el concepto de clave
+    for\xE1nea, vinculando los\r\ncampos User y Permission con las tablas Users y
+    Permissions respectivamente. Esta tabla\r\nincluye adem\xE1s un campo AssignedAt
+    para saber cu\xE1ndo se otorg\xF3 el permiso, y\r\nRevokedAt (que puede ser NULL)
+    para indicar si el permiso fue retirado.\r\n\r\nUna regla importante en este
+    tipo de relaciones es evitar duplicados. Para eso, se usa una\r\nrestricci\xF3n
+    UNIQUE sobre las columnas (User, Permission), lo que impide que un mismo\r\nusuario
+    tenga asignado el mismo permiso m\xE1s de una vez.\r\n\r\nFinalmente, el proceso
+    se completa con comandos INSERT, que permiten agregar nuevos\r\nregistros. Por
+    ejemplo, se puede insertar el usuario de Mar\xEDa junto con su permiso de\r\nadministrador,
+    o registrar accesos simulados en la tabla Records con diferentes usuarios y\r\ndocumentos.\r\n\r\nCREATE
+    TABLE - Crear nuevas tablas\r\nSintaxis b\xE1sica:\r\nCREATE TABLE nombre_tabla
+    (\r\n    columna1 tipo_dato restricciones,\r\n    columna2 tipo_dato restricciones,\r\n   
+    CONSTRAINT nombre_restriccion FOREIGN KEY (columna) REFERENCES tabla(columna)\r\n);\r\n\r\nPRIMARY
+    KEY (Id) - Clave primaria\r\nIdentifica de forma \xFAnica cada registro en una
+    tabla.\r\nEjemplo: Id SERIAL PRIMARY KEY\r\n\r\nFOREIGN KEY - Clave for\xE1nea\r\nCrea
+    relaciones entre tablas; asegura que los valores correspondan a registros existentes.\r\nSintaxis:
+    CONSTRAINT fk_nombre FOREIGN KEY (columna_local) REFERENCES tabla_externa(columna)\r\n\r\nEjemplo:\r\nCONSTRAINT
+    fk_usr_visitor FOREIGN KEY (Visitor) REFERENCES Users(Id)\r\n\r\nREFERENCES -
+    Definir relaci\xF3n\r\nDefine a qu\xE9 tabla y campo apunta una clave for\xE1nea.\r\nEjemplo:
+    REFERENCES Users(Id), REFERENCES Documents(Id)\r\n\r\nDEFAULT - Valores por defecto\r\nAsigna
+    un valor autom\xE1tico cuando no se especifica otro.\r\nEjemplo: TimesRequested
+    INTEGER NOT NULL DEFAULT 1\r\n\r\nDATETIME - Fecha y hora\r\nTipo de dato para
+    guardar fecha y hora completa.\r\nUsado en: LastAccess, AssignedAt, RevokedAt\r\n\r\nVARCHAR(45)
+    - Texto variable\r\nTipo de texto de longitud variable.\r\nEjemplo: IpAddress
+    VARCHAR(45) -- Suficiente para IPv6\r\n\r\nNULL vs NOT NULL - Campos opcionales
+    u obligatorios\r\nNULL: Permite que un campo est\xE9 vac\xEDo (RevokedAt puede
+    ser NULL)\r\nNOT NULL: Campo obligatorio (Visitor INTEGER NOT NULL)\r\n\r\nUNIQUE
+    - Evitar duplicados\r\nRestringe los valores para evitar duplicados.\r\nEjemplo:
+    CONSTRAINT unique_user_permission UNIQUE (User, Permission)\r\n\r\nCONSTRAINT
+    - Definir reglas\r\nDefine reglas dentro de la tabla como claves for\xE1neas
+    o restricciones \xFAnicas.\r\nSintaxis: CONSTRAINT nombre_constraint TIPO_CONSTRAINT\r\n\r\nEJEMPLOS
+    PR\xC1CTICOS:\r\n\r\nTabla Records (Registros de acceso):\r\nCREATE TABLE Records
+    (\r\n    Id SERIAL PRIMARY KEY,\r\n    Visitor INTEGER NOT NULL,\r\n    Requested
+    INTEGER NOT NULL,\r\n    TimesRequested INTEGER NOT NULL DEFAULT 1,\r\n    LastAccess
+    DATETIME NOT NULL,\r\n    IpAddress VARCHAR(45) NOT NULL,\r\n    CONSTRAINT fk_usr_visitor
+    FOREIGN KEY (Visitor) REFERENCES Users(Id),\r\n    CONSTRAINT fk_doc_requested
+    FOREIGN KEY (Requested) REFERENCES Documents(Id)\r\n);\r\n\r\nTabla UserPermission
+    (Permisos de usuario):\r\nCREATE TABLE UserPermission (\r\n    Id SERIAL PRIMARY
+    KEY,\r\n    User INTEGER NOT NULL,\r\n    Permission INTEGER NOT NULL,\r\n   
+    AssignedAt DATETIME NOT NULL,\r\n    RevokedAt DATETIME NULL,\r\n    CONSTRAINT
+    fk_user FOREIGN KEY (User) REFERENCES Users(Id),\r\n    CONSTRAINT fk_permission
+    FOREIGN KEY (Permission) REFERENCES Permissions(Id),\r\n    CONSTRAINT unique_user_permission
+    UNIQUE (User, Permission)\r\n);\r\n\r\nINSERT INTO - Agregar registros relacionados\r\nSintaxis:
+    INSERT INTO tabla (columnas) VALUES (valores);\r\n\r\nEjemplos:\r\nINSERT INTO
+    UserPermission (User, Permission, AssignedAt) \r\nVALUES (1, 2, '2024-12-10 14:30:00');\r\n\r\nINSERT
+    INTO Records (Visitor, Requested, LastAccess, IpAddress) \r\nVALUES (1, 3, '2024-12-10
+    15:45:00', '192.168.1.100');\r\n\r\nBUENAS PR\xC1CTICAS RELACIONALES:\r\n- Siempre
+    definir claves primarias (PRIMARY KEY)\r\n- Usar claves for\xE1neas para mantener
+    integridad referencial\r\n- Aplicar restricciones UNIQUE donde sea necesario\r\n-
+    Definir valores DEFAULT para campos opcionales\r\n- Nombrar las restricciones
+    (CONSTRAINT) de forma descriptiva\r\n- Validar que las tablas referenciadas existan
+    antes de crear FKs"
+  unit4Content: "\r\n\r\n==================================================\r\nUNIDAD
+    4 - JOINS Y CONSULTAS AVANZADAS\r\n\r\nConsultas SQL con JOINs\r\n\r\nINNER JOIN
+    \u2014 Se usa para combinar registros que tienen coincidencias en ambas tablas.\r\n\u25CB
+    Ejemplo: INNER JOIN Users U ON R.Visitor = U.Id\r\n\u25CB Permite mostrar solo
+    los usuarios que s\xED tienen registros en Records.\r\n\r\nLEFT JOIN \u2014 Muestra
+    todos los registros de la tabla izquierda, aunque no tengan\r\ncoincidencias.\r\n\u25CB
+    Ejemplo: LEFT JOIN Records R ON U.Id = R.Visitor\r\n\u25CB Se usa para listar
+    todos los usuarios incluso si no solicitaron documentos.\r\n\r\nRIGHT JOIN \u2014
+    Incluye todos los registros de la tabla derecha, incluso si no tienen\r\ncorrespondencia
+    en la izquierda.\r\n\u25CB Ejemplo: RIGHT JOIN Records R ON U.Id = R.Visitor\r\n\u25CB
+    \xDAtil cuando se quiere mostrar todos los accesos aunque el usuario haya\r\nsido
+    eliminado.\r\n\r\nWHERE \u2014 Filtra resultados seg\xFAn condiciones.\r\n\u25CB
+    Ejemplo: WHERE U.PriorityLevel <= 2 AND D.HasPassword = true\r\n\u25CB Permite
+    seleccionar usuarios con prioridad alta y documentos protegidos.\r\n\r\nGROUP
+    BY y COUNT() \u2014 Agrupa registros y cuenta ocurrencias.\r\n\r\nEjemplo:\r\nSELECT
+    U.Name, COUNT(R.Id) AS totalSolicitudes\r\nFROM Records R\r\nINNER JOIN Users
+    U ON R.Visitor = U.Id\r\nGROUP BY U.Name;\r\n\u25CB Sirve para saber cu\xE1ntas
+    solicitudes hizo cada usuario.\r\n\r\nCOALESCE() \u2014 Reemplaza valores nulos
+    con un valor por defecto.\r\n\u25CB Ejemplo: COALESCE(SUM(R.TimesRequested),
+    0)\r\n\u25CB Permite mostrar 0 accesos si el usuario no tiene registros.\r\n\r\nComandos
+    de gesti\xF3n de tablas\r\n\r\nDROP TABLE \u2014 Elimina una tabla completa de
+    la base de datos.\r\n\u25CB Ejemplo: DROP TABLE BathroomCurtain;\r\n\r\nCREATE
+    TABLE \u2014 Crea una nueva tabla SQL.\r\n\r\nEjemplo:\r\nCREATE TABLE OLD_DATA
+    (\r\nId INTEGER PRIMARY KEY AUTOINCREMENT,\r\nName VARCHAR(50),\r\nStatus BOOL,\r\nCreatedAt
+    DATETIME NOT NULL\r\n);\r\n\u25CB Define tipos de datos, restricciones y claves
+    primarias.\r\n\r\nINSERT INTO \u2014 Inserta nuevos registros en una tabla.\r\n\r\nEjemplo:\r\nINSERT
+    INTO OLD_DATA (Name, Status, CreatedAt)\r\nVALUES ('Gatitos', true, '2025-10-20
+    10:00:00');\r\n\r\nConceptos avanzados de MongoDB\r\n\r\nSintaxis de creaci\xF3n
+    de colecci\xF3n (tabla equivalente en MongoDB):\r\n\u25CB MongoDB no usa CREATE
+    TABLE, las colecciones se crean\r\nautom\xE1ticamente al insertar datos.\r\n\r\nInsertar
+    m\xFAltiples documentos:\r\n\r\nComando:\r\ndb.old_data.insertMany([\r\n{ IsAlive:
+    true, OrganizationName: \"Arasaka\", ... },\r\n{ IsAlive: false, OrganizationName:
+    \"Gamefuna\", ... }\r\n])\r\n\u25CB Permite agregar varios registros en una sola
+    operaci\xF3n.\r\n\r\nConsultar todos los registros:\r\n\u25CB Comando: db.old_data.find()\r\n\r\nFiltrar
+    registros por condici\xF3n:\r\n\u25CB Comando: db.old_data.find({ IsAlive: true
+    })\r\n\u25CB Funciona similar al WHERE de SQL.\r\n\r\nEJEMPLOS PR\xC1CTICOS DE
+    JOINS:\r\n\r\n1. INNER JOIN b\xE1sico - Usuarios con documentos solicitados:\r\nSELECT
+    U.Name, U.LastName, D.Name, R.LastAccess \r\nFROM Records R \r\nINNER JOIN Users
+    U ON R.Visitor = U.Id \r\nINNER JOIN Documents D ON R.Requested = D.Id;\r\n\r\n2.
+    LEFT JOIN - Todos los usuarios (con o sin actividad):\r\nSELECT U.Name, R.LastAccess
+    \r\nFROM Users U \r\nLEFT JOIN Records R ON U.Id = R.Visitor;\r\n\r\n3. RIGHT
+    JOIN - Todos los registros (aunque usuario eliminado):\r\nSELECT R.Id, U.Name,
+    D.Name, R.LastAccess \r\nFROM Users U \r\nRIGHT JOIN Records R ON U.Id = R.Visitor
+    \r\nINNER JOIN Documents D ON R.Requested = D.Id;\r\n\r\n4. JOIN con agregaci\xF3n
+    - Conteo de solicitudes:\r\nSELECT U.Name, COUNT(R.Id) AS totalSolicitudes \r\nFROM
+    Records R \r\nINNER JOIN Users U ON R.Visitor = U.Id \r\nGROUP BY U.Name;\r\n\r\n5.
+    COALESCE para manejo de NULLs:\r\nSELECT U.Name, COALESCE(SUM(R.TimesRequested),
+    0) AS totalAccesos \r\nFROM Users U \r\nLEFT JOIN Records R ON U.Id = R.Visitor
+    \r\nGROUP BY U.Name;\r\n\r\nDIFERENCIAS SQL vs MongoDB:\r\n- SQL usa CREATE TABLE
+    / MongoDB crea colecciones autom\xE1ticamente\r\n- SQL usa SELECT / MongoDB usa
+    db.collection.find()\r\n- SQL usa WHERE / MongoDB usa filtros JSON { campo: valor
+    }\r\n- SQL usa INSERT INTO / MongoDB usa insertOne() o insertMany()\r\n\r\nBUENAS
+    PR\xC1CTICAS AVANZADAS:\r\n- Usar alias (U, R, D) para tablas en JOINs complejos\r\n-
+    Aplicar COALESCE para manejar valores NULL en agregaciones\r\n- Combinar LEFT/RIGHT
+    JOIN seg\xFAn qu\xE9 datos preservar\r\n- Usar GROUP BY con funciones agregadas
+    para an\xE1lisis\r\n- Nombrar columnas calculadas con AS (totalSolicitudes, totalAccesos)"
   soundRoom: {fileID: 360971481}
 --- !u!1 &1110777478
 GameObject:
@@ -29487,6 +29674,7 @@ MonoBehaviour:
   consoleInput: {fileID: 940246574}
   consoleOutputText: {fileID: 2064138355}
   consolePanel: {fileID: 773706720}
+  fadePanel: {fileID: 1611065968163805924, guid: 0c4abeec20ac5ed4bbcb867dae7dea88, type: 3}
   fuseboxReference: {fileID: 247960669}
   sqlProblems: []
 --- !u!1 &1709101072

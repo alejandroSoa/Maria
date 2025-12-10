@@ -390,7 +390,7 @@ public class ConsoleManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Maneja la confirmación inicial
+    /// Maneja la confirmación inicial o después de correcciones
     /// </summary>
     private void HandleConfirmationInput(string input)
     {
@@ -402,15 +402,57 @@ public class ConsoleManager : MonoBehaviour
             if (consoleOutputText != null)
             {
                 consoleOutputText.text = "[System]: CONFIRM recibido.\n";
-                consoleOutputText.text += "[System]: Iniciando validación de tablas...\n";
+                consoleOutputText.text += "[System]: Verificando configuración de fusibles...\n";
             }
             
-            // Bloquear la caja de fusibles
+            // Validar fusibles antes de bloquear
             if (fuseboxReference != null)
             {
+                bool allTablesValid = true;
+                string[] tableNames = fuseboxReference.GetAllTableNames();
+                
+                foreach (string tableName in tableNames)
+                {
+                    if (!fuseboxReference.IsTableValid(tableName))
+                    {
+                        allTablesValid = false;
+                        break;
+                    }
+                }
+                
+                if (!allTablesValid)
+                {
+                    // Fusibles incorrectos - no continuar
+                    if (consoleOutputText != null)
+                    {
+                        consoleOutputText.text += "[ERROR]: Configuración de fusibles incorrecta.\n";
+                        consoleOutputText.text += "[System]: Corrige los fusibles antes de confirmar.\n";
+                    }
+                    return;
+                }
+                
+                // Fusibles correctos - bloquear la caja
                 fuseboxReference.LockFusebox();
             }
             
+            if (consoleOutputText != null)
+            {
+                consoleOutputText.text += "[System]: ✓ Fusibles correctos. Caja bloqueada.\n";
+            }
+            
+            // Si veníamos de un estado bloqueado (corrección), volver al problema
+            if (currentProblemIndex > 0 || currentScene != 2)
+            {
+                currentState = ConsoleState.QueryMode;
+                if (consoleOutputText != null)
+                {
+                    consoleOutputText.text += "[System]: Continuando desde el problema actual...\n\n";
+                }
+                ShowCurrentProblem();
+                return;
+            }
+            
+            // Validación inicial
             currentState = ConsoleState.ValidatingTables;
             
             // Si estamos en escena 2 y las tablas están bien, terminar el nivel
@@ -702,9 +744,13 @@ public class ConsoleManager : MonoBehaviour
             {
                 consoleOutputText.text += $"✗ {currentProblem.errorMessage}\n";
                 consoleOutputText.text += "[System]: ERROR - Respuesta incorrecta.\n";
+                
+                // Mostrar respuesta encriptada (solo algunos caracteres visibles)
+                string encryptedQuery = EncryptQuery(currentProblem.expectedQuery);
+                consoleOutputText.text += $"[System]: Prueba: {encryptedQuery}\n";
             }
             
-            // Aplicar sanción: remover fusibles aleatorios de TODAS las tablas
+            // Aplicar ERROR: remover fusibles aleatorios de TODAS las tablas
             if (fuseboxReference != null)
             {
                 int fusesToRemove = Random.Range(1, 6); // Remover entre 1 y 5 fusibles en total
@@ -712,14 +758,13 @@ public class ConsoleManager : MonoBehaviour
                 
                 if (consoleOutputText != null)
                 {
-                    consoleOutputText.text += $"\n[SANCIÓN]: {fusesToRemove} fusibles removidos por error.\n";
-                    consoleOutputText.text += "[System]: Sobrecarga detectada. Debes reconfigurar los fusibles faltantes.\n";
-                    consoleOutputText.text += "[System]: Corrige los fusibles y escribe 'restart' para reintentar.\n";
+                    consoleOutputText.text += $"\n[ERROR]: Sobrecarga detectada. {fusesToRemove} fusibles desconectados.\n";
+                    consoleOutputText.text += "[System]: Debes reconfigurar los fusibles faltantes.\n";
+                    consoleOutputText.text += "[System]: Escribe 'restart' para desbloquear la caja y reintentar.\n";
                     consoleOutputText.text += $"[System]: Volverás al PROBLEMA {currentProblemIndex + 1}.\n";
                 }
                 
-                // Desbloquear fusebox para que el jugador pueda corregir
-                fuseboxReference.UnlockFusebox();
+                // NO desbloquear la caja - el jugador debe escribir restart
             }
             
             // Cambiar a estado bloqueado pero NO avanzar el índice del problema
@@ -730,57 +775,59 @@ public class ConsoleManager : MonoBehaviour
     
     /// <summary>
     /// Permite reintentar la validación después de corregir errores
+    /// Desbloquea la caja de fusibles para que el jugador pueda corregir
     /// </summary>
     public void RetryValidation()
     {
         if (currentState == ConsoleState.Locked)
         {
-            if (consoleOutputText != null)
-            {
-                consoleOutputText.text = "[System]: Verificando configuración de fusibles...\n";
-            }
-            
-            // Validar que la caja de fusibles esté correctamente configurada
+            // PRIMERO desbloquear la caja cuando el usuario escribe restart
             if (fuseboxReference != null)
             {
-                bool allTablesValid = true;
-                string[] tableNames = fuseboxReference.GetAllTableNames();
-                
-                foreach (string tableName in tableNames)
-                {
-                    if (!fuseboxReference.IsTableValid(tableName))
-                    {
-                        allTablesValid = false;
-                        break;
-                    }
-                }
-                
-                if (allTablesValid)
-                {
-                    // Fusibles correctos - bloquear y volver al problema actual
-                    fuseboxReference.LockFusebox();
-                    
-                    if (consoleOutputText != null)
-                    {
-                        consoleOutputText.text += "[System]: ✓ Fusibles restablecidos correctamente.\n";
-                        consoleOutputText.text += "[System]: Continuando desde el problema actual...\n\n";
-                    }
-                    
-                    currentState = ConsoleState.QueryMode;
-                    ShowCurrentProblem();
-                }
-                else
-                {
-                    // Fusibles aún incorrectos
-                    if (consoleOutputText != null)
-                    {
-                        consoleOutputText.text += "[ERROR]: La configuración de fusibles aún tiene errores.\n";
-                        consoleOutputText.text += "[System]: Por favor corrige todos los fusibles antes de continuar.\n";
-                        consoleOutputText.text += "[System]: Escribe 'restart' cuando esté listo.\n";
-                    }
-                }
+                fuseboxReference.UnlockFusebox();
+            }
+            
+            if (consoleOutputText != null)
+            {
+                consoleOutputText.text = "[System]: Caja de fusibles desbloqueada.\n";
+                consoleOutputText.text += "[System]: Corrige los fusibles faltantes.\n";
+                consoleOutputText.text += "[System]: Escribe 'confirm' cuando hayas terminado de corregir.\n";
+            }
+            
+            // Cambiar a estado de espera de confirmación
+            currentState = ConsoleState.AwaitingConfirmation;
+        }
+    }
+    
+    /// <summary>
+    /// Encripta una query mostrando solo algunos caracteres aleatorios
+    /// </summary>
+    private string EncryptQuery(string query)
+    {
+        if (string.IsNullOrEmpty(query)) return "[ENCRYPTED]";
+        
+        int visibleChars = Mathf.Max(3, query.Length / 5); // Mostrar ~20% de caracteres
+        char[] encrypted = new char[query.Length];
+        
+        // Llenar con caracteres de encriptación
+        for (int i = 0; i < encrypted.Length; i++)
+        {
+            encrypted[i] = '█';
+        }
+        
+        // Revelar algunos caracteres aleatorios
+        System.Collections.Generic.HashSet<int> revealedIndices = new System.Collections.Generic.HashSet<int>();
+        while (revealedIndices.Count < visibleChars)
+        {
+            int randomIndex = Random.Range(0, query.Length);
+            if (!revealedIndices.Contains(randomIndex))
+            {
+                encrypted[randomIndex] = query[randomIndex];
+                revealedIndices.Add(randomIndex);
             }
         }
+        
+        return new string(encrypted);
     }
     
     /// <summary>

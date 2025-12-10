@@ -19898,38 +19898,38 @@ MonoBehaviour:
     \u2192 datetime\r\nCreatedAt \u2192 datetime\r\nUpdatedAt \u2192 datetime"
   unit2Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     2 - CONSULTAS SELECT
 
-    
+
 
     hola hola stop fighting'
   unit3Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     3 - OPERACIONES DML (INSERT, UPDATE, DELETE)
 
-    
+
 
     wazaaaaaaaaaaaa'
   unit4Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     4 - JOINS Y CONSULTAS AVANZADAS
 
-    
+
 
     memin pelon'
   soundRoom: {fileID: 360971481}
@@ -29305,6 +29305,7 @@ MonoBehaviour:
   consoleInput: {fileID: 940246574}
   consoleOutputText: {fileID: 2064138355}
   consolePanel: {fileID: 773706720}
+  fadePanel: {fileID: 1611065968163805924, guid: 0c4abeec20ac5ed4bbcb867dae7dea88, type: 3}
   fuseboxReference: {fileID: 247960669}
   sqlProblems: []
 --- !u!1 &1709101072
