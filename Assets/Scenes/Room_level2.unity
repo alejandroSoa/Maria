@@ -1975,7 +1975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &108282068
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9470,6 +9470,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424567650}
   m_CullTransparentMesh: 1
+--- !u!1 &426730838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426730839}
+  - component: {fileID: 426730840}
+  m_Layer: 0
+  m_Name: CameraActions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426730839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426730838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1650610934}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426730840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426730838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75c336108df2754cad0b3c8e01f812b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraActions
+  targetCajaFusibles: {fileID: 0}
+  cam: {fileID: 0}
+  A1E2: {fileID: 0}
+  fuseBox: {fileID: 0}
+  bathroomTable: {fileID: 0}
+  fuseBoxWithFuses: {fileID: 0}
+  fuseBoxWithNoFuses: {fileID: 0}
+  desencriptadoraRoom: {fileID: 0}
+  mariaNetRoom: {fileID: 0}
+  desencriptadora: {fileID: 0}
+  interfazMariaNet: {fileID: 0}
+  initialRoom: {fileID: 0}
+  Epilogo: {fileID: 0}
+  maria: {fileID: 170384707}
+  zoomOffsetY: -2
 --- !u!1 &435373501
 GameObject:
   m_ObjectHideFlags: 0
@@ -13549,7 +13608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &689979783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20216,38 +20275,38 @@ MonoBehaviour:
     \u2192 datetime\r\nCreatedAt \u2192 datetime\r\nUpdatedAt \u2192 datetime"
   unit2Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     2 - CONSULTAS SELECT
 
-    
+
 
     hola hola stop fighting'
   unit3Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     3 - OPERACIONES DML (INSERT, UPDATE, DELETE)
 
-    
+
 
     wazaaaaaaaaaaaa'
   unit4Content: '
 
-    
+
 
     ==================================================
 
     UNIDAD
     4 - JOINS Y CONSULTAS AVANZADAS
 
-    
+
 
     memin pelon'
   soundRoom: {fileID: 360971481}
@@ -28270,7 +28329,8 @@ Transform:
   m_LocalPosition: {x: 1.37, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 426730839}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1650610935
@@ -29548,6 +29608,7 @@ MonoBehaviour:
   consoleInput: {fileID: 940246574}
   consoleOutputText: {fileID: 2064138355}
   consolePanel: {fileID: 773706720}
+  fadePanel: {fileID: 0}
   fuseboxReference: {fileID: 247960669}
   sqlProblems: []
 --- !u!1 &1709101072

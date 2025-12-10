@@ -39,10 +39,24 @@ public class CameraActions : MonoBehaviour
             cam = Camera.main;
             if (cam == null)
             {
-                Debug.LogError("No se encontr� la c�mara principal.");
+                Debug.LogError("No se encontró la cámara principal.");
                 return;
             }
         }
+        
+        // Activar Maria automáticamente si estamos en un nivel mayor a 1
+        int currentLevel = GetCurrentLevel();
+        Debug.Log($"[CameraActions] Nivel detectado: {currentLevel}, Escena: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
+        
+        if (currentLevel > 1)
+        {
+            ActionManager.showMaria = true;
+            Debug.Log($"Maria activada automáticamente para nivel {currentLevel}");
+        } else {
+            ActionManager.showMaria = false;
+            Debug.Log($"Maria NO activada - Nivel {currentLevel}");
+        }
+        
         if (ActionManager.playing)
         {
             viewManager.Instance.DeactivateView(initialRoom);
@@ -180,5 +194,71 @@ public class CameraActions : MonoBehaviour
         }
         cam.transform.position = targetPos;
         cam.orthographicSize = targetSize;
+    }
+
+    private int GetCurrentLevel()
+    {
+        // Primero intentar desde la escena actual
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        
+        // Detectar formato "Level_X"
+        if (currentSceneName.StartsWith("Level_"))
+        {
+            string[] parts = currentSceneName.Split('_');
+            if (parts.Length > 1 && int.TryParse(parts[1], out int sceneLevel))
+            {
+                if (sceneLevel >= 1 && sceneLevel <= 4)
+                {
+                    return sceneLevel;
+                }
+            }
+        }
+        
+        // Detectar formato "Room_levelX" o "room_levelX"
+        if (currentSceneName.ToLower().Contains("level"))
+        {
+            // Buscar el número después de "level"
+            int levelIndex = currentSceneName.ToLower().IndexOf("level") + 5;
+            if (levelIndex < currentSceneName.Length)
+            {
+                string numberPart = "";
+                for (int i = levelIndex; i < currentSceneName.Length; i++)
+                {
+                    if (char.IsDigit(currentSceneName[i]))
+                    {
+                        numberPart += currentSceneName[i];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                
+                if (int.TryParse(numberPart, out int levelNum))
+                {
+                    if (levelNum >= 1 && levelNum <= 4)
+                    {
+                        return levelNum;
+                    }
+                }
+            }
+        }
+        
+        // Si no, usar PlayerPrefs como respaldo
+        string selectedLevel = PlayerPrefs.GetString("selectedlevel", "Level_1");
+        
+        if (selectedLevel.Contains("_"))
+        {
+            string[] parts = selectedLevel.Split('_');
+            if (parts.Length > 1 && int.TryParse(parts[1], out int levelNum))
+            {
+                if (levelNum >= 1 && levelNum <= 4)
+                {
+                    return levelNum;
+                }
+            }
+        }
+        
+        return 1;
     }
 }
