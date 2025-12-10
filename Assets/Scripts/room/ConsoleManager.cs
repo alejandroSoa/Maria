@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ConsoleManager : MonoBehaviour
@@ -10,6 +12,7 @@ public class ConsoleManager : MonoBehaviour
     [SerializeField] private TMP_InputField consoleInput;
     [SerializeField] private TMP_Text consoleOutputText;
     [SerializeField] private GameObject consolePanel;
+    [SerializeField] private GameObject fadePanel; 
     
     [Header("Referencias del Sistema")]
     [SerializeField] private Fusebox fuseboxReference;
@@ -294,14 +297,16 @@ public class ConsoleManager : MonoBehaviour
         
         if (consoleOutputText != null)
         {
-            // Si estamos en la escena 1, mostrar que todavía no se puede mover acá
+            // Si estamos en la escena 2 (Room), preguntar si desea conectar la caja de fusibles
             if (currentScene == 2)
             {
-                consoleOutputText.text = "[System]: Iniciando...\n";
-                consoleOutputText.text += "[System]: .\n";
-                consoleOutputText.text += "[System]: .\n";
-                consoleOutputText.text += "[System]: ERROR: Señal no establecida, se requiere primero una conexión estable.\n";
-                consoleOutputText.text += "[System]: Restablece la conexión en la caja de fusibles primero para continuar.\n";
+                consoleOutputText.text = "[System]: Iniciando protocolo de conexión de caja de fusibles...\n";
+                consoleOutputText.text += "[System]: Esta acción validará la configuración de fusibles.\n";
+                consoleOutputText.text += "[System]: ¿Desea conectar la caja de fusibles?\n\n";
+                consoleOutputText.text += "> CONFIRM: Continuar con la conexión\n";
+                consoleOutputText.text += "> DENY: Cancelar operación\n\n";
+                consoleOutputText.text += "Esperando respuesta...";
+                currentState = ConsoleState.AwaitingConfirmation;
                 return;
             }
             
@@ -391,6 +396,9 @@ public class ConsoleManager : MonoBehaviour
     {
         if (input == "confirm")
         {
+            // Verificar si estamos en la escena 2
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            
             if (consoleOutputText != null)
             {
                 consoleOutputText.text = "[System]: CONFIRM recibido.\n";
@@ -404,7 +412,16 @@ public class ConsoleManager : MonoBehaviour
             }
             
             currentState = ConsoleState.ValidatingTables;
-            StartTableValidation();
+            
+            // Si estamos en escena 2 y las tablas están bien, terminar el nivel
+            if (currentScene == 2)
+            {
+                StartTableValidationForScene2();
+            }
+            else
+            {
+                StartTableValidation();
+            }
         }
         else if (input == "deny")
         {
@@ -467,6 +484,70 @@ public class ConsoleManager : MonoBehaviour
         if (allTablesValid)
         {
             OnAllTablesValid();
+        }
+        else
+        {
+            OnTablesInvalid();
+        }
+    }
+    
+    /// <summary>
+    /// Validación especial para la escena 2 que termina el nivel si todo está correcto
+    /// </summary>
+    private void StartTableValidationForScene2()
+    {
+        if (fuseboxReference == null)
+        {
+            if (consoleOutputText != null)
+            {
+                consoleOutputText.text += "[ERROR]: No se encontró referencia a Fusebox\n";
+            }
+            OnTablesInvalid();
+            return;
+        }
+        
+        bool allTablesValid = true;
+        string validationReport = "";
+        
+        // Obtener todas las tablas disponibles
+        string[] tableNames = fuseboxReference.GetAllTableNames();
+        
+        // Validar cada tabla
+        foreach (string tableName in tableNames)
+        {
+            bool isValid = fuseboxReference.IsTableValid(tableName);
+            validationReport += $"[System]: Tabla {tableName}: {(isValid ? "VÁLIDA" : "INVÁLIDA")}\n";
+            
+            if (!isValid)
+            {
+                allTablesValid = false;
+            }
+        }
+        
+        if (consoleOutputText != null)
+        {
+            consoleOutputText.text += validationReport;
+        }
+        
+        if (allTablesValid)
+        {
+            // Si todas las tablas son válidas en escena 2, completar el nivel
+            if (consoleOutputText != null)
+            {
+                consoleOutputText.text += "\n[System]: ¡VALIDACIÓN EXITOSA!\n";
+                consoleOutputText.text += "[System]: Todas las tablas configuradas correctamente.\n";
+                consoleOutputText.text += "[System]: Conexión de caja de fusibles establecida.\n";
+                consoleOutputText.text += "[System]: Nivel completado. Preparando transición...\n";
+            }
+            
+            // Desbloquear fusebox para futuros niveles
+            if (fuseboxReference != null)
+            {
+                fuseboxReference.UnlockFusebox();
+            }
+            
+            // Terminar nivel con fade
+            FadeToBlackAndLoadScene(2f);
         }
         else
         {
@@ -606,9 +687,12 @@ public class ConsoleManager : MonoBehaviour
                 // Completó todos los problemas
                 if (consoleOutputText != null)
                 {
-                    consoleOutputText.text += "\n🎉 ¡FELICIDADES! Has completado todos los problemas SQL.\n";
-                    consoleOutputText.text += "Puedes cerrar la consola.\n";
+                    consoleOutputText.text += "\n[System]: ¡FELICIDADES! Has resuelto los problemas.\n";
+                    consoleOutputText.text += "Apagando luces...\n";
                 }
+                
+                // Iniciar el fade a negro y cargar la escena 0
+                FadeToBlackAndLoadScene(3f);
             }
         }
         else
@@ -620,29 +704,21 @@ public class ConsoleManager : MonoBehaviour
                 consoleOutputText.text += "[System]: ERROR - Respuesta incorrecta.\n";
             }
             
-            // Desbloquear fusebox y quitar fusibles como penalización
+            // Aplicar sanción: remover fusibles aleatorios
             if (fuseboxReference != null)
             {
-                fuseboxReference.UnlockFusebox();
-                
-                // Determinar cuántos fusibles eliminar (entre 2 y 4)
-                int fusesToRemove = Random.Range(2, 5);
-                
-                if (consoleOutputText != null)
-                {
-                    consoleOutputText.text += $"[System]: Eliminando {fusesToRemove} fusibles como penalización...\n";
-                }
-                
-                // Remover fusibles aleatoriamente
+                int fusesToRemove = Random.Range(1, 3); // Remover entre 1 y 2 fusibles
                 fuseboxReference.RemoveRandomFuses(fusesToRemove);
                 
                 if (consoleOutputText != null)
                 {
-                    consoleOutputText.text += "[System]: Complete los fusibles faltantes.\n";
-                    consoleOutputText.text += "[System]: Escriba 'reintentar' para volver a validar:\n";
+                    consoleOutputText.text += $"\n[Error]: sobrecarga en fusibles, porfavor reinsertelos.\n";
+                    consoleOutputText.text += "[System]: Debes reconfigurar los fusibles faltantes.\n";
+                    consoleOutputText.text += "[System]: Desbloquea la fusebox, corrige los errores y escribe 'restart' para reintentar.\n";
                 }
                 
-                Debug.Log("Query incorrecta - Fusibles removidos como penalización");
+                // Desbloquear fusebox para que el jugador pueda corregir
+                fuseboxReference.UnlockFusebox();
             }
             
             // Cambiar a estado bloqueado para requerir revalidación
@@ -665,5 +741,59 @@ public class ConsoleManager : MonoBehaviour
             
             ShowWelcomeMessage();
         }
+    }
+    
+    /// <summary>
+    /// Activa un panel transparente y lo hace aparecer gradualmente hasta negro, luego carga la escena 0
+    /// </summary>
+    /// <param name="fadeDuration">Duración del fade en segundos</param>
+    public void FadeToBlackAndLoadScene(float fadeDuration = 2f)
+    {
+        StartCoroutine(FadeToBlackCoroutine(fadeDuration));
+    }
+    
+    private IEnumerator FadeToBlackCoroutine(float duration)
+    {
+        if (fadePanel == null)
+        {
+            Debug.LogError("fadePanel no está asignado en el Inspector!");
+            yield break;
+        }
+        
+        // Activar el panel
+        fadePanel.SetActive(true);
+        
+        // Obtener el componente Image del panel
+        Image panelImage = fadePanel.GetComponent<Image>();
+        if (panelImage == null)
+        {
+            Debug.LogError("fadePanel no tiene un componente Image!");
+            yield break;
+        }
+        
+        Color startColor = new Color(0, 0, 0, 0);
+        Color endColor = new Color(0, 0, 0, 1); 
+        
+        panelImage.color = startColor;
+        
+        float elapsed = 0f;
+        
+        // Gradualmente incrementar el alpha de 0 a 1
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float progress = elapsed / duration;
+            
+            // Interpolar entre transparente y opaco
+            panelImage.color = Color.Lerp(startColor, endColor, progress);
+            
+            yield return null;
+        }
+        
+        // Asegurar que el color final sea completamente opaco
+        panelImage.color = endColor;
+        
+        // Cargar la escena 0
+        SceneManager.LoadScene(0);
     }
 }

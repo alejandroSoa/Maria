@@ -13,7 +13,7 @@ public class PipeMovement : MonoBehaviour
     [SerializeField] private float destroyX = -12f;
     
     [Tooltip("Posición X donde se cuenta que el pájaro pasó la tubería")]
-    [SerializeField] private float scorePositionX = 5f;
+    [SerializeField] private float scorePositionX = -3f;
 
     private bool hasBeenPassed = false;
     private FlappyBirdGameManager gameManager;

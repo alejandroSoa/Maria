@@ -16,10 +16,15 @@ public class Pausa : MonoBehaviour
     }
 
     /// <summary>
-    /// Carga la escena Title (escena 0)
+    /// Carga la escena Title (menú de selección de niveles)
     /// </summary>
     public void LoadTitleScene()
     {
-        SceneManager.LoadScene(0);
+        // Limpiar el nivel seleccionado para que no se quede guardado
+        PlayerPrefs.DeleteKey("selectedlevel");
+        PlayerPrefs.Save();
+        
+        // Cargar la escena Title (escena 2 según EditorBuildSettings)
+        SceneManager.LoadScene("Title");
     }
 }

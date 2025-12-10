@@ -322,3 +322,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PipeMovement
   moveSpeed: 3
   destroyX: -12
+  scorePositionX: -3

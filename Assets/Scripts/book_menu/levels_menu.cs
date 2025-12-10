@@ -96,9 +96,8 @@ public class levels_menu : MonoBehaviour
 
     }
 
-
     void Update()
     {
-        UpdateLevelContent();
+         UpdateLevelContent();
     }
 }

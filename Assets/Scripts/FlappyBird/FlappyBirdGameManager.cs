@@ -15,7 +15,7 @@ public class FlappyBirdGameManager : MonoBehaviour
     [SerializeField] private PipeSpawner pipeSpawner;
     
     [Header("Configuración de Puntuación")]
-    [SerializeField] private int pipesPerCoin = 10; // Tuberías por moneda
+    [SerializeField] private int pipesPerCoin = 1; // Tuberías por moneda
     [SerializeField] private TMPro.TextMeshProUGUI pipeCounterText; // Texto UI para mostrar contador
 
     private bool isGameOver = false;
@@ -80,7 +80,6 @@ public class FlappyBirdGameManager : MonoBehaviour
         if (isGameOver) return;
         
         isGameOver = true;
-        Debug.Log("Saliendo de Flappy Bird. Regresando a Room...");
         
         // Detener el spawn de tuberías
         if (pipeSpawner != null)
@@ -113,7 +112,6 @@ public class FlappyBirdGameManager : MonoBehaviour
         if (pipesPassed % pipesPerCoin == 0)
         {
             Inventory.AddDecryptedCoin();
-            Debug.Log($"¡Moneda obtenida! Tuberías: {pipesPassed}");
         }
         
         // Actualizar contador en UI
@@ -128,11 +126,9 @@ public class FlappyBirdGameManager : MonoBehaviour
         if (pipeCounterText != null)
         {
             pipeCounterText.text = pipesPassed.ToString();
-            Debug.Log($"UI actualizada: {pipesPassed}");
         }
         else
         {
-            Debug.LogWarning("pipeCounterText no está asignado!");
         }
     }
     

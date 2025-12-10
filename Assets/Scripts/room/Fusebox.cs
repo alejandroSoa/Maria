@@ -38,6 +38,18 @@ public class Fusebox : MonoBehaviour
     
     void Start()
     {
+        int currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        if (currentScene == 2)
+        {
+            // En escena 2, limpiar todos los fusibles para que el jugador los configure
+            ClearAllFuses();
+        }
+        else
+        {
+            // En otras escenas, cargar fusibles completos automáticamente
+            InitializeDefaultFuses();
+        }
+        
         GenerateFuseboxSlots();
         SetupUI();
     }
@@ -260,7 +272,7 @@ public class Fusebox : MonoBehaviour
             {
                 { "Id", 2000 },
                 { "Name", 100 },
-                { "HasPassword", 1 },
+                { "HasPassword", 0 },
                 { "Password", 100 },
                 { "FileType", 20 },
                 { "FileSize", 500 }
@@ -1413,5 +1425,64 @@ public class Fusebox : MonoBehaviour
         
         return true;
     }
+    
+    /// <summary>
+    /// Inicializa todos los fusibles con sus valores por defecto para pruebas
+    /// </summary>
+    private void InitializeDefaultFuses()
+    {
+        Debug.Log("=== Inicializando fusibles por defecto ===");
+        
+        // Recorrer todas las tablas
+        foreach (var table in DatabaseTables)
+        {
+            foreach (var column in table.columns)
+            {
+                string fieldKey = GetFieldKey(table.tableName, column.Key);
+                string expectedType = table.expectedTypes[column.Key];
+                int expectedSize = table.expectedSizes[column.Key];
+                
+                // Asignar tipo de dato
+                PlayerPrefs.SetString(ASSIGNMENT_KEY_PREFIX + fieldKey, expectedType);
+                
+                // Asignar tolerancia si aplica
+                if (expectedType == "INT" || expectedType == "VARCHAR")
+                {
+                    PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldKey, expectedSize);
+                    PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldKey, expectedSize);
+                }
+                
+                Debug.Log($"Fusible inicializado: {fieldKey} -> {expectedType} ({expectedSize})");
+            }
+        }
+        
+        PlayerPrefs.Save();
+        Debug.Log("=== Todos los fusibles inicializados correctamente ===");
+    }
+    
+    /// <summary>
+    /// Limpia todos los fusibles de todas las tablas (los deja sin asignar)
+    /// </summary>
+    private void ClearAllFuses()
+    {
+        
+        // Recorrer todas las tablas
+        foreach (var table in DatabaseTables)
+        {
+            foreach (var column in table.columns)
+            {
+                string fieldKey = GetFieldKey(table.tableName, column.Key);
+                
+                // Eliminar asignaciones
+                PlayerPrefs.DeleteKey(ASSIGNMENT_KEY_PREFIX + fieldKey);
+                PlayerPrefs.DeleteKey(TOLERANCE_MIN_KEY_PREFIX + fieldKey);
+                PlayerPrefs.DeleteKey(TOLERANCE_MAX_KEY_PREFIX + fieldKey);
+                
+            }
+        }
+        
+        PlayerPrefs.Save();
+    }
 
 }
+
