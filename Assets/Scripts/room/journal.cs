@@ -117,6 +117,7 @@ Sintaxis básica:
 SELECT columnas FROM tabla WHERE condiciones ORDER BY campo;
 
 Ejemplos prácticos:
+
 SELECT * FROM Users;
 -- Obtiene todos los registros de Users
 
