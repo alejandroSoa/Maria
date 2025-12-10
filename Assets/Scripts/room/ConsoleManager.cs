@@ -733,6 +733,8 @@ public class ConsoleManager : MonoBehaviour
                     consoleOutputText.text += "Apagando luces...\n";
                 }
                 
+                Debug.Log("Completó todos los problemas SQL. Iniciando fade a menú principal...");
+                
                 // Iniciar el fade a negro y cargar la escena 0
                 FadeToBlackAndLoadScene(3f);
             }
@@ -806,7 +808,7 @@ public class ConsoleManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(query)) return "[ENCRYPTED]";
         
-        int visibleChars = Mathf.Max(3, query.Length / 5); // Mostrar ~20% de caracteres
+        int visibleChars = Mathf.Max(3, (query.Length * 70) / 100); // Mostrar ~70% de caracteres
         char[] encrypted = new char[query.Length];
         
         // Llenar con caracteres de encriptación
@@ -841,20 +843,29 @@ public class ConsoleManager : MonoBehaviour
     
     private IEnumerator FadeToBlackCoroutine(float duration)
     {
+        Debug.Log($"FadeToBlackCoroutine iniciado. Duración: {duration}s");
+        
         if (fadePanel == null)
         {
             Debug.LogError("fadePanel no está asignado en el Inspector!");
+            // Intentar cargar la escena de todas formas
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Title");
             yield break;
         }
         
         // Activar el panel
         fadePanel.SetActive(true);
+        Debug.Log("fadePanel activado");
         
         // Obtener el componente Image del panel
         Image panelImage = fadePanel.GetComponent<Image>();
         if (panelImage == null)
         {
             Debug.LogError("fadePanel no tiene un componente Image!");
+            // Intentar cargar la escena de todas formas
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Title");
             yield break;
         }
         
@@ -880,7 +891,9 @@ public class ConsoleManager : MonoBehaviour
         // Asegurar que el color final sea completamente opaco
         panelImage.color = endColor;
         
-        // Cargar la escena 0
-        SceneManager.LoadScene(0);
+        Debug.Log("Fade completado. Cargando escena Title (Menú Principal)...");
+        
+        // Cargar la escena Title
+        SceneManager.LoadScene("Title");
     }
 }
