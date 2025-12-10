@@ -261,10 +261,14 @@ public class ConsoleManager : MonoBehaviour
         
         if (consoleOutputText != null)
         {
-            // Si estamos en la escena 1, mostrar solo "Hola"
+            // Si estamos en la escena 1, mostrar que todavía no se puede mover acá
             if (currentScene == 1)
             {
-                consoleOutputText.text = "Hola";
+                consoleOutputText.text = "[System]: Iniciando...\n";
+                consoleOutputText.text = "[System]: .\n";
+                consoleOutputText.text = "[System]: .\n";
+                consoleOutputText.text += "[System]: ERROR: Señal no establecida, se requiere primero una conexión estable.\n";
+                consoleOutputText.text += "[System]: Restablece la conexión en la caja de fusibles primero para continuar.\n";
                 return;
             }
             
