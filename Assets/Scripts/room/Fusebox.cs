@@ -707,9 +707,7 @@ public class Fusebox : MonoBehaviour
     public void OnConsoleCommandEntered(string command)
     {
         if (string.IsNullOrEmpty(command)) return;
-        
-        Debug.Log($"Comando ingresado: {command}");
-        
+                
         // Si el comando es "exit", cancelar la selección
         if (command.ToLower() == "exit")
         {
@@ -794,8 +792,7 @@ public class Fusebox : MonoBehaviour
         AssignFuseToField(currentFieldBeingAssigned, selectedFuseType, tolerance);
         ShowValidationMessage(true, "Fusible asignado correctamente");
         
-        // Cerrar inmediatamente
-        CloseAssignmentProcess();
+        // El cierre se hace automáticamente después del delay en ShowValidationMessage
     }
     
     /// <summary>
@@ -820,8 +817,12 @@ public class Fusebox : MonoBehaviour
         // Solo guardar tolerancia si el tipo la requiere
         if (fuseType == "INT" || fuseType == "VARCHAR")
         {
-            PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, tolerance);
-            PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldName, tolerance);
+            // El valor ingresado es el máximo, el mínimo es el 50% del máximo
+            int toleranceMin = Mathf.FloorToInt(tolerance * 0.5f);
+            int toleranceMax = tolerance;
+            
+            PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, toleranceMin);
+            PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldName, toleranceMax);
         }
         else
         {
@@ -836,9 +837,7 @@ public class Fusebox : MonoBehaviour
         PlayerPrefs.SetInt(newItemKey, newCurrentQuantity - 1);
         
         PlayerPrefs.Save();
-        
-        Debug.Log($"Fusible {fuseType} asignado a {fieldName} con tolerancia {tolerance}");
-        
+                
         // Regenerar slots para mostrar cambios
         GenerateFuseboxSlots();
     }
@@ -867,9 +866,7 @@ public class Fusebox : MonoBehaviour
     /// Cancela el proceso de asignación (comando "exit")
     /// </summary>
     private void CancelAssignmentProcess()
-    {
-        Debug.Log("Proceso de asignación cancelado");
-        
+    {        
         // Mostrar button_back cuando se cancela
         if (buttonBack != null)
         {
@@ -887,14 +884,16 @@ public class Fusebox : MonoBehaviour
         // Ocultar mensajes de validación
         HideValidationMessages();
         
-        // Limpiar y enfocar input para permitir reintento
+        // Limpiar, activar y enfocar input para permitir reintento
         if (consoleInput != null)
         {
             consoleInput.text = "";
+            consoleInput.interactable = true;
+            consoleInput.Select();
             consoleInput.ActivateInputField();
         }
         
-        Debug.Log("Input reseteado para reintento");
+        Debug.Log("Input reseteado - listo para reintento");
     }
     
     /// <summary>
@@ -987,6 +986,14 @@ public class Fusebox : MonoBehaviour
             {
                 buttonBack.SetActive(true);
             }
+            
+            // Deshabilitar input mientras se muestra el mensaje de éxito
+            if (consoleInput != null)
+            {
+                consoleInput.interactable = false;
+            }
+            
+            Invoke("CloseAssignmentProcessDelayed", 1.5f);
         }
         else
         {
@@ -996,9 +1003,23 @@ public class Fusebox : MonoBehaviour
                 wrongCaseMessage.SetActive(true);
             }
             
-            // Para casos de error, recargar la interfaz inmediatamente
-            ResetInputForRetry();
+            // Deshabilitar input temporalmente mientras se muestra el error
+            if (consoleInput != null)
+            {
+                consoleInput.interactable = false;
+            }
+            
+            // Esperar 1.5 segundos antes de resetear para que el usuario vea el mensaje de error
+            Invoke("ResetInputForRetry", 1.5f);
         }
+    }
+    
+    /// <summary>
+    /// Cierra el proceso de asignación con delay (para dar tiempo a ver el mensaje de éxito)
+    /// </summary>
+    private void CloseAssignmentProcessDelayed()
+    {
+        CloseAssignmentProcess();
     }
     
     /// <summary>
@@ -1449,8 +1470,12 @@ public class Fusebox : MonoBehaviour
                 // Asignar tolerancia si aplica
                 if (expectedType == "INT" || expectedType == "VARCHAR")
                 {
-                    PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldKey, expectedSize);
-                    PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldKey, expectedSize);
+                    // El valor esperado es el máximo, el mínimo es el 50% del máximo
+                    int toleranceMin = Mathf.FloorToInt(expectedSize * 0.5f);
+                    int toleranceMax = expectedSize;
+                    
+                    PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldKey, toleranceMin);
+                    PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldKey, toleranceMax);
                 }
                 
                 Debug.Log($"Fusible inicializado: {fieldKey} -> {expectedType} ({expectedSize})");
