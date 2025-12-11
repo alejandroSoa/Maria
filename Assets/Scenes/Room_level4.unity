@@ -32915,7 +32915,6 @@ RectTransform:
   m_Children:
   - {fileID: 1005794309}
   - {fileID: 1105627420}
-  - {fileID: 373722977}
   - {fileID: 81888667}
   - {fileID: 2059114067}
   - {fileID: 1954017210}
@@ -32923,6 +32922,7 @@ RectTransform:
   - {fileID: 1926836024}
   - {fileID: 439129047}
   - {fileID: 1992221803}
+  - {fileID: 373722977}
   - {fileID: 1924504997}
   - {fileID: 773706721}
   m_Father: {fileID: 0}
