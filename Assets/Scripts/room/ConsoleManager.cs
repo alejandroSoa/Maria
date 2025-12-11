@@ -271,14 +271,15 @@ public class ConsoleManager : MonoBehaviour
     /// </summary>
     private void SetupUnit4Problems()
     {
-        // Problema 1: SELECT básico
-        SQLProblem problem1 = new SQLProblem();
-        problem1.problemDescription = "TODAVÍA ME FALTA AQUI AAAAAA.";
-        problem1.expectedQuery = "SELECT * FROM USERS";
-        problem1.successMessage = "¡Correcto! Has obtenido todos los registros de la tabla USERS.";
-        problem1.errorMessage = "Query incorrecta. Recuerda usar: SELECT * FROM USERS";
-        problem1.caseSensitive = false;
-        sqlProblems.Add(problem1);
+        // Problema 18: INNER JOIN básico - Usuarios con documentos solicitados
+        SQLProblem p18 = new SQLProblem();
+        p1.problemDescription = "[INNER JOIN] Mostrar usuarios con los documentos que solicitaron (Name, LastName de usuario, Name del documento, TimesRequested).";
+        p1.expectedQuery = "SELECT U.NAME, U.LASTNAME, D.NAME, R.TIMESREQUESTED FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p1.successMessage = "[System]: ¡Perfecto! INNER JOIN ejecutado correctamente.";
+        p1.errorMessage = "[ERROR]: Usa: SELECT U.Name, U.LastName, D.Name, R.TimesRequested FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id";
+        p1.caseSensitive = false;
+        sqlProblems.Add(p18);
+
 
     }
     
