@@ -15,12 +15,6 @@ public class Inventory : MonoBehaviour
     
     void Start()
     {
-        // Si estamos en la escena 1, limpiar el inventario
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            ClearInventory();
-        }
-        
         UpdateDecryptedCoinsDisplay();
     }
     

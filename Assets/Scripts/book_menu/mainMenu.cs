@@ -46,6 +46,13 @@ public class mainMenu : MonoBehaviour
     public void LoadSelectedLevelScene()
     {
         string selectedLevel = PlayerPrefs.GetString("selectedlevel", "Level_1");
+        
+        // Si es Level_1, limpiar el inventario antes de cargar
+        if (selectedLevel == "Level_1")
+        {
+            Inventory.ClearInventory();
+        }
+        
         string sceneToLoad = ConvertLevelToScene(selectedLevel);
         
         if (!string.IsNullOrEmpty(sceneToLoad))
