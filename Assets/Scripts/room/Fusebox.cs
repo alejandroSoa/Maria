@@ -35,6 +35,7 @@ public class Fusebox : MonoBehaviour
     private const string ASSIGNMENT_KEY_PREFIX = "FuseAssignment_";
     private const string TOLERANCE_MIN_KEY_PREFIX = "FuseTolMin_";
     private const string TOLERANCE_MAX_KEY_PREFIX = "FuseTolMax_";
+    private const string ACTUAL_VALUE_KEY_PREFIX = "FuseActualValue_";
     
     void Start()
     {
@@ -503,13 +504,13 @@ public class Fusebox : MonoBehaviour
         // Formatear fusible asignado como FS-TIPO-TAMAÑO
         string fuseDisplay = $"FS-{typeAbbrev}";
         
-        // Agregar tamaño/tolerancia si es INT o VARCHAR
+        // Agregar el valor REAL que ingresó el usuario si es INT o VARCHAR
         if (assignment == "INT" || assignment == "VARCHAR")
         {
-            int tolerance = PlayerPrefs.GetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, 0);
-            if (tolerance > 0)
+            int actualValue = PlayerPrefs.GetInt(ACTUAL_VALUE_KEY_PREFIX + fieldName, 0);
+            if (actualValue > 0)
             {
-                fuseDisplay += $"-{tolerance}";
+                fuseDisplay += $"-{actualValue}";
             }
         }
         
@@ -781,18 +782,53 @@ public class Fusebox : MonoBehaviour
             return;
         }
         
-        // Determinar valor de tolerancia
-        int tolerance = 0;
+        // Determinar valor ingresado
+        int userValue = 0;
         if (selectedFuseType == "INT" || selectedFuseType == "VARCHAR")
         {
-            tolerance = int.Parse(command);
+            userValue = int.Parse(command);
+            
+            // Validar que el valor esté dentro del rango de tolerancia esperado
+            int expectedSize = GetExpectedSizeForField(currentFieldBeingAssigned, selectedFuseType);
+            int minTolerance = Mathf.FloorToInt(expectedSize * 0.5f);
+            int maxTolerance = expectedSize;
+            
+            if (userValue < minTolerance || userValue > maxTolerance)
+            {
+                ShowValidationMessage(false, $"El valor debe estar entre {minTolerance} y {maxTolerance}");
+                return;
+            }
         }
         
-        // Realizar asignación
-        AssignFuseToField(currentFieldBeingAssigned, selectedFuseType, tolerance);
+        // Realizar asignación con el valor validado
+        AssignFuseToField(currentFieldBeingAssigned, selectedFuseType, userValue);
         ShowValidationMessage(true, "Fusible asignado correctamente");
         
         // El cierre se hace automáticamente después del delay en ShowValidationMessage
+    }
+    
+    /// <summary>
+    /// Obtiene el expectedSize para un campo específico
+    /// </summary>
+    private int GetExpectedSizeForField(string fieldName, string fuseType)
+    {
+        // Extraer el nombre de la tabla y columna del fieldName
+        string[] parts = fieldName.Split('_');
+        if (parts.Length < 2) return 0;
+        
+        string tableName = parts[0];
+        string columnName = parts[1];
+        
+        // Buscar la tabla
+        foreach (var table in DatabaseTables)
+        {
+            if (table.tableName == tableName && table.expectedSizes.ContainsKey(columnName))
+            {
+                return table.expectedSizes[columnName];
+            }
+        }
+        
+        return 0;
     }
     
     /// <summary>
@@ -814,21 +850,28 @@ public class Fusebox : MonoBehaviour
         // Guardar nueva asignación
         PlayerPrefs.SetString(ASSIGNMENT_KEY_PREFIX + fieldName, fuseType);
         
-        // Solo guardar tolerancia si el tipo la requiere
+        // Obtener el expectedSize para este campo para establecer los límites de tolerancia
+        int expectedSize = GetExpectedSizeForField(fieldName, fuseType);
+        
+        // Solo guardar tolerancia y valor si el tipo la requiere
         if (fuseType == "INT" || fuseType == "VARCHAR")
         {
-            // El valor ingresado es el máximo, el mínimo es el 50% del máximo
-            int toleranceMin = Mathf.FloorToInt(tolerance * 0.5f);
-            int toleranceMax = tolerance;
+            // Establecer límites de tolerancia basados en expectedSize (50%-100%)
+            int toleranceMin = Mathf.FloorToInt(expectedSize * 0.5f);
+            int toleranceMax = expectedSize;
             
             PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldName, toleranceMin);
             PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldName, toleranceMax);
+            
+            // Guardar el valor EXACTO que ingresó el usuario (ya validado)
+            PlayerPrefs.SetInt(ACTUAL_VALUE_KEY_PREFIX + fieldName, tolerance);
         }
         else
         {
-            // Para BOOL y DATE, limpiar tolerancias previas
+            // Para BOOL y DATE, limpiar tolerancias y valores previos
             PlayerPrefs.DeleteKey(TOLERANCE_MIN_KEY_PREFIX + fieldName);
             PlayerPrefs.DeleteKey(TOLERANCE_MAX_KEY_PREFIX + fieldName);
+            PlayerPrefs.DeleteKey(ACTUAL_VALUE_KEY_PREFIX + fieldName);
         }
         
         // Reducir cantidad en inventario del nuevo fusible
@@ -1476,6 +1519,9 @@ public class Fusebox : MonoBehaviour
                     
                     PlayerPrefs.SetInt(TOLERANCE_MIN_KEY_PREFIX + fieldKey, toleranceMin);
                     PlayerPrefs.SetInt(TOLERANCE_MAX_KEY_PREFIX + fieldKey, toleranceMax);
+                    
+                    // Guardar el valor esperado como valor actual por defecto
+                    PlayerPrefs.SetInt(ACTUAL_VALUE_KEY_PREFIX + fieldKey, expectedSize);
                 }
                 
                 Debug.Log($"Fusible inicializado: {fieldKey} -> {expectedType} ({expectedSize})");
@@ -1503,6 +1549,7 @@ public class Fusebox : MonoBehaviour
                 PlayerPrefs.DeleteKey(ASSIGNMENT_KEY_PREFIX + fieldKey);
                 PlayerPrefs.DeleteKey(TOLERANCE_MIN_KEY_PREFIX + fieldKey);
                 PlayerPrefs.DeleteKey(TOLERANCE_MAX_KEY_PREFIX + fieldKey);
+                PlayerPrefs.DeleteKey(ACTUAL_VALUE_KEY_PREFIX + fieldKey);
                 
             }
         }
