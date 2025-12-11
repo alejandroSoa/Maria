@@ -77,7 +77,288 @@ PriorityLevel → int
 Status → bool
 LastSeen → datetime
 CreatedAt → datetime
-UpdatedAt → datetime";
+UpdatedAt → datetime
+
+
+========================================
+REGISTROS ACTUALES
+
+
+USERS:
+________________________________________
+Name: Kiara
+LastName: Delgadillo Torres
+Email: Kiraa01_18@hotmail.com
+Phone: +52 55 2345 6789
+Age: 28
+Birthday: 1997-03-12
+Address: Av. Insurgentes Sur 1234
+City: Ciudad de México
+Country: México
+PriorityLevel: 1
+Status: true
+LastSeen: 2025-10-21 08:45:00
+CreatedAt: 2025-01-10 12:30:00
+UpdatedAt: 2025-10-21 12:45:00
+
+________________________________________
+Name: Kentaro
+LastName: Muira
+Email: yuki.takahashi@jp.co
+Phone: +81 90 4567 8910
+Age: 29
+Birthday: 1996-11-02
+Address: 1-2-3 Shibuya
+City: Tokio
+Country: Japón
+PriorityLevel: 4
+Status: false
+LastSeen: 2025-08-12 23:50:00
+CreatedAt: 2025-02-01 10:00:00
+UpdatedAt: 2025-10-21 12:10:00
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+Name: Dmitriy
+LastName: Zvyagintsev
+Email: dzvyagintsev@ru.net
+Phone: +7 495 123 4567
+Age: 44
+Birthday: 1981-12-01
+Address: Lenina 12
+City: Moscú
+Country: Rusia
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-07-21 18:00:00
+CreatedAt: 2025-01-15 12:00:00
+UpdatedAt: 2025-10-21 12:45:00
+
+________________________________________
+Name: Selbst
+LastName: Richtofen
+Email: wunderwaffle@yahoo.com
+Phone: +49 30 12345678
+Age: 45
+Birthday: 1980-04-12
+Address: Kastanienallee 77
+City: Berlín
+Country: Alemania
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-01-01 00:00:00
+CreatedAt: 2025-01-01 00:00:00
+UpdatedAt: 2025-10-21 12:45:00
+
+________________________________________
+Name: Maja
+LastName: Schneider
+Email: maja.schneider@example.de
+Phone: +49 152 34567890
+Age: 33
+Birthday: 1992-02-14
+Address: Kurfürstendamm 12
+City: Berlín
+Country: Alemania
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-10-20 19:30:00
+CreatedAt: 2024-10-10 08:00:00
+UpdatedAt: 2025-10-21 12:45:00
+
+________________________________________
+Name: Frank
+LastName: Jeager
+Email: mueller@example.de
+Phone: +49 30 98765432
+Age: 29
+Birthday: 1996-06-05
+Address: Marienplatz 1
+City: Múnich
+Country: Alemania
+PriorityLevel: 3
+Status: false
+LastSeen: 2025-10-18 09:15:00
+CreatedAt: 2025-03-01 11:00:00
+UpdatedAt: 2025-10-02 12:00:00
+
+________________________________________
+Name: Jin
+LastName: Sakai
+Email: Sakaijin@jp.co
+Phone: +81 90 1234 5678
+Age: 27
+Birthday: 1998-08-20
+Address: 2-4-5 Shinjuku
+City: Tokio
+Country: Japón
+PriorityLevel: 4
+Status: false
+LastSeen: 2025-10-21 07:00:00
+CreatedAt: 2025-02-20 09:00:00
+UpdatedAt: 2025-10-21 12:10:00
+
+________________________________________
+Name: Anastasia
+LastName: Ivanova
+Email: anastasia.ivanova@ru.net
+Phone: +7 926 555 1122
+Age: 31
+Birthday: 1994-03-03
+Address: Tverskaya 9
+City: San Petersburgo
+Country: Rusia
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-10-19 14:30:00
+CreatedAt: 2025-06-15 10:00:00
+UpdatedAt: 2025-10-21 12:45:00
+
+
+PERMISSIONS:
+
+________________________________________
+Description: Permite visualizar la información general de los usuarios registrados en el sistema. Recuerda que para obtener datos se utiliza SELECT.
+CreatedAt: 2025-01-05 10:00:00
+UpdatedAt: 2025-09-12 08:30:00
+Status: true
+
+________________________________________
+Description: Autoriza la modificación de datos existentes en los formularios internos. Recuerda que para editar datos se utiliza UPDATE.
+CreatedAt: 2025-02-10 11:15:00
+UpdatedAt: 2025-09-18 09:45:00
+Status: true
+
+________________________________________
+Description: Permite realizar un borrado lógico o definitivo de la información. Recuerda que para eliminar datos se utiliza DELETE
+CreatedAt: 2025-03-20 09:00:00
+UpdatedAt: 2025-08-30 10:00:00
+Status: true
+
+________________________________________
+Description: Otorga la capacidad de abrir y revisar archivos almacenados en el sistema.
+CreatedAt: 2025-01-22 14:30:00
+UpdatedAt: 2025-09-10 13:00:00
+Status: true
+
+________________________________________
+Description: Permite crear, modificar y asignar permisos a otros usuarios. Recuerda que para crear datos se utiliza CREATE
+CreatedAt: 2025-02-18 08:00:00
+UpdatedAt: 2025-09-20 10:00:00
+Status: true
+
+________________________________________
+Description: Autoriza la transmisión de información fuera del canal autorizado. Su uso requiere aprobación.
+CreatedAt: 2025-03-15 05:00:00
+UpdatedAt: 2025-09-21 04:00:00
+Status: true
+
+________________________________________
+Description: Permite establecer comunicación directa con agentes o entidades externas al perímetro.
+CreatedAt: 2025-04-01 00:00:00
+UpdatedAt: 2025-08-31 00:00:00
+Status: true
+
+________________________________________
+Description: Habilita el ingreso a áreas restringidas bajo el complejo principal.
+CreatedAt: 2025-04-22 02:45:00
+UpdatedAt: 2025-09-01 02:45:00
+Status: true
+
+________________________________________
+Description: Permiso de recibir alimento. No todos deben recibir la misma ración.
+CreatedAt: 2025-05-11 03:33:00
+UpdatedAt: 2025-09-05 03:33:00
+Status: true
+
+________________________________________
+Description: Concede autorización temporal para abandonar las instalaciones. Mantener vigilancia discreta en todo momento.
+CreatedAt: 2025-06-09 06:06:00
+UpdatedAt: 2025-09-09 06:06:00
+Status: true
+
+DOCUMENTS:
+
+________________________________________
+Name: Memorándum: Ajustes Residenciales Internos Anómalos
+HasPassword: true
+Password: vx19cA!
+FileType: docx
+FileSize: 666
+
+________________________________________
+Name: Catálogo Cortinas de Baño Verano 2025
+HasPassword: false
+Password: NULL
+FileType: pdf
+FileSize: 2450
+
+________________________________________
+Name: Manual de Limpieza Profunda
+HasPassword: false
+Password: NULL
+FileType: pdf
+FileSize: 2450
+
+________________________________________
+Name: Visitantes
+HasPassword: false
+Password: NULL
+FileType: xlsx
+FileSize: 3200
+
+________________________________________
+Name: Guía de Instalación Soportes de Ducha
+HasPassword: false
+Password: NULL
+FileType: docx
+FileSize: 1800
+
+________________________________________
+Name: Presupuesto Hotel Riviera - Cortinas
+HasPassword: false
+Password: NULL
+FileType: xlsx
+FileSize: 3200
+
+________________________________________
+Name: Diseños Minimalistas para Cortinas Transparentes
+HasPassword: false
+Password: NULL
+FileType: pdf
+FileSize: 2750
+
+________________________________________
+Name: OLD_DATA
+HasPassword: false
+Password: NULL
+FileType: rar
+FileSize: 57450
+
+________________________________________
+Name: Texturas y Telas Antihumedad 2024
+HasPassword: false
+Password: NULL
+FileType: pdf
+FileSize: 1990
+
+________________________________________
+Name: .
+HasPassword: false
+Password: NULL
+FileType: xlsx
+FileSize: 3200
+
+________________________________________
+Name: Memorándum Informe Específico: Nuevas Tendencias Experimentales
+HasPassword: true
+Password: uX#78rD
+FileType: pdf
+FileSize: 1337
+";
 
     [SerializeField][TextArea(10, 20)] private string unit2Content = @"
 
@@ -195,7 +476,315 @@ BUENAS PRÁCTICAS:
 - Siempre incluye WHERE en UPDATE y DELETE
 - Prueba consultas complejas paso a paso
 - Usa índices en columnas frecuentemente consultadas
-- Valida datos antes de INSERT o UPDATE";
+- Valida datos antes de INSERT o UPDATE
+
+
+========================================
+REGISTROS ACTUALES
+
+
+USERS:
+________________________________________
+Name: Kiara
+LastName: Delgadillo Torres
+Email: Kiraa01_18@hotmail.com
+Phone: +52 55 2345 6789
+Age: 28
+Birthday: 1997-03-12
+Address: Av. Insurgentes Sur 1234
+City: Ciudad de México
+Country: México
+PriorityLevel: 3
+Status: true
+LastSeen: 2025-10-21 08:45:00
+CreatedAt: 2025-01-10 12:30:00
+UpdatedAt: 2025-09-15 09:00:00
+
+________________________________________
+Name: Kentaro
+LastName: Muira
+Email: yuki.takahashi@jp.co
+Phone: +81 90 4567 8910
+Age: 29
+Birthday: 1996-11-02
+Address: 1-2-3 Shibuya
+City: Tokio
+Country: Japón
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-08-12 23:50:00
+CreatedAt: 2025-02-01 10:00:00
+UpdatedAt: 2025-09-22 16:00:00
+
+________________________________________
+Name: GAKJLhlkLA
+LastName: H0peles$0ul
+Email: securityservice@gamefuna.com
+Phone: ????
+Age: NULL
+Birthday: NULL
+Address: NoAddress
+City: ???
+Country: ???
+PriorityLevel: 0
+Status: false
+LastSeen: NULL
+CreatedAt: 2025-05-05 00:00:00
+UpdatedAt: 2025-05-05 00:00:00
+
+________________________________________
+Name: Dmitriy
+LastName: Zvyagintsev
+Email: dzvyagintsev@ru.net
+Phone: +7 495 123 4567
+Age: 44
+Birthday: 1981-12-01
+Address: Lenina 12
+City: Moscú
+Country: Rusia
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-07-21 18:00:00
+CreatedAt: 2025-01-15 12:00:00
+UpdatedAt: 2025-08-10 09:00:00
+
+________________________________________
+Name: Selbst
+LastName: Richtofen
+Email: wunderwaffle@yahoo.com
+Phone: +49 30 12345678
+Age: 45
+Birthday: 1980-04-12
+Address: Kastanienallee 77
+City: Berlín
+Country: Alemania
+PriorityLevel: 5
+Status: true
+LastSeen: 2025-01-01 00:00:00
+CreatedAt: 2025-01-01 00:00:00
+UpdatedAt: 2025-01-01 00:00:00
+
+________________________________________
+Name: Maja
+LastName: Schneider
+Email: maja.schneider@example.de
+Phone: +49 152 34567890
+Age: 33
+Birthday: 1992-02-14
+Address: Kurfürstendamm 12
+City: Berlín
+Country: Alemania
+PriorityLevel: 2
+Status: false
+LastSeen: 2025-10-20 19:30:00
+CreatedAt: 2024-10-10 08:00:00
+UpdatedAt: 2025-09-01 10:00:00
+
+________________________________________
+Name: Frank
+LastName: Jeager
+Email: mueller@example.de
+Phone: +49 30 98765432
+Age: 29
+Birthday: 1996-06-05
+Address: Marienplatz 1
+City: Múnich
+Country: Alemania
+PriorityLevel: 3
+Status: false
+LastSeen: 2025-10-18 09:15:00
+CreatedAt: 2025-03-01 11:00:00
+UpdatedAt: 2025-10-02 12:00:00
+
+________________________________________
+Name: Jin
+LastName: Sakai
+Email: Sakaijin@jp.co
+Phone: +81 90 1234 5678
+Age: 27
+Birthday: 1998-08-20
+Address: 2-4-5 Shinjuku
+City: Tokio
+Country: Japón
+PriorityLevel: 1
+Status: false
+LastSeen: 2025-10-21 07:00:00
+CreatedAt: 2025-02-20 09:00:00
+UpdatedAt: 2025-10-20 09:00:00
+
+________________________________________
+Name: Anastasia
+LastName: Ivanova
+Email: anastasia.ivanova@ru.net
+Phone: +7 926 555 1122
+Age: 31
+Birthday: 1994-03-03
+Address: Tverskaya 9
+City: San Petersburgo
+Country: Rusia
+PriorityLevel: 2
+Status: false
+LastSeen: 2025-10-19 14:30:00
+CreatedAt: 2025-06-15 10:00:00
+UpdatedAt: 2025-09-25 08:00:00
+
+________________________________________
+Name: María
+LastName: IA
+Email: maria.lopez@example.com
+Phone: +52 55 6789 4321
+Age: 26
+Birthday: 1999-07-18
+Address: Calle Reforma 45, Col. Centro
+City: Ciudad de México
+Country: México
+PriorityLevel: 2
+Status: true
+LastSeen: 2025-10-21 13:30:00
+CreatedAt: 2025-02-10 10:00:00
+UpdatedAt: 2025-09-25 09:00:00
+
+
+PERMISSIONS:
+
+________________________________________
+Name: Ver registros de usuarios
+Description: Permite visualizar la información general de los usuarios registrados en el sistema. Recuerda que para obtener datos se utiliza SELECT.
+CreatedAt: 2025-01-05 10:00:00
+UpdatedAt: 2025-09-12 08:30:00
+
+________________________________________
+Name: Editar registros
+Description: Autoriza la modificación de datos existentes en los formularios internos. Recuerda que para editar datos se utiliza UPDATE.
+CreatedAt: 2025-02-10 11:15:00
+UpdatedAt: 2025-09-18 09:45:00
+
+________________________________________
+Name: Eliminar registros
+Description: Permite realizar un borrado lógico o definitivo de la información. Recuerda que para eliminar datos se utiliza DELETE
+CreatedAt: 2025-03-20 09:00:00
+UpdatedAt: 2025-08-30 10:00:00
+
+________________________________________
+Name: Acceso a documentos
+Description: Otorga la capacidad de abrir y revisar archivos almacenados en el sistema.
+CreatedAt: 2025-01-22 14:30:00
+UpdatedAt: 2025-09-10 13:00:00
+
+________________________________________
+Name: Gestión de permisos
+Description: Permite crear, modificar y asignar permisos a otros usuarios. Recuerda que para crear datos se utiliza CREATE
+CreatedAt: 2025-02-18 08:00:00
+UpdatedAt: 2025-09-20 10:00:00
+
+________________________________________
+Name: Permiso de difusión
+Description: Autoriza la transmisión de información fuera del canal autorizado. Su uso requiere aprobación.
+CreatedAt: 2025-03-15 05:00:00
+UpdatedAt: 2025-09-21 04:00:00
+
+________________________________________
+Name: Contacto con el exterior
+Description: Permite establecer comunicación directa con agentes o entidades externas al perímetro.
+CreatedAt: 2025-04-01 00:00:00
+UpdatedAt: 2025-08-31 00:00:00
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+Name: Distribución de alimento
+Description: Permiso de recibir alimento. No todos deben recibir la misma ración.
+CreatedAt: 2025-05-11 03:33:00
+UpdatedAt: 2025-09-05 03:33:00
+
+________________________________________
+Name: Salida al exterior
+Description: Concede autorización temporal para abandonar las instalaciones. Mantener vigilancia discreta en todo momento.
+CreatedAt: 2025-06-09 06:06:00
+UpdatedAt: 2025-09-09 06:06:00
+
+________________________________________
+Name: ADMINISTRADOR
+Description: Permite acceso y control total del sistema
+CreatedAt: 2025-01-05 10:00:00
+UpdatedAt: 2025-09-12 08:30:00
+
+
+DOCUMENTS:
+
+________________________________________
+Name: Memorándum: Ajustes Residenciales Internos Anómalos
+HasPassword: true
+Password: vx19cA!
+FileType: docx
+FileSize: 666
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+
+ELIMINADO
+
+________________________________________
+Name: Memorándum Informe Específico: Nuevas Tendencias Experimentales
+HasPassword: true
+Password: uX#78rD
+FileType: pdf
+FileSize: 1337
+
+________________________________________
+Name: Roblox
+HasPassword: true
+Password: true
+FileType: docx
+FileSize: 210
+
+________________________________________
+Name: Roblox2
+HasPassword: true
+Password: true
+FileType: docx
+FileSize: 460
+
+________________________________________
+Name: Trampa
+HasPassword: true
+Password: true
+FileType: py
+FileSize: 666
+";
 
     [SerializeField][TextArea(10, 20)] private string unit3Content = @"
 
@@ -326,7 +915,76 @@ BUENAS PRÁCTICAS RELACIONALES:
 - Aplicar restricciones UNIQUE donde sea necesario
 - Definir valores DEFAULT para campos opcionales
 - Nombrar las restricciones (CONSTRAINT) de forma descriptiva
-- Validar que las tablas referenciadas existan antes de crear FKs";
+- Validar que las tablas referenciadas existan antes de crear FKs
+
+
+========================================
+REGISTROS ACTUALES
+
+
+RECORDS:
+________________________________________
+Visitor: 1
+Requested: 1
+TimesRequested: 3
+LastAccess: 2025-10-20 09:30:00
+IpAddress: 192.168.1.10
+
+________________________________________
+Visitor: 2
+Requested: 1
+TimesRequested: 1
+LastAccess: 2025-09-15 14:10:00
+IpAddress: 192.168.1.11
+
+________________________________________
+Visitor: 3
+Requested: 2
+TimesRequested: 5
+LastAccess: 2025-10-18 16:45:00
+IpAddress: 192.168.1.12
+
+________________________________________
+Visitor: 4
+Requested: 1
+TimesRequested: 2
+LastAccess: 2025-08-30 11:00:00
+IpAddress: 192.168.1.13
+
+________________________________________
+Visitor: 5
+Requested: 2
+TimesRequested: 1
+LastAccess: 2025-10-19 08:20:00
+IpAddress: 192.168.1.14
+
+________________________________________
+Visitor: 6
+Requested: 2
+TimesRequested: 4
+LastAccess: 2025-10-21 12:15:00
+IpAddress: 192.168.1.15
+
+________________________________________
+Visitor: 7
+Requested: 1
+TimesRequested: 1
+LastAccess: 2025-09-25 09:50:00
+IpAddress: 192.168.1.16
+
+________________________________________
+Visitor: 8
+Requested: 2
+TimesRequested: 2
+LastAccess: 2025-10-20 18:30:00
+IpAddress: 192.168.1.17
+
+
+USERPERMISSION:
+________________________________________
+User: ID DE MARIA
+Permission: ID PERMISO ABSOLUTO
+";
 
     [SerializeField][TextArea(10, 20)] private string unit4Content = @"
 
@@ -453,7 +1111,9 @@ BUENAS PRÁCTICAS AVANZADAS:
 - Aplicar COALESCE para manejar valores NULL en agregaciones
 - Combinar LEFT/RIGHT JOIN según qué datos preservar
 - Usar GROUP BY con funciones agregadas para análisis
-- Nombrar columnas calculadas con AS (totalSolicitudes, totalAccesos)";
+- Nombrar columnas calculadas con AS (totalSolicitudes, totalAccesos)
+
+suerte :D";
     
     private string journalContent = "";
     private int currentPage = 1;
