@@ -273,14 +273,84 @@ public class ConsoleManager : MonoBehaviour
     {
         // Problema 18: INNER JOIN básico - Usuarios con documentos solicitados
         SQLProblem p18 = new SQLProblem();
-        p1.problemDescription = "[INNER JOIN] Mostrar usuarios con los documentos que solicitaron (Name, LastName de usuario, Name del documento, TimesRequested).";
-        p1.expectedQuery = "SELECT U.NAME, U.LASTNAME, D.NAME, R.TIMESREQUESTED FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
-        p1.successMessage = "[System]: ¡Perfecto! INNER JOIN ejecutado correctamente.";
-        p1.errorMessage = "[ERROR]: Usa: SELECT U.Name, U.LastName, D.Name, R.TimesRequested FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id";
-        p1.caseSensitive = false;
+        p18.problemDescription = "[INNER JOIN] Mostrar usuarios con los documentos que solicitaron (Name, LastName de usuario, Name del documento, TimesRequested).";
+        p18.expectedQuery = "SELECT U.NAME, U.LASTNAME, D.NAME, R.TIMESREQUESTED FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p18.successMessage = "[System]: ¡Perfecto! INNER JOIN ejecutado correctamente.";
+        p18.errorMessage = "[ERROR]: Usa: SELECT U.Name, U.LastName, D.Name, R.TimesRequested FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id";
+        p18.caseSensitive = false;
         sqlProblems.Add(p18);
 
+        // Problema 19: INNER JOIN con filtros - Usuarios con prioridad alta que solicitaron documentos con contraseña
+        SQLProblem p19 = new SQLProblem();
+        p19.problemDescription = "[INNER JOIN] Mostrar usuarios de prioridad alta que solicitaron documentos con contraseña (Name del usuario, PriorityLevel, Name del documento, HasPassword).";
+        p19.expectedQuery = "SELECT U.NAME, U.PRIORITYLEVEL, D.NAME, D.HASPASSWORD FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID WHERE U.PRIORITYLEVEL <= 2 AND D.HASPASSWORD = TRUE";
+        p19.successMessage = "[System]: ¡Perfecto! Consulta de usuarios con prioridad alta ejecutada correctamente.";
+        p19.errorMessage = "[ERROR]: Usa: SELECT U.Name, U.PriorityLevel, D.Name, D.HasPassword FROM Records R INNER JOIN Users U ON R.Visitor = U.Id INNER JOIN Documents D ON R.Requested = D.Id WHERE U.PriorityLevel <= 2 AND D.HasPassword = true";
+        p19.caseSensitive = false;
+        sqlProblems.Add(p19);
 
+        // Problema 20: GROUP BY básico - Cantidad de solicitudes por usuario
+        SQLProblem p20 = new SQLProblem();
+        p20.problemDescription = "[GROUP BY] Mostrar cuántas solicitudes hizo cada usuario (Name del usuario, totalSolicitudes).";
+        p20.expectedQuery = "SELECT U.NAME, COUNT(R.ID) AS TOTALSOLICITUDES FROM RECORDS R INNER JOIN USERS U ON R.VISITOR = U.ID GROUP BY U.NAME";
+        p20.successMessage = "[System]: ¡Perfecto! Conteo de solicitudes ejecutado correctamente.";
+        p20.errorMessage = "[ERROR]: Usa: SELECT U.Name, COUNT(R.Id) AS totalSolicitudes FROM Records R INNER JOIN Users U ON R.Visitor = U.Id GROUP BY U.Name";
+        p20.caseSensitive = false;
+        sqlProblems.Add(p20);
+
+        // Problema 21: LEFT JOIN - Todos los usuarios y los documentos que pidieron (aunque no pidan nada)
+        SQLProblem p21 = new SQLProblem();
+        p21.problemDescription = "[LEFT JOIN] Mostrar todos los usuarios y los documentos que pidieron, incluso si no han solicitado nada (Name del usuario, Name del documento, LastAccess).";
+        p21.expectedQuery = "SELECT U.NAME, D.NAME, R.LASTACCESS FROM USERS U LEFT JOIN RECORDS R ON U.ID = R.VISITOR LEFT JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p21.successMessage = "[System]: ¡Perfecto! LEFT JOIN ejecutado correctamente.";
+        p21.errorMessage = "[ERROR]: Usa: SELECT U.Name, D.Name, R.LastAccess FROM Users U LEFT JOIN Records R ON U.Id = R.Visitor LEFT JOIN Documents D ON R.Requested = D.Id";
+        p21.caseSensitive = false;
+        sqlProblems.Add(p21);
+
+        // Problema 22: LEFT JOIN - Todos los documentos y quién los pidió (si alguien los pidió)
+        SQLProblem p22 = new SQLProblem();
+        p22.problemDescription = "[LEFT JOIN] Mostrar todos los documentos y quién los pidió, incluso si nadie los ha solicitado (Name del documento, solicitadoPor, LastAccess).";
+        p22.expectedQuery = "SELECT D.NAME, U.NAME AS SOLICITADOPOR, R.LASTACCESS FROM DOCUMENTS D LEFT JOIN RECORDS R ON D.ID = R.REQUESTED LEFT JOIN USERS U ON R.VISITOR = U.ID";
+        p22.successMessage = "[System]: ¡Perfecto! Consulta de documentos con solicitantes ejecutada correctamente.";
+        p22.errorMessage = "[ERROR]: Usa: SELECT D.Name, U.Name AS solicitadoPor, R.LastAccess FROM Documents D LEFT JOIN Records R ON D.Id = R.Requested LEFT JOIN Users U ON R.Visitor = U.Id";
+        p22.caseSensitive = false;
+        sqlProblems.Add(p22);
+
+        // Problema 23: LEFT JOIN con agregación - Usuarios y cantidad total de accesos (aunque no tengan registros)
+        SQLProblem p23 = new SQLProblem();
+        p23.problemDescription = "[LEFT JOIN] Mostrar usuarios y la cantidad total de accesos, incluso si no tienen registros (Name del usuario, totalAccesos).";
+        p23.expectedQuery = "SELECT U.NAME, COALESCE(SUM(R.TIMESREQUESTED), 0) AS TOTALACCESOS FROM USERS U LEFT JOIN RECORDS R ON U.ID = R.VISITOR GROUP BY U.NAME";
+        p23.successMessage = "[System]: ¡Perfecto! Conteo total de accesos ejecutado correctamente.";
+        p23.errorMessage = "[ERROR]: Usa: SELECT U.Name, COALESCE(SUM(R.TimesRequested), 0) AS totalAccesos FROM Users U LEFT JOIN Records R ON U.Id = R.Visitor GROUP BY U.Name";
+        p23.caseSensitive = false;
+        sqlProblems.Add(p23);
+
+        // Problema 24: RIGHT JOIN - Todos los registros de acceso, incluso si el usuario fue eliminado
+        SQLProblem p24 = new SQLProblem();
+        p24.problemDescription = "[RIGHT JOIN] Mostrar todos los registros de acceso, incluso si el usuario fue eliminado (Id del registro, Name del usuario, Name del documento, LastAccess).";
+        p24.expectedQuery = "SELECT R.ID, U.NAME, D.NAME, R.LASTACCESS FROM USERS U RIGHT JOIN RECORDS R ON U.ID = R.VISITOR INNER JOIN DOCUMENTS D ON R.REQUESTED = D.ID";
+        p24.successMessage = "[System]: ¡Perfecto! RIGHT JOIN ejecutado correctamente.";
+        p24.errorMessage = "[ERROR]: Usa: SELECT R.Id, U.Name, D.Name, R.LastAccess FROM Users U RIGHT JOIN Records R ON U.Id = R.Visitor INNER JOIN Documents D ON R.Requested = D.Id";
+        p24.caseSensitive = false;
+        sqlProblems.Add(p24);
+
+        // Problema 25: RIGHT JOIN - Usuarios japoneses (o sus registros si existieran)
+        SQLProblem p25 = new SQLProblem();
+        p25.problemDescription = "[RIGHT JOIN] Mostrar usuarios japoneses y los registros/documents asociados si existieran (Name del usuario, Country, Name del documento, LastAccess).";
+        p25.expectedQuery = "SELECT U.NAME, U.COUNTRY, D.NAME, R.LASTACCESS FROM USERS U RIGHT JOIN RECORDS R ON U.ID = R.VISITOR RIGHT JOIN DOCUMENTS D ON R.REQUESTED = D.ID WHERE U.COUNTRY = 'Japón'";
+        p25.successMessage = "[System]: ¡Perfecto! Consulta de usuarios japoneses ejecutada correctamente.";
+        p25.errorMessage = "[ERROR]: Usa: SELECT U.Name, U.Country, D.Name, R.LastAccess FROM Users U RIGHT JOIN Records R ON U.Id = R.Visitor RIGHT JOIN Documents D ON R.Requested = D.Id WHERE U.Country = 'Japón'";
+        p25.caseSensitive = false;
+        sqlProblems.Add(p25);
+
+        // Problema 26: DROP TABLE - Eliminar la tabla BathroomCurtain
+        SQLProblem p26 = new SQLProblem();
+        p26.problemDescription = "[DDL] Eliminar la tabla BathroomCurtain usando DROP TABLE.";
+        p26.expectedQuery = "DROP TABLE BATHROOMCURTAIN";
+        p26.successMessage = "[System]: ¡Perfecto! La tabla fue eliminada exitosamente.";
+        p26.errorMessage = "[ERROR]: Usa: DROP TABLE BathroomCurtain";
+        p26.caseSensitive = false;
+        sqlProblems.Add(p26);
     }
     
     /// <summary>
