@@ -35,6 +35,37 @@ public class DialogueStarter : MonoBehaviour
             }
         }
         
+        // Detectar formato "Room_levelX" o "room_levelX"
+        if (currentSceneName.ToLower().Contains("level"))
+        {
+            // Buscar el número después de "level"
+            int levelIndex = currentSceneName.ToLower().IndexOf("level") + 5;
+            if (levelIndex < currentSceneName.Length)
+            {
+                string numberPart = "";
+                for (int i = levelIndex; i < currentSceneName.Length; i++)
+                {
+                    if (char.IsDigit(currentSceneName[i]))
+                    {
+                        numberPart += currentSceneName[i];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                
+                if (int.TryParse(numberPart, out int levelNum))
+                {
+                    if (levelNum >= 1 && levelNum <= 4)
+                    {
+                        Debug.Log($"[DialogueStarter] Nivel detectado desde escena (formato Room_level): {levelNum}");
+                        return levelNum;
+                    }
+                }
+            }
+        }
+        
         // Si no, usar PlayerPrefs como respaldo
         string selectedLevel = PlayerPrefs.GetString("selectedlevel", "Level_1");
         Debug.Log($"[DialogueStarter] selectedlevel en PlayerPrefs: '{selectedLevel}'");
