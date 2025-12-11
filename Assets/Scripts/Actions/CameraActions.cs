@@ -153,6 +153,13 @@ public class CameraActions : MonoBehaviour
             DialogueController.Instance.PauseDialogue();
         });
 
+        ActionManager.Instance.RegisterAction("Dejar_dialogo", () =>
+        {
+            PlayerPrefs.SetInt("stopDialogues", 1);
+            PlayerPrefs.Save();
+            DialogueController.Instance.PauseDialogue();
+        });
+
         ActionManager.Instance.RegisterAction("Epilogo", () =>
         {
             viewManager.Instance.ActivateView(Epilogo);

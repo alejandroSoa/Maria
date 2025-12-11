@@ -38,12 +38,15 @@ public class DialogueController : MonoBehaviour
     // Nivel 2 - Diálogos que activan a Maria
     { "¿Podemos volver a lo importante?", "Mostrar_Maria" },
     { "Bien, bueno, ya tenemos la base de estas cajas de fusibles, o tablas SQL. Por lo que ya deberíamos poder pasar de sala con esto.", "Mostrar_Maria" },
+    { "Tienes toda la razón, vamos hacia ella para obtener mas puntos.", "Dejar_dialogo" },
     // Nivel 3 - Diálogos que activan a Maria
     { "Bueno, he estado revisando los registros y ya casi terminamos.", "Mostrar_Maria"},
     { "¿Qué demonios falta?.", "Mostrar_Maria"},
+    { "Y tengo justo el nombre ideal para ti, mi pequeño nuevo autómata…", "Dejar_dialogo" },
     // Nivel 4 - Diálogos que activan a Maria
     { "Hola. Gracias. De verdad, gracias por haber jugado.", "Mostrar_Maria" },
-    {"Sabes. A pesar de todo, no estoy conforme con el final oficial del juego, ¿sabes? El de la derrota del malvado científico. Era predecible, insípido.", "Mostrar_Maria" }
+    {"Sabes. A pesar de todo, no estoy conforme con el final oficial del juego, ¿sabes? El de la derrota del malvado científico. Era predecible, insípido.", "Mostrar_Maria" },
+    { "Eso sería divertido...", "Dejar_dialogo" }
 };
 
     void Awake()
